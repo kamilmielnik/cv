@@ -6,26 +6,18 @@
 
   .page {
     margin: 20px auto;
-    padding: 20mm;
     height: 100%;
 
     .buttons {
       position: absolute;
       left: calc(100% + 20mm);
       top: 80px;
-      z-index: -1;
 
       .button {
         margin-bottom: 10px;
-
-        &.download-pdf {
-          top: 20px;
-        }
       }
-    }
 
-    @media screen and (max-width: 1030px) {
-      .buttons {
+      @media screen and (max-width: 1030px) {
         display: none;
       }
     }

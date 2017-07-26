@@ -1,16 +1,21 @@
 html, body {
   margin: 0 auto;
   padding: 0;
-  width: 210mm;
-  height: 285mm;
   background: #ccc;
+  box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
   line-height: 1.45;
 
   @media print {
     overflow: hidden;
+    background: white;
   }
+}
+
+@page  {
+  size: A4;
+  margin: 0;
 }
 
 a {
