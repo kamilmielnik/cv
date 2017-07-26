@@ -1,0 +1,29 @@
+html, body {
+  margin: 0 auto;
+  padding: 0;
+  width: 210mm;
+  height: 285mm;
+  background: #ccc;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+
+  @media print {
+    overflow: hidden;
+  }
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+h1, h2, h3, h4 {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+}

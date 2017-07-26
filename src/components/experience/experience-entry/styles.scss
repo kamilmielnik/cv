@@ -1,0 +1,26 @@
+.experience-entry {
+  display: flex;
+
+  .info {
+    position: relative;
+    top: -3px;
+    flex: 0 0 125px;
+    margin-right: 14px;
+  }
+
+  .details {
+    flex-grow: 1;
+
+    .positions {
+      margin-bottom: 8px;
+    }
+
+    .separator {
+      border-bottom: 1px dotted gray;
+    }
+
+    .description {
+      margin-top: 6px;
+    }
+  }
+}

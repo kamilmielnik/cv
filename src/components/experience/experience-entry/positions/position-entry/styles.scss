@@ -1,0 +1,22 @@
+.position-entry {
+  display: flex;
+
+  .time-period {
+    flex: 0 0 72px;
+    margin-right: 10px;
+
+    &:after {
+      content: ')';
+    }
+
+    &:before {
+      content: '(';
+    }
+  }
+
+  .title {
+    flex-grow: 1;
+    font-weight: bold;
+    text-shadow: 1px 1px #eee;
+  }
+}

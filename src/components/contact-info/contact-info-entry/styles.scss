@@ -1,0 +1,20 @@
+.contact-info-entry {
+  display: flex;
+  padding: 2px 0;
+
+  .label, .value {
+    box-sizing: border-box;
+    font-size: 13px;
+    padding: 0 8px;
+  }
+
+  .label {
+    flex: 0 0 72px;
+    text-align: right;
+    color: gray;
+  }
+
+  .value {
+    color: black;
+  }
+}
