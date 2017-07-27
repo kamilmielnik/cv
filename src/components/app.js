@@ -10,7 +10,7 @@ import Skills from 'components/skills';
 import Experience from 'components/experience';
 import styles from './styles.scss';
 
-const PDF_URL = './KamilMielnik.pdf';
+const PDF_URL = 'https://kamilmielnik.github.io/KamilMielnik.pdf';
 const print = () => window.print();
 const downloadPdf = () => window.open(PDF_URL);
 
