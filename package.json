@@ -1,6 +1,6 @@
 {
   "name": "cv",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Kamil Mielnik's Curriculum Vitae",
   "main": "src/index.js",
   "scripts": {
