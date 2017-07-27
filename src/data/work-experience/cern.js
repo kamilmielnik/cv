@@ -1,8 +1,8 @@
 import moment from 'moment';
-import { ASSEMBLA, CASTOR, ECLIPSE, JAVA, SASS, SVN, VAADIN, ZEROC_ICE } from './technologies';
+import { CASTOR, CSS, JAVA, VAADIN, ZEROC_ICE } from 'constants/technologies';
 
 const cern = {
-  description: [ JAVA, VAADIN, ZEROC_ICE, CASTOR, SASS, ASSEMBLA, ECLIPSE, SVN ].join(', '),
+  description: [ JAVA, VAADIN, CSS, ZEROC_ICE, CASTOR ].join(', '),
   location: 'Genève, Switzerland',
   organization: 'CERN',
   positions: [

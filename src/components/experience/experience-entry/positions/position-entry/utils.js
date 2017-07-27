@@ -4,6 +4,7 @@ const NUMBER_OF_MONTHS_IN_HALF_YEAR = 6;
 export const formatNumberOfMonths = (numberOfMonths) => {
   const years = Math.floor(numberOfMonths / NUMBER_OF_MONTHS_IN_YEAR);
   const months = numberOfMonths - years * NUMBER_OF_MONTHS_IN_YEAR;
+
   if (years === 0) {
     return `${months} mo`;
   }

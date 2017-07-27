@@ -1,2 +1,1 @@
-const name = 'Kamil Mielnik';
-export default name;
+export default 'Kamil Mielnik';

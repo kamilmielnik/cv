@@ -1,9 +1,8 @@
-const skills = [
+export default [
   'Object-Oriented Programming',
   'Clean Code',
   'Design Patterns',
   'Refactoring',
-  'Code review',
+  'Code Review',
   'Attention to Detail'
 ];
-export default skills;
