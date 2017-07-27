@@ -25,7 +25,7 @@ const codete = {
       title: 'Lead & Technical Recruiter'
     },
     {
-      now: true,
+      now: false,
       timePeriods: [
         {
           from: moment('2015/08/01', 'YYYY-MM-DD'),
