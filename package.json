@@ -3,6 +3,9 @@
   "version": "1.0.4",
   "description": "Kamil Mielnik's Curriculum Vitae",
   "main": "src/index.js",
+  "engines": {
+    "node": ">=7.9.0"
+  },
   "scripts": {
     "build": "better-npm-run build",
     "start": "better-npm-run start"
