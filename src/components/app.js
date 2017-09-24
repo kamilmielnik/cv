@@ -10,9 +10,9 @@ import Skills from 'components/skills';
 import Experience from 'components/experience';
 import styles from './styles.scss';
 
-const PDF_URL = 'https://kamilmielnik.github.io/KamilMielnik.pdf';
+const PDF_FILENAME = 'KamilMielnik.pdf';
 const print = () => window.print();
-const downloadPdf = () => window.open(PDF_URL);
+const downloadPdf = () => window.open(window.location.href + PDF_FILENAME);
 
 const App = () => (
   <div className={styles.app}>
