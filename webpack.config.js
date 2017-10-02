@@ -14,10 +14,13 @@ const ENTRY_FILE = path.resolve(SRC_DIR, 'index.js');
 const ENTRY_FILE_DEV = path.resolve(SRC_DIR, 'index-dev.js');
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const BUNDLE_DIST = 'bundle.js';
+const CSS_DIST = 'styles.css';
 
 const extractSass = new ExtractTextPlugin({
-  filename: 'styles.css',
-  disable: IS_DEV_ENV
+  filename: CSS_DIST,
+  allChunks: true,
+  disable: IS_DEV_ENV,
+  ignoreOrder: true
 });
 
 const config = {
@@ -92,6 +95,15 @@ const config = {
 
 if (IS_PROD_ENV) {
   config.plugins.push(
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      inject: true,
+      hash: true,
+      files: {
+        css: [ CSS_DIST ],
+        js: [ BUNDLE_DIST ]
+      }
+    }),
     new StyleExtHtmlWebpackPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
