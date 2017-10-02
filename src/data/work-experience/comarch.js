@@ -1,4 +1,3 @@
-import moment from 'moment';
 import {
   C_SHARP, CSS, DOCTRINE, JAVA_SCRIPT, JQUERY, PHP, POSTGRESQL,
   TYPE_SCRIPT, WINDOWS_PRESENTATION_FOUNDATION, ZEND_FRAMEWORK
@@ -15,12 +14,12 @@ const comarch = {
     {
       timePeriods: [
         {
-          from: moment('2012/10/01', 'YYYY-MM-DD'),
-          to: moment('2013/03/31', 'YYYY-MM-DD')
+          from: new Date('2012/10/01'),
+          to: new Date('2013/03/31')
         },
         {
-          from: moment('2014/02/07', 'YYYY-MM-DD'),
-          to: moment('2014/06/30', 'YYYY-MM-DD')
+          from: new Date('2014/02/07'),
+          to: new Date('2014/06/30')
         }
       ],
       title: 'Software Engineer'
@@ -28,8 +27,8 @@ const comarch = {
     {
       timePeriods: [
         {
-          from: moment('2012/07/01', 'YYYY-MM-DD'),
-          to: moment('2012/09/30', 'YYYY-MM-DD')
+          from: new Date('2012/07/01'),
+          to: new Date('2012/09/30')
         }
       ],
       title: 'Software Engineer - Internship'

@@ -21,8 +21,17 @@ export const formatNumberOfMonths = (numberOfMonths) => {
 };
 
 export const sumTimePeriods = (timePeriods) => timePeriods.reduce(
-  (numberOfMonths, { from, to }) => numberOfMonths + monthDifference(from, to),
+  (numberOfMonths, timePeriod) => numberOfMonths + monthDifference(timePeriod),
   0
 );
 
-const monthDifference = (from, to) => Math.ceil(to.diff(from, 'months', true));
+const monthDifference = (timePeriod) => {
+  const toYear = timePeriod.to.getFullYear();
+  const fromYear = timePeriod.from.getFullYear();
+  const fullYearsDifference = 12 * Math.max(toYear - fromYear - 1, 0);
+  const differentYears = toYear !== fromYear;
+  const differentYearsCompensation = differentYears ? 12 : 0;
+  const monthsDifference = timePeriod.to.getMonth() - timePeriod.from.getMonth() + 1;
+  const difference = fullYearsDifference + monthsDifference + differentYearsCompensation;
+  return difference;
+};

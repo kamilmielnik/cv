@@ -1,4 +1,3 @@
-import moment from 'moment';
 import {
   BACKBONE_JS, JAVA_SCRIPT, JQUERY, KNOCKBACK_JS, KNOCKOUT_JS, CSS
 } from 'constants/technologies';
@@ -13,8 +12,8 @@ const pega = {
     {
       timePeriods: [
         {
-          from: moment('2015/07/01', 'YYYY-MM-DD'),
-          to: moment('2015/07/31', 'YYYY-MM-DD')
+          from: new Date('2015/07/01'),
+          to: new Date('2015/07/31')
         }
       ],
       title: 'System Architect - Mobility'
@@ -22,8 +21,8 @@ const pega = {
     {
       timePeriods: [
         {
-          from: moment('2014/07/01', 'YYYY-MM-DD'),
-          to: moment('2015/06/30', 'YYYY-MM-DD')
+          from: new Date('2014/07/01'),
+          to: new Date('2015/06/30')
         }
       ],
       title: 'Associate System Architect - Mobility'

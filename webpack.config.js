@@ -19,8 +19,7 @@ const CSS_DIST = 'styles.css';
 const extractSass = new ExtractTextPlugin({
   filename: CSS_DIST,
   allChunks: true,
-  disable: IS_DEV_ENV,
-  ignoreOrder: true
+  disable: IS_DEV_ENV
 });
 
 const config = {

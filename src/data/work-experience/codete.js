@@ -1,4 +1,3 @@
-import moment from 'moment';
 import {
   CSS, JAVA_SCRIPT, JQUERY, REACT, REDUX, REDUX_SAGA, RESELECT
 } from 'constants/technologies';
@@ -14,8 +13,8 @@ const codete = {
       now: true,
       timePeriods: [
         {
-          from: moment('2016/06/01', 'YYYY-MM-DD'),
-          to: moment()
+          from: new Date('2016/06/01'),
+          to: new Date()
         }
       ],
       title: 'Lead & Technical Recruiter'
@@ -24,8 +23,8 @@ const codete = {
       now: false,
       timePeriods: [
         {
-          from: moment('2015/08/01', 'YYYY-MM-DD'),
-          to: moment('2016/05/31', 'YYYY-MM-DD')
+          from: new Date('2015/08/01'),
+          to: new Date('2016/05/31')
         }
       ],
       title: 'JavaScript Developer & Technical Recruiter'

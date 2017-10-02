@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { CASTOR, CSS, JAVA, VAADIN, ZEROC_ICE } from 'constants/technologies';
 
 const cern = {
@@ -9,8 +8,8 @@ const cern = {
     {
       timePeriods: [
         {
-          from: moment('2013/10/01', 'YYYY-MM-DD'),
-          to: moment('2014/01/31', 'YYYY-MM-DD')
+          from: new Date('2013/10/01'),
+          to: new Date('2014/01/31')
         }
       ],
       title: 'Associated Member of the Personnel (User)'
@@ -18,8 +17,8 @@ const cern = {
     {
       timePeriods: [
         {
-          from: moment('2013/07/01', 'YYYY-MM-DD'),
-          to: moment('2013/09/30', 'YYYY-MM-DD')
+          from: new Date('2013/07/01'),
+          to: new Date('2013/09/30')
         }
       ],
       title: 'Associated Member of the Personnel (Cooperation Associate)'

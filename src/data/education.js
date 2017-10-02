@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 const education = [
   {
     description: 'The Faculty of Computer Science, Electronics and Telecommunications',
@@ -10,8 +8,8 @@ const education = [
         timePeriod: '1.5 yr',
         timePeriods: [
           {
-            from: moment('2014/03/01', 'YYYY-MM-DD'),
-            to: moment('2015/07/22', 'YYYY-MM-DD')
+            from: new Date('2014/03/01'),
+            to: new Date('2015/07/22')
           }
         ],
         title: 'Master of Science in Computer Science'
@@ -20,8 +18,8 @@ const education = [
         timePeriod: '3.5 yr',
         timePeriods: [
           {
-            from: moment('2010/10/01', 'YYYY-MM-DD'),
-            to: moment('2014/01/28', 'YYYY-MM-DD')
+            from: new Date('2010/10/01'),
+            to: new Date('2014/01/28')
           }
         ],
         title: 'Bachelor of Science in Computer Science'
