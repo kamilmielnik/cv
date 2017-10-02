@@ -6,14 +6,16 @@ import './styles.scss';
 
 const rootElement = document.getElementById('app');
 
-const render = (Component) => ReactDOM.render(
-  <AppContainer>
-    <Component />
-  </AppContainer>,
-  rootElement
-);
+const render = (Component) => {
+  ReactDOM.render(
+    <AppContainer>
+      <Component />
+    </AppContainer>,
+    rootElement
+  );
+};
 
-if (module.hot) {
+if(module.hot) {
   module.hot.accept('components/app', () => render(App));
 }
 

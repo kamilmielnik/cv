@@ -6,12 +6,12 @@ import styles from './styles.scss';
 
 const Positions = ({ className, positions }) => (
   <div className={classNames(styles.positions, className)}>
-    {positions.map((positionEntry, index) =>
+    {positions.map((positionEntry, index) => (
       <PositionEntry
         key={index}
         className={styles.positionEntry}
         {...positionEntry} />
-    )}
+    ))}
   </div>
 );
 
