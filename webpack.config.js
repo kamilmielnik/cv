@@ -80,6 +80,15 @@ const config = {
       }
     }),
     extractSass,
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      inject: true,
+      hash: true,
+      files: {
+        css: [ CSS_DIST ],
+        js: [ BUNDLE_DIST ]
+      }
+    }),
     new webpack.LoaderOptionsPlugin({
       options: {
         postcss: [
@@ -94,15 +103,6 @@ const config = {
 
 if (IS_PROD_ENV) {
   config.plugins.push(
-    new HtmlWebpackPlugin({
-      template: './index.html',
-      inject: true,
-      hash: true,
-      files: {
-        css: [ CSS_DIST ],
-        js: [ BUNDLE_DIST ]
-      }
-    }),
     new StyleExtHtmlWebpackPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
