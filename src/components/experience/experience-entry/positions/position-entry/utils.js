@@ -28,9 +28,9 @@ export const sumTimePeriods = (timePeriods) => timePeriods.reduce(
 const monthDifference = (timePeriod) => {
   const toYear = timePeriod.to.getFullYear();
   const fromYear = timePeriod.from.getFullYear();
-  const fullYearsDifference = 12 * Math.max(toYear - fromYear - 1, 0);
+  const fullYearsDifference = NUMBER_OF_MONTHS_IN_YEAR * Math.max(toYear - fromYear - 1, 0);
   const differentYears = toYear !== fromYear;
-  const differentYearsCompensation = differentYears ? 12 : 0;
+  const differentYearsCompensation = differentYears ? NUMBER_OF_MONTHS_IN_YEAR : 0;
   const monthsDifference = timePeriod.to.getMonth() - timePeriod.from.getMonth() + 1;
   const difference = fullYearsDifference + monthsDifference + differentYearsCompensation;
   return difference;
