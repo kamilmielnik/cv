@@ -4,9 +4,13 @@
     right: 0;
   }
 
-  .page {
-    margin: 20px auto;
+  .sidebar-content {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+  }
 
+  .page {
     .buttons {
       position: absolute;
       left: calc(100% + 20mm);

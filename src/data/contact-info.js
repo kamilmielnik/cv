@@ -14,8 +14,8 @@ const contactInfo = [
   },
   {
     label: 'Website',
-    url: 'http://kamilmielnik.pl',
-    value: 'http://kamilmielnik.pl'
+    url: 'http://kamilmielnik.com',
+    value: 'http://kamilmielnik.com'
   },
   {
     label: 'LinkedIn',

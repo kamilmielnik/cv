@@ -328,7 +328,7 @@ module.exports = {
       'ignoreStateless': true
     }],
     'react/no-render-return-value': 'error',
-    'react/no-set-state': 'error',
+    'react/no-set-state': 'off',
     'react/no-string-refs': 'error',
     'react/no-unknown-property': 'error',
     'react/prefer-es6-class': 'error',
@@ -367,10 +367,7 @@ module.exports = {
       'extensions': ['.js']
     }],
     'react/jsx-first-prop-new-line': ['error', 'multiline'],
-    'react/jsx-handler-names': ['error', {
-      'eventHandlerPrefix': 'on',
-      'eventHandlerPropPrefix': 'on'
-    }],
+    'react/jsx-handler-names': 'off',
     'react/jsx-indent': ['error', 2],
     'react/jsx-indent-props': ['error', 2],
     'react/jsx-key': 'error',

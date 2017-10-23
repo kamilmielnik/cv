@@ -1,5 +1,9 @@
 @import 'normalize.css';
 
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
 html, body {
   margin: 0 auto;
   padding: 0;

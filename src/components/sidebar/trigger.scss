@@ -1,0 +1,21 @@
+$color: violet;
+$trigger-size: 50px;
+
+.trigger {
+  width: $trigger-size;
+  height: $trigger-size;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(240, 240, 240, 0.5);
+  color: $color;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(240, 240, 240, 0.7);
+  }
+
+  &:active {
+    background-color: rgba(240, 240, 240, 0.6);
+  }
+}
