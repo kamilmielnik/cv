@@ -10,7 +10,8 @@ class SidebarContainer extends Component {
     animation: PropTypes.oneOf([ 'rotateIn' ]),
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
-    contentClassName: PropTypes.string
+    contentClassName: PropTypes.string,
+    gitHubUrl: PropTypes.string.isRequired
   };
 
   static defaultProps = {
@@ -41,7 +42,7 @@ class SidebarContainer extends Component {
   }
 
   render() {
-    const { animation, children, className, contentClassName } = this.props;
+    const { animation, children, className, contentClassName, gitHubUrl } = this.props;
     const { isOpen } = this.state;
 
     return (
@@ -56,14 +57,17 @@ class SidebarContainer extends Component {
         )}
         onClick={this.close}>
         <div className={styles.pushWrapper}>
-          <Sidebar className={styles.sidebar} onClick={this.stopPropagation} />
+          <Sidebar
+            className={styles.sidebar}
+            gitHubUrl={gitHubUrl}
+            onClick={this.stopPropagation} />
 
           <div className={classNames(styles.content, contentClassName)}>
+            {children}
+
             <div className={styles.trigger} onClick={this.open}>
               <Trigger />
             </div>
-
-            {children}
           </div>
         </div>
       </div>

@@ -1,21 +1,22 @@
-$color: violet;
-$trigger-size: 50px;
+$foreground-color: white;
+$background-color: #78387f;
+$size: 50px;
 
 .trigger {
-  width: $trigger-size;
-  height: $trigger-size;
+  width: $size;
+  height: $size;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(240, 240, 240, 0.5);
-  color: $color;
+  background-color: $background-color;
+  color: $foreground-color;
   cursor: pointer;
 
   &:hover {
-    background-color: rgba(240, 240, 240, 0.7);
+    background-color: mix($background-color, white, 90%);
   }
 
   &:active {
-    background-color: rgba(240, 240, 240, 0.6);
+    background-color: mix($background-color, black, 90%);
   }
 }

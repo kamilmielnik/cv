@@ -4,20 +4,18 @@ import classNames from 'classnames';
 import imageUrl from './GitHub-Mark-Light-32px.png';
 import styles from './index.scss';
 
-const GITHUB_URL = 'https://github.com/kamilmielnik/cv';
-
-const GitHub = ({ className, onClick }) => (
+const GitHub = ({ className, url }) => (
   <a
     className={classNames(styles.github, className)}
-    href={GITHUB_URL}
+    href={url}
     title="Fork me on GitHub">
-    <img alt={GITHUB_URL} src={imageUrl} />
+    <img alt={url} src={imageUrl} />
   </a>
 );
 
 GitHub.propTypes = {
   className: PropTypes.string,
-  onClick: PropTypes.func
+  url: PropTypes.string.isRequired
 };
 
 export default GitHub;

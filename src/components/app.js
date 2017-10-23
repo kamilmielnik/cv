@@ -10,13 +10,17 @@ import Skills from 'components/skills';
 import Experience from 'components/experience';
 import styles from './styles.scss';
 
+const GIT_HUB_URL = 'https://github.com/kamilmielnik/cv';
+
 const PDF_FILENAME = 'KamilMielnik.pdf';
 const print = () => window.print();
 const downloadPdf = () => window.open(window.location.href + PDF_FILENAME);
 
 const App = () => (
   <div className={styles.app}>
-    <Sidebar contentClassName={styles.sidebarContent}>
+    <Sidebar
+      gitHubUrl={GIT_HUB_URL}
+      contentClassName={styles.sidebarContent}>
       <Page className={styles.page}>
         <Name name={name} />
 

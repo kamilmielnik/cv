@@ -32,7 +32,7 @@ $inactive-overlay: rgba(0, 0, 0, 0.3);
   }
 
   .trigger {
-    position: absolute;
+    position: fixed;
     top: $trigger-margin;
     left: $trigger-margin;
   }
@@ -63,6 +63,7 @@ $inactive-overlay: rgba(0, 0, 0, 0.3);
   .content {
     position: relative;
     height: 100%;
+    overflow: auto;
   }
 
   &.open {
