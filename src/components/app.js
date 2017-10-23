@@ -1,7 +1,6 @@
 import React from 'react';
 import { contactInfo, education, name, skills, workExperience } from 'data';
 import ContactInfo from 'components/contact-info';
-import GitHubForkRibbon from 'react-github-fork-ribbon';
 import Button from 'components/button';
 import Name from 'components/name';
 import Page from 'components/page';
@@ -17,14 +16,6 @@ const downloadPdf = () => window.open(window.location.href + PDF_FILENAME);
 
 const App = () => (
   <div className={styles.app}>
-    {/*<GitHubForkRibbon
-          color="black"
-          href="https://github.com/kamilmielnik/cv"
-          position="right"
-          target="_blank">
-          Fork me on GitHub
-        </GitHubForkRibbon>*/}
-
     <Sidebar contentClassName={styles.sidebarContent}>
       <Page className={styles.page}>
         <Name name={name} />

@@ -39,6 +39,15 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader'
+          }
+        ]
+      },
+      {
         test: /\.scss$/,
         use: extractSass.extract({
           use: [

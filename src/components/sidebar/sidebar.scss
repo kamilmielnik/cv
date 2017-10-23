@@ -2,6 +2,19 @@ $background-color: #222;
 $foreground-color: #eee;
 
 .sidebar {
+  display: flex;
+  flex-direction: column;
   background-color: $background-color;
   color: $foreground-color;
+
+  .header {
+    flex-grow: 1;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    flex: 0 0 auto;
+    padding: 40px;
+  }
 }
