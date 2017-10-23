@@ -1,5 +1,7 @@
 $foreground-color: white;
 $background-color: #78387f;
+$background-hover-color: mix($background-color, white, 90%);
+$background-active-color: mix($background-color, black, 90%);
 $size: 50px;
 
 .trigger {
@@ -13,10 +15,10 @@ $size: 50px;
   cursor: pointer;
 
   &:hover {
-    background-color: mix($background-color, white, 90%);
+    background-color: $background-hover-color;
   }
 
   &:active {
-    background-color: mix($background-color, black, 90%);
+    background-color: $background-active-color;
   }
 }

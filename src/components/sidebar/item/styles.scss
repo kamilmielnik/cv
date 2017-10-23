@@ -1,0 +1,48 @@
+$foreground-color: white;
+$background-color: #78387f;
+$background-hover-color: mix($background-color, white, 90%);
+$background-active-color: mix($background-color, black, 90%);
+$animation-duration: 1.2s;
+$easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+.link {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.item {
+  margin: 20px;
+  color: $foreground-color;
+  text-align: center;
+  background-color: $background-color;
+
+  .preview {
+    height: 220px;
+    background-repeat: repeat;
+    background-position: 0 0;
+    background-size: 100%;
+    transition:
+      background-position $animation-duration $easeInOutQuad,
+      background-size $animation-duration $easeInOutQuad;
+
+    &:hover {
+      background-position: 50% 50%;
+      background-size: 120%;
+    }
+  }
+
+  .title {
+    padding: 10px 20px;
+  }
+
+  &:hover {
+    background-color: $background-hover-color;
+  }
+
+  &:active {
+    background-color: $background-active-color;
+  }
+}
