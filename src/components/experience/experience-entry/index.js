@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Description from './description';
 import Info from './info';
 import Positions from './positions';
 import styles from './styles.scss';
 
-const ExperienceEntry = ({ description, location, organization, positions, timePeriod }) => (
-  <div className={styles.experienceEntry}>
+const ExperienceEntry = ({ className, description, location, organization, positions, timePeriod }) => (
+  <div className={classNames(styles.experienceEntry, className)}>
     <Info
       className={styles.info}
       location={location}

@@ -22,7 +22,7 @@ const App = () => (
       gitHubUrl={GIT_HUB_URL}
       contentClassName={styles.sidebarContent}>
       <Page className={styles.page}>
-        <Name name={name} />
+        <Name className={styles.name} name={name} />
 
         <Section title="Contact Info">
           <ContactInfo contactInfo={contactInfo} />

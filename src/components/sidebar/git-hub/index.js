@@ -9,7 +9,7 @@ const GitHub = ({ className, url }) => (
     <div className={styles.container}>
       <img alt={url} src={imageUrl} />
 
-      <span>
+      <span className={styles.label}>
         Fork me on GitHub
       </span>
     </div>

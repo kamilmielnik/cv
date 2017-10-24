@@ -1,39 +1,37 @@
 .app {
   height: 100%;
+}
 
-  .name {
-    position: absolute;
-    right: 0;
+.name {
+  position: absolute;
+  right: 0;
+}
+
+.sidebar-content {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.buttons {
+  position: absolute;
+  left: calc(100% + 20mm);
+  top: 80px;
+
+  .button {
+    margin-bottom: 10px;
   }
 
-  .sidebar-content {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
+  @media screen and (max-width: 1030px) {
+    display: none;
   }
+}
 
-  .page {
-    .buttons {
-      position: absolute;
-      left: calc(100% + 20mm);
-      top: 80px;
+@media print {
+  margin: 0 auto;
+  height: 100%;
 
-      .button {
-        margin-bottom: 10px;
-      }
-
-      @media screen and (max-width: 1030px) {
-        display: none;
-      }
-    }
-
-    @media print {
-      margin: 0 auto;
-      height: 100%;
-
-      .buttons {
-        display: none;
-      }
-    }
+  .buttons {
+    display: none;
   }
 }
