@@ -8,7 +8,7 @@ const config = require('./webpack.config');
 const app = express();
 const compiler = webpack(config);
 
-const INDEX_HTML = path.join(__dirname, './index.html');
+const INDEX_HTML = path.join(__dirname, 'html', 'index.html');
 const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 3000;
 

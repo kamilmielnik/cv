@@ -1,45 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import GitHub from './git-hub';
-import Item from './item';
-import cv from './projects/cv.png';
+import projects from 'data/projects';
+import GitHubIcon from './git-hub-icon';
+import LinkedInIcon from './linked-in-icon';
+import Project from './project';
 import styles from './sidebar.scss';
 
-const items = [
-  {
-    previewUrl: cv,
-    url: 'http://kamilmielnik.com/',
-    title: 'CV'
-  },
-  {
-    previewUrl: 'https://raw.githubusercontent.com/kamilmielnik/scrabble-solver/master/screenshot.png',
-    url: 'http://scrabble-solver.kamilmielnik.com/',
-    title: 'Scrabble Solver'
-  }
-];
-
-const Sidebar = ({ className, gitHubUrl, onClick }) => (
+const Sidebar = ({ className, onClick }) => (
   <div className={classNames(styles.sidebar, className)} onClick={onClick}>
     <div className={styles.header}>
-      Check out my projects!
+      My projects
     </div>
 
     <div className={styles.items}>
-      {items.map((item, index) => (
-        <Item key={index} {...item} />
+      {projects.map((project, index) => (
+        <Project key={index} {...project} />
       ))}
     </div>
 
     <div className={styles.footer}>
-      <GitHub url={gitHubUrl} />
+      <GitHubIcon className={styles.icon} />
+      <LinkedInIcon className={styles.icon} />
     </div>
   </div>
 );
 
 Sidebar.propTypes = {
   className: PropTypes.string,
-  gitHubUrl: PropTypes.string.isRequired,
   onClick: PropTypes.func
 };
 

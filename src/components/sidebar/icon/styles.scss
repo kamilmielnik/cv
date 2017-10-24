@@ -1,4 +1,4 @@
-.git-hub {
+.icon {
   color: $foreground;
 
   &:hover {
@@ -6,14 +6,9 @@
   }
 }
 
-.container {
+.image {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-
-.label {
-  margin-top: 5px;
-  color: $foreground;
 }
