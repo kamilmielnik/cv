@@ -8,7 +8,8 @@ const GitHub = ({ className, url }) => (
   <a className={classNames(styles.gitHub, className)} href={url}>
     <div className={styles.container}>
       <img alt={url} src={imageUrl} />
-      <span className={styles.label}>
+
+      <span>
         Fork me on GitHub
       </span>
     </div>

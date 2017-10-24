@@ -23,7 +23,7 @@ const Sidebar = ({ className, gitHubUrl, onClick }) => (
   <div className={classNames(styles.sidebar, className)} onClick={onClick}>
 
     <div className={styles.header}>
-      Check out my other projects!
+      Check out my projects!
     </div>
 
     <div className={styles.items}>

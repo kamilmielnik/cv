@@ -1,19 +1,19 @@
 .git-hub {
   color: #ddd;
 
-  &:hover {
-    color: #ddd;
-  }
-}
-
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  span {
+    margin-top: 5px;
+    color: #ddd;
+  }
 }
 
-.label {
-  margin-top: 5px;
-  color: #ddd;
+  &:hover {
+    color: #ddd;
+  }
 }
