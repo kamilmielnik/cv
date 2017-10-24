@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './styles.scss';
 
-const Item = ({ className, previewUrl, title, url }) => (
+const Project = ({ className, gitHubUrl, previewUrl, title, url }) => (
   <a className={styles.link} href={url}>
     <div className={classNames(styles.item, className)}>
       <div
@@ -19,11 +19,12 @@ const Item = ({ className, previewUrl, title, url }) => (
   </a>
 );
 
-Item.propTypes = {
+Project.propTypes = {
   className: PropTypes.string,
+  gitHubUrl: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired
 };
 
-export default Item;
+export default Project;
