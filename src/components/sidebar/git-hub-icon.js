@@ -7,7 +7,7 @@ const GIT_HUB_URL = 'https://github.com/kamilmielnik';
 const GitHubIcon = (props) => (
   <Icon
     imageUrl={imageUrl}
-    title="Fork me on GitHub"
+    title="GitHub Profile"
     url={GIT_HUB_URL}
     {...props} />
 );
