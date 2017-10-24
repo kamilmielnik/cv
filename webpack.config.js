@@ -12,6 +12,7 @@ const SRC_DIR = path.resolve(__dirname, 'src');
 const STYLES_DIR = path.resolve(SRC_DIR, 'styles');
 const ENTRY_FILE = path.resolve(SRC_DIR, 'index.js');
 const ENTRY_FILE_DEV = path.resolve(SRC_DIR, 'index-dev.js');
+const INDEX_FILE = path.resolve(__dirname, 'html', 'index.html');
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const BUNDLE_DIST = 'bundle.js';
 const CSS_DIST = 'styles.css';
@@ -120,7 +121,8 @@ const config = {
       }
     }),
     new HtmlWebpackPlugin({
-      template: INDEX_DIST,
+      template: INDEX_FILE,
+      filename: INDEX_DIST,
       inject: true,
       hash: true,
       files: {
@@ -152,7 +154,7 @@ if (IS_PROD_ENV) {
     }),
     new CopyWebpackPlugin([
       {
-        from: INDEX_DIST
+        from: INDEX_FILE
       }
     ])
   );

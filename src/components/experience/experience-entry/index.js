@@ -23,6 +23,7 @@ const ExperienceEntry = ({ className, description, location, organization, posit
 );
 
 ExperienceEntry.propTypes = {
+  className: PropTypes.string,
   description: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   organization: PropTypes.string.isRequired,
