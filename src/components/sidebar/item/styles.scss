@@ -1,9 +1,4 @@
-$foreground-color: white;
-$background-color: #78387f;
-$background-hover-color: mix($background-color, white, 90%);
-$background-active-color: mix($background-color, black, 90%);
 $animation-duration: 1.2s;
-$easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
 .link {
   text-decoration: none;
@@ -15,9 +10,9 @@ $easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
 .item {
   margin: 20px;
-  color: $foreground-color;
+  color: $foreground;
   text-align: center;
-  background-color: $background-color;
+  background-color: $primary;
 
   .preview {
     height: 220px;
@@ -25,8 +20,8 @@ $easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
     background-position: 0 0;
     background-size: 100%;
     transition:
-      background-position $animation-duration $easeInOutQuad,
-      background-size $animation-duration $easeInOutQuad;
+      background-position $animation-duration $ease-in-out-quad,
+      background-size $animation-duration $ease-in-out-quad;
 
     &:hover {
       background-position: 50% 50%;
@@ -39,10 +34,10 @@ $easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
   }
 
   &:hover {
-    background-color: $background-hover-color;
+    background-color: $primary-hover;
   }
 
   &:active {
-    background-color: $background-active-color;
+    background-color: $primary-active;
   }
 }

@@ -1,1 +1,15 @@
-$background-dark: #222;
+$black: #000;
+$shade-20: #222;
+$shade-80: #ddd;
+$shade-90: #eee;
+$white: #fff;
+
+$primary: #78387f;
+$primary-hover: mix($primary, $white, 90%);
+$primary-active: mix($primary, $black, 90%);
+$inactive-overlay: rgba(0, 0, 0, 0.3);
+
+$background-dark: $shade-20;
+$foreground: $shade-80;
+
+$ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);

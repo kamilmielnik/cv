@@ -1,8 +1,8 @@
 .git-hub {
-  color: #ddd;
+  color: $foreground;
 
   &:hover {
-    color: #ddd;
+    color: $foreground;
   }
 }
 
@@ -15,5 +15,5 @@
 
 .label {
   margin-top: 5px;
-  color: #ddd;
+  color: $foreground;
 }

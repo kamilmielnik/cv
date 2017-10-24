@@ -1,11 +1,8 @@
-$background-color: #222;
-$foreground-color: #eee;
-
 .sidebar {
   display: flex;
   flex-direction: column;
-  background-color: $background-color;
-  color: $foreground-color;
+  background-color: $background-dark;
+  color: $foreground;
 
   .header {
     padding: 20px;
