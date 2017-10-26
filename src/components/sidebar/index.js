@@ -24,6 +24,20 @@ class SidebarContainer extends Component {
     };
   }
 
+  componentWillMount() {
+    document.body.addEventListener('keydown', this.onBodyKeyDown);
+  }
+
+  componentWillUnmount() {
+    document.body.removeEventListener('keydown', this.onBodyKeyDown);
+  }
+
+  onBodyKeyDown = (event) => {
+    if (event.key === 'Escape') {
+      this.toggle();
+    }
+  };
+
   close = (event) => {
     event.stopPropagation();
     if (this.state.isOpen) {
@@ -34,6 +48,10 @@ class SidebarContainer extends Component {
   open = (event) => {
     event.stopPropagation();
     this.setState({ isOpen: true });
+  };
+
+  toggle = () => {
+    this.setState({ isOpen: !this.state.isOpen });
   };
 
   stopPropagation(event) {
