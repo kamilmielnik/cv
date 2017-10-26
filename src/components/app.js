@@ -44,7 +44,7 @@ const App = () => (
           <PrintIcon />
         </Button>
 
-        <Button className={styles.button} title="Download as PDF" onClick={downloadPdf}>
+        <Button className={styles.button} title="Download a PDF" onClick={downloadPdf}>
           <PdfIcon />
         </Button>
       </div>

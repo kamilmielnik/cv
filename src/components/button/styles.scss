@@ -1,24 +1,11 @@
-$size: 40px;
+$size: 46px;
 
 .button {
+  @include clickable-effects();
+
   width: $size;
   height: $size;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $primary;
-  color: $foreground;
-  cursor: pointer;
-  transition:
-    background-color $micro-animation-duration,
-    color $micro-animation-duration;
-
-  &:hover {
-    background-color: $primary-hover;
-    color: $foreground-hover;
-  }
-
-  &:active {
-    background-color: $primary-active;
-  }
 }
