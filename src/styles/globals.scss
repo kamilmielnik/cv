@@ -10,5 +10,26 @@ $inactive-overlay: rgba(0, 0, 0, 0.3);
 
 $background-dark: $shade-20;
 $foreground: $shade-80;
+$foreground-hover: $white;
 
 $ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+$micro-animation-duration: 0.1s;
+
+@mixin clickable-effects() {
+  background-color: $primary;
+  color: $foreground;
+  cursor: pointer;
+  transition:
+    background-color $micro-animation-duration,
+    color $micro-animation-duration;
+
+  &:hover {
+    background-color: $primary-hover;
+    color: $foreground-hover;
+  }
+
+  &:active {
+    background-color: $primary-active;
+  }
+}

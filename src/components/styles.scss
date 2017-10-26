@@ -14,9 +14,9 @@
 }
 
 .buttons {
-  position: absolute;
-  left: calc(100% + 20mm);
-  top: 80px;
+  position: fixed;
+  left: 20px;
+  top: 90px;
 
   .button {
     margin-bottom: 10px;

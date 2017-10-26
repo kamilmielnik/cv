@@ -1,20 +1,24 @@
+$size: 40px;
+
 .button {
-  padding: 6px 30px;
-  background: #333;
-  color: white;
-  font-size: 16px;
-  text-transform: uppercase;
-  text-align: center;
-  white-space: nowrap;
-  letter-spacing: 1px;
+  width: $size;
+  height: $size;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary;
+  color: $foreground;
   cursor: pointer;
-  user-select: none;
+  transition:
+    background-color $micro-animation-duration,
+    color $micro-animation-duration;
 
   &:hover {
-    background: #444;
+    background-color: $primary-hover;
+    color: $foreground-hover;
   }
 
   &:active {
-    background: #222;
+    background-color: $primary-active;
   }
 }

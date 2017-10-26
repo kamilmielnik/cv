@@ -56,9 +56,7 @@ class SidebarContainer extends Component {
         )}
         onClick={this.close}>
         <div className={styles.pushWrapper}>
-          <Sidebar
-            className={styles.sidebar}
-            onClick={this.stopPropagation} />
+          <Sidebar className={styles.sidebar} onClick={this.stopPropagation} />
 
           <div className={classNames(styles.content, contentClassName)}>
             {children}

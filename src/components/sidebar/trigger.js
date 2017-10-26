@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './trigger.scss';
 
-const Trigger = ({ className, ...props }) => (
-  <div className={classNames(styles.trigger, className)}>
+const Trigger = ({ className, height = 30, width = height, ...props }) => (
+  <div
+    className={classNames(styles.trigger, className)}
+    title="Open sidebar">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 30 30"
-      width="30"
-      height="30"
-      focusable="false"
+      width={width}
+      height={height}
       {...props}>
       <title>Menu</title>
       <path
@@ -24,7 +25,9 @@ const Trigger = ({ className, ...props }) => (
 );
 
 Trigger.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  height: PropTypes.number,
+  width: PropTypes.number
 };
 
 export default Trigger;

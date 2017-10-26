@@ -8,6 +8,7 @@ import Section from 'components/section';
 import Sidebar from 'components/sidebar';
 import Skills from 'components/skills';
 import Experience from 'components/experience';
+import { PdfIcon, PrintIcon } from 'components/icons';
 import styles from './styles.scss';
 
 const PDF_FILENAME = 'KamilMielnik.pdf';
@@ -36,17 +37,17 @@ const App = () => (
         <Section title="Skills">
           <Skills skills={skills} />
         </Section>
-
-        <div className={styles.buttons}>
-          <Button className={styles.button} onClick={print}>
-            Print
-          </Button>
-
-          <Button className={styles.button} onClick={downloadPdf}>
-            PDF
-          </Button>
-        </div>
       </Page>
+
+      <div className={styles.buttons}>
+        <Button className={styles.button} title="Print this page" onClick={print}>
+          <PrintIcon />
+        </Button>
+
+        <Button className={styles.button} title="Download as PDF" onClick={downloadPdf}>
+          <PdfIcon />
+        </Button>
+      </div>
     </Sidebar>
   </div>
 );

@@ -1,20 +1,11 @@
-$size: 50px;
+$size: 40px;
 
 .trigger {
+  @include clickable-effects();
+
   width: $size;
   height: $size;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $primary;
-  color: $foreground;
-  cursor: pointer;
-
-  &:hover {
-    background-color: $primary-hover;
-  }
-
-  &:active {
-    background-color: $primary-active;
-  }
 }
