@@ -8,4 +8,8 @@ $size: 46px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media print {
+    display: none;
+  }
 }

@@ -14,7 +14,6 @@ html, body {
   line-height: 1.5;
 
   @media print {
-    overflow: hidden;
     background: white;
   }
 }
