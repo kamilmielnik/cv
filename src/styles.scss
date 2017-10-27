@@ -18,27 +18,18 @@ html, body {
   }
 }
 
-:global(#app) {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-}
-
-@page  {
+@page {
   size: A4;
   margin: 0;
 }
 
 a {
+  color: $foreground;
   text-decoration: none;
   cursor: pointer;
-  color: black;
 
   &:hover {
+    color: $foreground-hover;
     text-decoration: underline;
   }
 }
@@ -47,4 +38,14 @@ h1, h2, h3, h4 {
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
   margin: 0;
+}
+
+:global(#app) {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
 }

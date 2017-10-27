@@ -1,10 +1,10 @@
 import {
-  BACKBONE_JS, JAVA_SCRIPT, JQUERY, KNOCKBACK_JS, KNOCKOUT_JS, CSS
+  BACKBONE_JS, JAVA_SCRIPT, KNOCKBACK_JS, KNOCKOUT_JS, CSS
 } from 'constants/technologies';
 
 const pega = {
   description: [
-    JAVA_SCRIPT, KNOCKOUT_JS, KNOCKBACK_JS, BACKBONE_JS, JQUERY, CSS
+    JAVA_SCRIPT, KNOCKOUT_JS, KNOCKBACK_JS, BACKBONE_JS, CSS
   ].join(', '),
   location: 'Kraków, Poland',
   organization: 'Pega',

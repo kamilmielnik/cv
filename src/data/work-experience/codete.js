@@ -1,10 +1,10 @@
 import {
-  CSS, JAVA_SCRIPT, JQUERY, REACT, REDUX, REDUX_SAGA, RESELECT
+  CSS, JAVA_SCRIPT, REACT, REDUX, REDUX_SAGA, RESELECT
 } from 'constants/technologies';
 
 const codete = {
   description: [
-    JAVA_SCRIPT, REACT, REDUX, REDUX_SAGA, RESELECT, JQUERY, CSS
+    JAVA_SCRIPT, REACT, REDUX, REDUX_SAGA, RESELECT, CSS
   ].join(', '),
   location: 'Kraków, Poland',
   organization: 'Codete',

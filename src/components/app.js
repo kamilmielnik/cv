@@ -17,8 +17,7 @@ const downloadPdf = () => window.open(window.location.href + PDF_FILENAME);
 
 const App = () => (
   <div className={styles.app}>
-    <Sidebar
-      contentClassName={styles.sidebarContent}>
+    <Sidebar contentClassName={styles.sidebarContent}>
       <Page className={styles.page}>
         <Name className={styles.name} name={name} />
 

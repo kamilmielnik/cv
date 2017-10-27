@@ -11,28 +11,17 @@
     flex: 0 0 auto;
   }
 
-  .items {
+  .projects {
     flex-grow: 1;
     overflow: auto;
   }
 
   .footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex: 0 0 auto;
     padding: 40px;
 
-    .icon {
-      margin: 0 10px;
-
-      &:first-child {
-        margin-left: 0;
-      }
-
-      &:last-child {
-        margin-right: 0;
-      }
+    .copyright {
+      margin-top: 20px;
     }
   }
 }

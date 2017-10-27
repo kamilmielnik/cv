@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import projects from 'data/projects';
-import GitHubIcon from './git-hub-icon';
-import LinkedInIcon from './linked-in-icon';
+import Copyright from './copyright';
+import Icons from './icons';
 import Project from './project';
 import styles from './sidebar.scss';
 
@@ -13,15 +13,15 @@ const Sidebar = ({ className, onClick }) => (
       My projects
     </div>
 
-    <div className={styles.items}>
+    <div className={styles.projects}>
       {projects.map((project, index) => (
         <Project key={index} {...project} />
       ))}
     </div>
 
     <div className={styles.footer}>
-      <GitHubIcon className={styles.icon} />
-      <LinkedInIcon className={styles.icon} />
+      <Icons />
+      <Copyright className={styles.copyright} />
     </div>
   </div>
 );
