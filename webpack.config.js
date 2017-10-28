@@ -9,6 +9,7 @@ const IS_DEV_ENV = process.env.NODE_ENV === 'development';
 const IS_PROD_ENV = process.env.NODE_ENV === 'production';
 
 const SRC_DIR = path.resolve(__dirname, 'src');
+const SIDEBAR_DIR = path.resolve(__dirname, 'node_modules', 'sidebar');
 const STYLES_DIR = path.resolve(SRC_DIR, 'styles');
 const ENTRY_FILE = path.resolve(SRC_DIR, 'index.js');
 const ENTRY_FILE_DEV = path.resolve(SRC_DIR, 'index-dev.js');
@@ -108,7 +109,10 @@ const config = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        include: [
+          SRC_DIR,
+          SIDEBAR_DIR
+        ],
         use: {
           loader: 'babel-loader'
         }

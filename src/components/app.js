@@ -1,11 +1,11 @@
 import React from 'react';
 import { contactInfo, education, name, skills, workExperience } from 'data';
+import Sidebar from 'sidebar';
 import ContactInfo from 'components/contact-info';
 import Button from 'components/button';
 import Name from 'components/name';
 import Page from 'components/page';
 import Section from 'components/section';
-import Sidebar from 'components/sidebar';
 import Skills from 'components/skills';
 import Experience from 'components/experience';
 import { PdfIcon, PrintIcon } from 'components/icons';
