@@ -43,7 +43,7 @@
   "author": {
     "name": "Kamil Mielnik",
     "email": "kamil.adam.mielnik@gmail.com",
-    "url": "http://kamilmielnik.pl/"
+    "url": "http://kamilmielnik.com/"
   },
   "license": "CC BY-NC-ND 4.0",
   "bugs": {
@@ -59,15 +59,12 @@
     "sidebar": "git://github.com/kamilmielnik/sidebar.git"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-1": "^6.24.1",
     "better-npm-run": "0.1.0",
     "eslint": "^4.9.0",
     "eslint-plugin-react": "^7.4.0",
     "http-server": "^0.10.0",
+    "react-hot-loader": "^3.1.1",
     "webpack-wizard": "git://github.com/kamilmielnik/webpack-wizard.git"
   }
 }
