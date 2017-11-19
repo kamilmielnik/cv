@@ -16,7 +16,10 @@ const render = (Component) => {
 };
 
 if (module.hot) {
-  module.hot.accept('components/app', () => render(App));
+  module.hot.accept('components/app', () => {
+    const NextApp = require('components/app').default;
+    render(NextApp);
+  });
 }
 
 render(App);

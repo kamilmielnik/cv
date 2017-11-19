@@ -15,7 +15,7 @@
   },
   "betterScripts": {
     "build": {
-      "command": "webpack-wizard",
+      "command": "webpack-wizard build",
       "env": {
         "NODE_ENV": "production"
       }
@@ -27,7 +27,7 @@
       "command": "eslint src/ --ext .js --fix"
     },
     "start": {
-      "command": "webpack-wizard-dev",
+      "command": "webpack-wizard start",
       "env": {
         "NODE_ENV": "development"
       }
