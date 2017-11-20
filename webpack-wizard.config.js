@@ -1,16 +1,14 @@
 const path = require('path');
 
+const getAbsolutePath = (relativePath) => path.resolve(__dirname, relativePath);
+
 module.exports = {
-  env: {
-    NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-  },
   input: {
-    favicon: path.resolve(__dirname, 'html', 'favicon-v2.ico'),
-    html: path.resolve(__dirname, 'html', 'index.html'),
+    favicon: getAbsolutePath('html/favicon-v2.ico'),
+    html: getAbsolutePath('html/index.html'),
     modules: [
-      path.resolve(__dirname, 'src'),
-      path.resolve(__dirname, 'node_modules', 'sidebar')
-    ],
-    stylesGlobals: 'globals.scss'
+      getAbsolutePath('src'),
+      getAbsolutePath('node_modules/sidebar')
+    ]
   }
 };
