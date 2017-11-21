@@ -1,14 +1,10 @@
-const path = require('path');
-
-const getAbsolutePath = (relativePath) => path.resolve(__dirname, relativePath);
-
-module.exports = {
+module.exports = (webpackWizard, { resolveCwdPath }) => ({
   input: {
-    favicon: getAbsolutePath('html/favicon-v2.ico'),
-    html: getAbsolutePath('html/index.html'),
+    favicon: resolveCwdPath('html/favicon-v2.ico'),
+    html: resolveCwdPath('html/index.html'),
     modules: [
-      getAbsolutePath('src'),
-      getAbsolutePath('node_modules/sidebar')
+      resolveCwdPath('src'),
+      resolveCwdPath('node_modules/sidebar')
     ]
   }
-};
+});
