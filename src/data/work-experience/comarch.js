@@ -1,7 +1,7 @@
 import {
   C_SHARP, CSS, DOCTRINE, JAVA_SCRIPT, JQUERY, PHP, POSTGRESQL,
   TYPE_SCRIPT, WINDOWS_PRESENTATION_FOUNDATION, ZEND_FRAMEWORK
-} from 'constants/technologies';
+} from 'constants/skills';
 
 const comarch = {
   description: [

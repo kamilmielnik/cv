@@ -1,23 +1,24 @@
 import {
-  CSS, JAVA_SCRIPT, REACT, REDUX, REDUX_SAGA, RESELECT
-} from 'constants/technologies';
+  CSS, JAVA_SCRIPT, REACT, REDUX, REDUX_SAGA, RESELECT, TECHNICAL_RECRUITMENT
+} from 'constants/skills';
 
 const codete = {
   description: [
     JAVA_SCRIPT, REACT, REDUX, REDUX_SAGA, RESELECT, CSS
   ].join(', '),
+  extra: TECHNICAL_RECRUITMENT,
   location: 'Kraków, Poland',
   organization: 'Codete',
   positions: [
     {
-      now: true,
+      now: false,
       timePeriods: [
         {
           from: new Date('2016/06/01'),
-          to: new Date()
+          to: new Date('2017/12/31')
         }
       ],
-      title: 'Lead & Technical Recruiter'
+      title: 'Technical Lead'
     },
     {
       now: false,
@@ -27,9 +28,9 @@ const codete = {
           to: new Date('2016/05/31')
         }
       ],
-      title: 'JavaScript Developer & Technical Recruiter'
+      title: 'JavaScript Developer'
     }
   ],
-  timePeriod: '2015 - present'
+  timePeriod: '2015 - 2017'
 };
 export default codete;

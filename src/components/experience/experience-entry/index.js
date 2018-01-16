@@ -6,18 +6,13 @@ import Info from './info';
 import Positions from './positions';
 import styles from './styles.scss';
 
-const ExperienceEntry = ({ className, description, location, organization, positions, timePeriod }) => (
+const ExperienceEntry = ({ className, description, extra, location, organization, positions, timePeriod }) => (
   <div className={classNames(styles.experienceEntry, className)}>
-    <Info
-      className={styles.info}
-      location={location}
-      organization={organization}
-      timePeriod={timePeriod} />
-
+    <Info className={styles.info} location={location} organization={organization} timePeriod={timePeriod} />
     <div className={styles.details}>
       <Positions className={styles.positions} positions={positions} />
       <div className={styles.separator} />
-      <Description className={styles.description} description={description} />
+      <Description className={styles.description} description={description} extra={extra} />
     </div>
   </div>
 );
@@ -25,6 +20,7 @@ const ExperienceEntry = ({ className, description, location, organization, posit
 ExperienceEntry.propTypes = {
   className: PropTypes.string,
   description: PropTypes.string.isRequired,
+  extra: PropTypes.string,
   location: PropTypes.string.isRequired,
   organization: PropTypes.string.isRequired,
   positions: PropTypes.array.isRequired,

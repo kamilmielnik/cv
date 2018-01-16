@@ -1,6 +1,6 @@
 import {
   BACKBONE_JS, JAVA_SCRIPT, KNOCKBACK_JS, KNOCKOUT_JS, CSS
-} from 'constants/technologies';
+} from 'constants/skills';
 
 const pega = {
   description: [

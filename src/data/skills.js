@@ -1,8 +1,17 @@
+import {
+  ATTENTION_TO_DETAIL,
+  CLEAN_CODE,
+  CODE_REVIEW,
+  DESIGN_PATTERNS,
+  OBJECT_ORIENTED_PROGRAMMING,
+  REFACTORING
+} from 'constants/skills';
+
 export default [
-  'Object-Oriented Programming',
-  'Clean Code',
-  'Design Patterns',
-  'Refactoring',
-  'Code Review',
-  'Attention to Detail'
+  OBJECT_ORIENTED_PROGRAMMING,
+  CLEAN_CODE,
+  DESIGN_PATTERNS,
+  REFACTORING,
+  CODE_REVIEW,
+  ATTENTION_TO_DETAIL
 ];

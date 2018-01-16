@@ -1,4 +1,4 @@
-import { CASTOR, CSS, JAVA, VAADIN, ZEROC_ICE } from 'constants/technologies';
+import { CASTOR, CSS, JAVA, VAADIN, ZEROC_ICE } from 'constants/skills';
 
 const cern = {
   description: [ JAVA, VAADIN, CSS, ZEROC_ICE, CASTOR ].join(', '),

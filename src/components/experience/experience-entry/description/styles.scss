@@ -1,3 +1,14 @@
 .description {
+  display: flex;
+  justify-content: space-between;
   text-align: justify;
+
+  .extra {
+    flex: 0 0 auto;
+    margin-left: 40px;
+
+    &:before {
+      content: '+ ';
+    }
+  }
 }
