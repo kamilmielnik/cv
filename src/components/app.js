@@ -1,14 +1,13 @@
 import React from 'react';
 import { contactInfo, education, name, skills, workExperience } from 'data';
-import Sidebar from 'sidebar';
 import ContactInfo from 'components/contact-info';
 import Button from 'components/button';
+import Footer from 'components/footer';
 import Name from 'components/name';
 import Page from 'components/page';
 import Section from 'components/section';
 import Skills from 'components/skills';
 import Experience from 'components/experience';
-import { PdfIcon, PrintIcon } from 'components/icons';
 import styles from './styles.scss';
 
 const PDF_FILENAME = 'KamilMielnik.pdf';
@@ -17,8 +16,8 @@ const downloadPdf = () => window.open(window.location.href + PDF_FILENAME);
 
 const App = () => (
   <div className={styles.app}>
-    <Sidebar contentClassName={styles.sidebarContent}>
-      <Page className={styles.page}>
+    <div className={styles.content}>
+      <Page>
         <Name className={styles.name} name={name} />
 
         <Section title="Contact Info">
@@ -40,14 +39,16 @@ const App = () => (
 
       <div className={styles.buttons}>
         <Button className={styles.button} title="Print this page" onClick={print}>
-          <PrintIcon />
+          Print
         </Button>
 
-        <Button className={styles.button} title="Download a PDF" onClick={downloadPdf}>
-          <PdfIcon />
+        <Button className={styles.button} title="Download PDF" onClick={downloadPdf}>
+          Download PDF
         </Button>
       </div>
-    </Sidebar>
+
+      <Footer className={styles.footer} />
+    </div>
   </div>
 );
 

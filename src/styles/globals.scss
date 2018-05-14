@@ -13,23 +13,16 @@ $foreground: $shade-80;
 $foreground-hover: $white;
 
 $ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-
+$box-shadow: 0px 0px 5px 2px grey;
 $micro-animation-duration: 0.1s;
 
 @mixin clickable-effects() {
-  background-color: $primary;
-  color: $foreground;
+  background-color: $white;
+  color: $black;
   cursor: pointer;
-  transition:
-    background-color $micro-animation-duration,
-    color $micro-animation-duration;
+  box-shadow: $box-shadow;
 
-  &:hover {
-    background-color: $primary-hover;
-    color: $foreground-hover;
-  }
-
-  &:active {
-    background-color: $primary-active;
+  &:hover, &:active {
+    outline: 1px solid $black;
   }
 }

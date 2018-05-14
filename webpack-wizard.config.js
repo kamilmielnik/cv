@@ -3,8 +3,7 @@ module.exports = (webpackWizard, { resolveCwdPath }) => ({
     favicon: resolveCwdPath('html/favicon-v2.ico'),
     html: resolveCwdPath('html/index.html'),
     modules: [
-      resolveCwdPath('src'),
-      resolveCwdPath('node_modules/sidebar')
+      resolveCwdPath('src')
     ]
   }
 });

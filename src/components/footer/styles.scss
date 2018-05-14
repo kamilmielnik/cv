@@ -1,0 +1,19 @@
+.footer {
+  padding: 50px 0;
+  background-color: $black;
+  color: #aaa;
+  box-shadow: $box-shadow;
+}
+
+.row {
+  margin: 12px 0;
+  text-align: center;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
