@@ -1,6 +1,6 @@
 .page {
-  width: 210mm;
-  height: 297mm;
+  width: $a4-width;
+  height: $a4-height;
   padding: 20mm;
   box-sizing: border-box;
   background: white;

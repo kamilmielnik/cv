@@ -30,4 +30,5 @@ const pega = {
   ],
   timePeriod: '2014 - 2015'
 };
+
 export default pega;

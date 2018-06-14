@@ -9,4 +9,5 @@ const workExperience = [
   cern,
   comarch
 ];
+
 export default workExperience;

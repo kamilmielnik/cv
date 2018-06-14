@@ -33,4 +33,5 @@ const codete = {
   ],
   timePeriod: '2015 - 2017'
 };
+
 export default codete;

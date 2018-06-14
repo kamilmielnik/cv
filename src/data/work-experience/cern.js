@@ -26,4 +26,5 @@ const cern = {
   ],
   timePeriod: '2013 - 2014'
 };
+
 export default cern;

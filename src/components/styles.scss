@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 60px;
+  margin-top: 60px;
 
   @media print {
     padding-top: 20px;
@@ -21,23 +21,23 @@
 .buttons {
   display: flex;
   justify-content: flex-end;
-  width: 210mm;
-  margin: 80px 0;
+  width: $a4-width;
+  margin: 60px 0;
 
   .button {
     margin: 0 10px;
 
     &:first-child {
       margin-left: 0;
+
+      @media screen and (max-width: $a4-width) {
+        display: none;
+      }
     }
 
     &:last-child {
       margin-right: 0;
     }
-  }
-
-  @media screen and (max-width: 988px) {
-    display: none;
   }
 
   @media print {

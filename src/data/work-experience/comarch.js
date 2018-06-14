@@ -36,4 +36,5 @@ const comarch = {
   ],
   timePeriod: '2012 - 2013, 2014'
 };
+
 export default comarch;
