@@ -13,11 +13,20 @@
     &:before {
       content: '(';
     }
+
+    @include mobile {
+      flex: 0 0 auto;
+      margin-right: 0;
+    }
   }
 
   .title {
     flex-grow: 1;
     font-weight: bold;
     text-shadow: 1px 1px #eee;
+  }
+
+  @include mobile {
+    flex-direction: row-reverse;
   }
 }

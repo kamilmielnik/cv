@@ -25,7 +25,14 @@ $micro-animation-duration: 0.1s;
   cursor: pointer;
   box-shadow: $box-shadow;
 
-  &:hover, &:active {
+  &:hover,
+  &:active {
     outline: 1px solid $black;
+  }
+}
+
+@mixin mobile {
+  @media only screen and (max-width: $a4-width - 1) {
+    @content;
   }
 }

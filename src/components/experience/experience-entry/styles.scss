@@ -23,4 +23,14 @@
       margin-top: 6px;
     }
   }
+
+  @include mobile {
+    display: block;
+
+    .info {
+      position: static;
+      margin-right: 0;
+      margin-bottom: 6px;
+    }
+  }
 }

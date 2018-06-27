@@ -31,7 +31,7 @@ const comarch = {
           to: new Date('2012/09/30')
         }
       ],
-      title: 'Software Engineer - Internship'
+      title: 'Software Engineer - Intern'
     }
   ],
   timePeriod: '2012 - 2013, 2014'

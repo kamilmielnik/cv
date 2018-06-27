@@ -5,6 +5,12 @@
 .name {
   position: absolute;
   right: 0;
+
+  @include mobile {
+    position: static;
+    text-align: center;
+    margin-bottom: 20px;
+  }
 }
 
 .content {
@@ -15,6 +21,10 @@
 
   @media print {
     padding-top: 20px;
+  }
+
+  @include mobile {
+    margin-top: 0;
   }
 }
 
@@ -30,7 +40,7 @@
     &:first-child {
       margin-left: 0;
 
-      @media screen and (max-width: $a4-width) {
+      @include mobile {
         display: none;
       }
     }
@@ -42,6 +52,11 @@
 
   @media print {
     display: none;
+  }
+
+  @include mobile {
+    width: 100%;
+    justify-content: center;
   }
 }
 

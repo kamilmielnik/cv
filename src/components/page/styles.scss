@@ -13,4 +13,10 @@
   @media print {
     box-shadow: none;
   }
+
+  @include mobile {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+  }
 }

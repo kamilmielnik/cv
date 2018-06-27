@@ -2,14 +2,16 @@
   display: flex;
   padding: 2px 0;
 
-  .label, .value {
+  .label,
+  .value {
     box-sizing: border-box;
     font-size: 13px;
     padding: 0 8px;
   }
 
   .label {
-    flex: 0 0 72px;
+    flex: 0 0 60px;
+    padding-left: 0;
     text-align: right;
     color: gray;
   }

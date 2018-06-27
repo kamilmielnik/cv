@@ -1,7 +1,6 @@
 .description {
   display: flex;
   justify-content: space-between;
-  text-align: justify;
 
   .extra {
     flex: 0 0 auto;
@@ -9,6 +8,15 @@
 
     &:before {
       content: '+ ';
+    }
+  }
+
+  @include mobile {
+    display: block;
+
+    .extra {
+      text-align: right;
+      margin-left: 0;
     }
   }
 }

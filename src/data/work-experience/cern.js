@@ -12,7 +12,7 @@ const cern = {
           to: new Date('2014/01/31')
         }
       ],
-      title: 'Associated Member of the Personnel (User)'
+      title: 'User'
     },
     {
       timePeriods: [
@@ -21,7 +21,7 @@ const cern = {
           to: new Date('2013/09/30')
         }
       ],
-      title: 'Associated Member of the Personnel (Cooperation Associate)'
+      title: 'Cooperation Associate'
     }
   ],
   timePeriod: '2013 - 2014'
