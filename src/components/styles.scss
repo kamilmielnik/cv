@@ -2,15 +2,9 @@
   height: 100%;
 }
 
-.name {
-  position: absolute;
-  right: 0;
-
-  @include mobile {
-    position: static;
-    text-align: center;
-    margin-bottom: 20px;
-  }
+.description {
+  margin-top: 10px;
+  margin-bottom: 28px;
 }
 
 .content {

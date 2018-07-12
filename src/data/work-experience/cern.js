@@ -1,6 +1,6 @@
 import { CASTOR, CSS, JAVA, VAADIN, ZEROC_ICE } from 'constants/skills';
 
-const cern = {
+export default {
   description: [ JAVA, VAADIN, CSS, ZEROC_ICE, CASTOR ].join(', '),
   location: 'Genève, Switzerland',
   organization: 'CERN',
@@ -26,5 +26,3 @@ const cern = {
   ],
   timePeriod: '2013 - 2014'
 };
-
-export default cern;

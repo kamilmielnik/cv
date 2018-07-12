@@ -22,10 +22,4 @@ const ContactInfoEntry = ({ label, url, value }) => (
   </div>
 );
 
-ContactInfoEntry.propTypes = {
-  label: PropTypes.string.isRequired,
-  url: PropTypes.string,
-  value: PropTypes.node.isRequired
-};
-
 export default ContactInfoEntry;

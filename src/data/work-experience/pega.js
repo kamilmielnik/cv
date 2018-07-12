@@ -2,7 +2,7 @@ import {
   BACKBONE_JS, JAVA_SCRIPT, KNOCKBACK_JS, KNOCKOUT_JS, CSS
 } from 'constants/skills';
 
-const pega = {
+export default {
   description: [
     JAVA_SCRIPT, KNOCKOUT_JS, KNOCKBACK_JS, BACKBONE_JS, CSS
   ].join(', '),
@@ -30,5 +30,3 @@ const pega = {
   ],
   timePeriod: '2014 - 2015'
 };
-
-export default pega;

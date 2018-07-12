@@ -1,12 +1,12 @@
 import React from 'react';
-import { contactInfo, education, name, skills, workExperience } from 'data';
+import { contactInfo, description, education, name, workExperience } from 'data';
 import ContactInfo from 'components/contact-info';
 import Button from 'components/button';
 import Footer from 'components/footer';
 import Name from 'components/name';
 import Page from 'components/page';
 import Section from 'components/section';
-import Skills from 'components/skills';
+import Description from 'components/description';
 import Experience from 'components/experience';
 import styles from './styles.scss';
 
@@ -18,7 +18,8 @@ const App = () => (
   <div className={styles.app}>
     <div className={styles.content}>
       <Page>
-        <Name className={styles.name} name={name} />
+        <Name name={name} />
+        <Description className={styles.description} description={description} />
 
         <Section title="Contact Info">
           <ContactInfo contactInfo={contactInfo} />
@@ -30,10 +31,6 @@ const App = () => (
 
         <Section title="Education">
           <Experience experience={education} />
-        </Section>
-
-        <Section title="Skills">
-          <Skills skills={skills} />
         </Section>
       </Page>
 

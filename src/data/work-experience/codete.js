@@ -2,7 +2,7 @@ import {
   CSS, JAVA_SCRIPT, REACT, REDUX, REDUX_SAGA, RESELECT, TECHNICAL_RECRUITMENT
 } from 'constants/skills';
 
-const codete = {
+export default {
   description: [
     JAVA_SCRIPT, REACT, REDUX, REDUX_SAGA, RESELECT, CSS
   ].join(', '),
@@ -33,5 +33,3 @@ const codete = {
   ],
   timePeriod: '2015 - 2017'
 };
-
-export default codete;

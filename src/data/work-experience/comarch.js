@@ -3,7 +3,7 @@ import {
   TYPE_SCRIPT, WINDOWS_PRESENTATION_FOUNDATION, ZEND_FRAMEWORK
 } from 'constants/skills';
 
-const comarch = {
+export default {
   description: [
     TYPE_SCRIPT, JAVA_SCRIPT, JQUERY, CSS, PHP, ZEND_FRAMEWORK, DOCTRINE,
     POSTGRESQL, C_SHARP, WINDOWS_PRESENTATION_FOUNDATION
@@ -36,5 +36,3 @@ const comarch = {
   ],
   timePeriod: '2012 - 2013, 2014'
 };
-
-export default comarch;
