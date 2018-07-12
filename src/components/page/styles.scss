@@ -2,7 +2,6 @@
   width: $a4-width;
   height: $a4-height;
   padding: 20mm;
-  box-sizing: border-box;
   background: white;
   box-shadow: $box-shadow;
 
@@ -11,6 +10,9 @@
   }
 
   @media print {
+    width: 100%;
+    height: auto;
+    padding-bottom: 0;
     box-shadow: none;
   }
 

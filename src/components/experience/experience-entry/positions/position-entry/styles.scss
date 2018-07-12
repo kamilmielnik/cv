@@ -5,6 +5,7 @@
   .time-period {
     flex: 0 0 72px;
     margin-right: 10px;
+    color: $shade-50;
 
     &:after {
       content: ')';
@@ -23,7 +24,6 @@
   .title {
     flex-grow: 1;
     font-weight: bold;
-    text-shadow: 1px 1px #eee;
   }
 
   @include mobile {

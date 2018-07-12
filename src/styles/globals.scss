@@ -3,6 +3,8 @@ $a4-height: 297mm;
 
 $black: #000;
 $shade-20: #222;
+$shade-50: #666;
+$shade-70: #aaa;
 $shade-80: #ddd;
 $white: #fff;
 
@@ -16,7 +18,7 @@ $foreground: $shade-80;
 $foreground-hover: $white;
 
 $ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-$box-shadow: 0px 0px 5px 2px grey;
+$box-shadow: 0px 0px 5px 2px $shade-50;
 $micro-animation-duration: 0.1s;
 
 @mixin clickable-effects() {

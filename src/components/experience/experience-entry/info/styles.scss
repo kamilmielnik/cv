@@ -4,10 +4,10 @@
   .organization {
     font-size: 18px;
     font-weight: bold;
-    text-shadow: 1px 1px #eee;
   }
 
   .details {
+    color: $shade-50;
     @include mobile {
       display: flex;
       justify-content: space-between;
