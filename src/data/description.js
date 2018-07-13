@@ -1,1 +1,1 @@
-export default 'OCD-stricken JavaScript Developer specializing in React';
+export default 'Senior JavaScript Developer specializing in React';
