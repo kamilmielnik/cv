@@ -1,35 +1,28 @@
 $a4-width: 210mm;
 $a4-height: 297mm;
 
-$black: #000;
+$shade-0: #000;
 $shade-20: #222;
 $shade-50: #666;
 $shade-70: #aaa;
 $shade-80: #ddd;
-$white: #fff;
+$shade-100: #fff;
 
-$primary: #78387f;
-$primary-hover: mix($primary, $white, 90%);
-$primary-active: mix($primary, $black, 90%);
-$inactive-overlay: rgba(0, 0, 0, 0.3);
+$background-color: $shade-70;
+$foreground-color: $shade-0;
+$foreground-color-secondary: $shade-0;
 
-$background-dark: $shade-20;
-$foreground: $shade-80;
-$foreground-hover: $white;
-
-$ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 $box-shadow: 0px 0px 5px 2px $shade-50;
-$micro-animation-duration: 0.1s;
 
 @mixin clickable-effects() {
-  background-color: $white;
-  color: $black;
+  background-color: $shade-100;
+  color: $shade-0;
   cursor: pointer;
   box-shadow: $box-shadow;
 
   &:hover,
   &:active {
-    outline: 1px solid $black;
+    outline: 1px solid $shade-0;
   }
 }
 

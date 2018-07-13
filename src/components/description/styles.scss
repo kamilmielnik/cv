@@ -2,9 +2,11 @@
   font-size: 17px;
   line-height: 17px;
   text-align: center;
-  color: $shade-50;
+  color: $foreground-color-secondary;
 
   @include mobile {
     font-size: 16px;
+    line-height: 24px;
+    padding: 0 20px;
   }
 }

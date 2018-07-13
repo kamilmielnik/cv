@@ -7,7 +7,8 @@
 html, body {
   margin: 0 auto;
   padding: 0;
-  background: $shade-70;
+  background-color: $background-color;
+  color: $foreground-color;
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
   line-height: 1.5;
@@ -24,12 +25,10 @@ html, body {
 }
 
 a {
-  color: $foreground;
+  color: inherit;
   text-decoration: none;
-  cursor: pointer;
 
   &:hover {
-    color: $foreground-hover;
     text-decoration: underline;
   }
 }

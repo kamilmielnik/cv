@@ -3,11 +3,11 @@
 
   .organization {
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 700;
   }
 
   .details {
-    color: $shade-50;
+    color: $foreground-color-secondary;
     @include mobile {
       display: flex;
       justify-content: space-between;
