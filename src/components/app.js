@@ -2,7 +2,6 @@ import React from 'react';
 import { contactInfo, description, education, name, workExperience } from 'data';
 import ContactInfo from 'components/contact-info';
 import Button from 'components/button';
-import Footer from 'components/footer';
 import Name from 'components/name';
 import Page from 'components/page';
 import Section from 'components/section';
@@ -43,8 +42,6 @@ const App = () => (
           Download PDF
         </Button>
       </div>
-
-      <Footer className={styles.footer} />
     </div>
   </div>
 );

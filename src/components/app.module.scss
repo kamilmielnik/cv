@@ -55,11 +55,3 @@
     justify-content: center;
   }
 }
-
-.footer {
-  width: 100%;
-
-  @media print {
-    display: none;
-  }
-}
