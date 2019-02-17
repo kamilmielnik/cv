@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './styles.scss';
+import styles from './contact-info-entry.module.scss';
 
 const ContactInfoEntry = ({ label, url, value }) => (
   <div className={styles.contactInfoEntry}>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import PositionEntry from './position-entry';
-import styles from './styles.scss';
+import styles from './positions.module.scss';
 
 const Positions = ({ className, positions }) => (
   <div className={classNames(styles.positions, className)}>

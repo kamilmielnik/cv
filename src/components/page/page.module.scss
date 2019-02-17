@@ -1,3 +1,5 @@
+@import 'styles/globals';
+
 .page {
   width: $a4-width;
   height: $a4-height;
@@ -5,7 +7,7 @@
   background: white;
   box-shadow: $box-shadow;
 
-  .page-content {
+  .pageContent {
     position: relative;
   }
 

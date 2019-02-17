@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Copyright from 'components/copyright';
-import styles from './styles.scss';
+import styles from './footer.module.scss';
 
 const email = 'kamil.adam.mielnik@gmail.com';
 

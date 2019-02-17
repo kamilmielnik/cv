@@ -10,14 +10,14 @@
     "build": "better-npm-run build",
     "lint": "better-npm-run lint",
     "lint:fix": "better-npm-run lint:fix",
-    "start": "better-npm-run start",
-    "start:prod": "better-npm-run start:prod"
+    "start": "better-npm-run start"
   },
   "betterScripts": {
     "build": {
-      "command": "webpack-wizard build",
+      "command": "react-scripts build",
       "env": {
-        "NODE_ENV": "production"
+        "NODE_ENV": "production",
+        "NODE_PATH": "src/"
       }
     },
     "lint": {
@@ -27,13 +27,11 @@
       "command": "eslint src/ --ext .js --fix"
     },
     "start": {
-      "command": "webpack-wizard start",
+      "command": "react-scripts start",
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "development",
+        "NODE_PATH": "src/"
       }
-    },
-    "start:prod": {
-      "command": "http-server dist"
     }
   },
   "repository": {
@@ -51,20 +49,24 @@
   },
   "homepage": "https://github.com/kamilmielnik/cv#readme",
   "dependencies": {
-    "classnames": "2.2.6",
-    "normalize.css": "8.0.0",
-    "postcss-loader": "2.1.6",
-    "prop-types": "15.6.2",
-    "react": "16.4.1",
-    "react-dom": "16.4.1"
+    "classnames": "^2.2.6",
+    "normalize.css": "^8.0.1",
+    "prop-types": "^15.6.2",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
   },
   "devDependencies": {
-    "babel-eslint": "8.2.6",
-    "better-npm-run": "0.1.0",
-    "eslint": "5.1.0",
-    "eslint-plugin-react": "7.10.0",
-    "http-server": "0.11.1",
-    "react-hot-loader": "4.3.3",
-    "webpack-wizard": "0.1.0-beta.22"
-  }
+    "babel-eslint": "^9.0.0",
+    "better-npm-run": "^0.1.1",
+    "eslint": "5.12.0",
+    "eslint-plugin-react": "^7.12.4",
+    "node-sass": "^4.11.0",
+    "react-scripts": "^2.1.3"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

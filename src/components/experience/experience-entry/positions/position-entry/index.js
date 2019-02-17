@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { formatNumberOfMonths, sumTimePeriods } from './utils';
-import styles from './styles.scss';
+import styles from './position-entry.module.scss';
 
 const PositionEntry = ({ className, timePeriod, timePeriods, title }) => (
   <div className={classNames(styles.positionEntry, className)}>

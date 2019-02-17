@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './styles.scss';
+import styles from './section.module.scss';
 
 const Section = ({ children, title }) => (
   <div className={styles.section}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import styles from './styles.scss';
+import styles from './description.module.scss';
 
 const Description = ({ className, description, extra }) => (
   <div className={classNames(styles.description, className)}>

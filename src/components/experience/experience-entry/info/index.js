@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import styles from './styles.scss';
+import styles from './info.module.scss';
 
 const Info = ({ className, location, organization, timePeriod }) => (
   <div className={classNames(styles.info, className)}>

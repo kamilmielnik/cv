@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import styles from './styles.scss';
+import styles from './name.module.scss';
 
 const Name = ({ className, name }) => (
   <h1 className={classNames(styles.name, className)}>

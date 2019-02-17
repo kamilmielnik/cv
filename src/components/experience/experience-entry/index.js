@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import Description from './description';
 import Info from './info';
 import Positions from './positions';
-import styles from './styles.scss';
+import styles from './experience-entry.module.scss';
 
 const ExperienceEntry = ({ className, description, extra, location, organization, positions, timePeriod }) => (
   <div className={classNames(styles.experienceEntry, className)}>

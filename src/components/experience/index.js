@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ExperienceEntry from './experience-entry';
-import styles from './styles.scss';
+import styles from './experience.module.scss';
 
 const Experience = ({ experience }) => (
   <div className={styles.experience}>

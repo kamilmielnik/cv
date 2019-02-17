@@ -1,8 +1,10 @@
-.position-entry {
+@import 'styles/globals';
+
+.positionEntry {
   display: flex;
   line-height: 1.6;
 
-  .time-period {
+  .timePeriod {
     flex: 0 0 72px;
     margin-right: 10px;
     color: $foreground-color-secondary;

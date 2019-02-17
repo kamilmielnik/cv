@@ -8,7 +8,7 @@ import Page from 'components/page';
 import Section from 'components/section';
 import Description from 'components/description';
 import Experience from 'components/experience';
-import styles from './styles.scss';
+import styles from './app.module.scss';
 
 const PDF_FILENAME = 'KamilMielnik.pdf';
 const print = () => window.print();

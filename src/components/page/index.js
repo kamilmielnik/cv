@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import styles from './styles.scss';
+import styles from './page.module.scss';
 
 const Page = ({ children, className }) => (
   <div className={classNames(styles.page, className)}>
