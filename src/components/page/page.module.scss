@@ -7,10 +7,6 @@
   background: white;
   box-shadow: $box-shadow;
 
-  .pageContent {
-    position: relative;
-  }
-
   @media print {
     width: 100%;
     height: auto;

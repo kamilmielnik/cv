@@ -4,7 +4,7 @@ import ExperienceEntry from './experience-entry';
 import styles from './experience.module.scss';
 
 const Experience = ({ experience }) => (
-  <div className={styles.experience}>
+  <div>
     {experience.map((experienceEntry, index) => (
       <ExperienceEntry
         key={index}

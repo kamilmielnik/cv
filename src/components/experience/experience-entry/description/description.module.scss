@@ -4,21 +4,21 @@
   display: flex;
   justify-content: space-between;
 
-  .extra {
-    flex: 0 0 auto;
-    margin-left: 40px;
+  @include mobile {
+    display: block;
+  }
+}
 
-    &:before {
-      content: '+ ';
-    }
+.extra {
+  flex: 0 0 auto;
+  margin-left: 40px;
+
+  &:before {
+    content: '+ ';
   }
 
   @include mobile {
-    display: block;
-
-    .extra {
-      text-align: right;
-      margin-left: 0;
-    }
+    text-align: right;
+    margin-left: 0;
   }
 }

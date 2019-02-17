@@ -30,22 +30,6 @@
   width: $a4-width;
   margin: 60px 0;
 
-  .button {
-    margin: 0 10px;
-
-    &:first-child {
-      margin-left: 0;
-
-      @include mobile {
-        display: none;
-      }
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-
   @media print {
     display: none;
   }
@@ -53,5 +37,21 @@
   @include mobile {
     width: 100%;
     justify-content: center;
+  }
+}
+
+.button {
+  margin: 0 10px;
+
+  &:first-child {
+    margin-left: 0;
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &:last-child {
+    margin-right: 0;
   }
 }

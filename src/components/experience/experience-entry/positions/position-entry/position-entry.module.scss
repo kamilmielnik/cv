@@ -4,31 +4,31 @@
   display: flex;
   line-height: 1.6;
 
-  .timePeriod {
-    flex: 0 0 72px;
-    margin-right: 10px;
-    color: $foreground-color-secondary;
-
-    &:after {
-      content: ')';
-    }
-
-    &:before {
-      content: '(';
-    }
-
-    @include mobile {
-      flex: 0 0 auto;
-      margin-right: 0;
-    }
-  }
-
-  .title {
-    flex-grow: 1;
-    font-weight: 700;
-  }
-
   @include mobile {
     flex-direction: row-reverse;
   }
+}
+
+.timePeriod {
+  flex: 0 0 72px;
+  margin-right: 10px;
+  color: $foreground-color-secondary;
+
+  &:after {
+    content: ')';
+  }
+
+  &:before {
+    content: '(';
+  }
+
+  @include mobile {
+    flex: 0 0 auto;
+    margin-right: 0;
+  }
+}
+
+.title {
+  flex-grow: 1;
+  font-weight: 700;
 }

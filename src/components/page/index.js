@@ -5,9 +5,7 @@ import styles from './page.module.scss';
 
 const Page = ({ children, className }) => (
   <div className={classNames(styles.page, className)}>
-    <div className={styles.pageContent}>
-      {children}
-    </div>
+    {children}
   </div>
 );
 

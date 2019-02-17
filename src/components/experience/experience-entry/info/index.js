@@ -10,11 +10,11 @@ const Info = ({ className, location, organization, timePeriod }) => (
     </h3>
 
     <div className={styles.details}>
-      <div>
+      <div className={styles.detailsRow}>
         {location}
       </div>
 
-      <div>
+      <div className={styles.detailsRow}>
         {timePeriod}
       </div>
     </div>

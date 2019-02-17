@@ -2,36 +2,39 @@
 
 .info {
   font-size: 12px;
+}
 
-  .organization {
-    font-size: 18px;
-    font-weight: 700;
+.organization {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.details {
+  color: $foreground-color-secondary;
+
+  @include mobile {
+    display: flex;
+    justify-content: space-between;
   }
+}
 
-  .details {
-    color: $foreground-color-secondary;
-    @include mobile {
-      display: flex;
-      justify-content: space-between;
+.detailsRow {
+  @include mobile {
+    margin: 0 5px;
 
-      > div {
-        margin: 0 5px;
+    &:first-child {
+      margin-left: 0;
+    }
 
-        &:first-child {
-          margin-left: 0;
-        }
+    &:last-child {
+      margin-right: 0;
 
-        &:last-child {
-          margin-right: 0;
+      &:before {
+        content: '(';
+      }
 
-          &:before {
-            content: '(';
-          }
-
-          &:after {
-            content: ')';
-          }
-        }
+      &:after {
+        content: ')';
       }
     }
   }
