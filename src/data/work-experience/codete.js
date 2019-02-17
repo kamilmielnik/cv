@@ -1,11 +1,15 @@
 import {
-  CSS, JAVA_SCRIPT, REACT, REDUX, REDUX_SAGA, RESELECT, TECHNICAL_RECRUITMENT
+  CSS,
+  JAVA_SCRIPT,
+  REACT,
+  REDUX,
+  REDUX_SAGA,
+  RESELECT,
+  TECHNICAL_RECRUITMENT
 } from 'constants/skills';
 
 export default {
-  description: [
-    JAVA_SCRIPT, REACT, REDUX, REDUX_SAGA, RESELECT, CSS
-  ].join(', '),
+  description: [JAVA_SCRIPT, REACT, REDUX, REDUX_SAGA, RESELECT, CSS].join(', '),
   extra: TECHNICAL_RECRUITMENT,
   location: 'Kraków, Poland',
   organization: 'Codete',

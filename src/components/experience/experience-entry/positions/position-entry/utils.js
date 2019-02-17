@@ -20,10 +20,11 @@ export const formatNumberOfMonths = (numberOfMonths) => {
   return `${years} yr ${months} mo`;
 };
 
-export const sumTimePeriods = (timePeriods) => timePeriods.reduce(
-  (numberOfMonths, timePeriod) => numberOfMonths + monthDifference(timePeriod),
-  0
-);
+export const sumTimePeriods = (timePeriods) =>
+  timePeriods.reduce(
+    (numberOfMonths, timePeriod) => numberOfMonths + monthDifference(timePeriod),
+    0
+  );
 
 const monthDifference = (timePeriod) => {
   const toYear = timePeriod.to.getFullYear();

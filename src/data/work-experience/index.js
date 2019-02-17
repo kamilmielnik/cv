@@ -4,12 +4,6 @@ import comarch from './comarch';
 import pega from './pega';
 import prezly from './prezly';
 
-const workExperience = [
-  prezly,
-  codete,
-  pega,
-  cern,
-  comarch
-];
+const workExperience = [prezly, codete, pega, cern, comarch];
 
 export default workExperience;

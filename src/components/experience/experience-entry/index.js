@@ -6,9 +6,22 @@ import Info from './info';
 import Positions from './positions';
 import styles from './experience-entry.module.scss';
 
-const ExperienceEntry = ({ className, description, extra, location, organization, positions, timePeriod }) => (
+const ExperienceEntry = ({
+  className,
+  description,
+  extra,
+  location,
+  organization,
+  positions,
+  timePeriod
+}) => (
   <div className={classNames(styles.experienceEntry, className)}>
-    <Info className={styles.info} location={location} organization={organization} timePeriod={timePeriod} />
+    <Info
+      className={styles.info}
+      location={location}
+      organization={organization}
+      timePeriod={timePeriod}
+    />
     <div className={styles.details}>
       <Positions className={styles.positions} positions={positions} />
       <div className={styles.separator} />

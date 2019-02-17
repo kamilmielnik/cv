@@ -1,7 +1,7 @@
 import { CASTOR, CSS, JAVA, VAADIN, ZEROC_ICE } from 'constants/skills';
 
 export default {
-  description: [ JAVA, VAADIN, CSS, ZEROC_ICE, CASTOR ].join(', '),
+  description: [JAVA, VAADIN, CSS, ZEROC_ICE, CASTOR].join(', '),
   location: 'Genève, Switzerland',
   organization: 'CERN',
   positions: [

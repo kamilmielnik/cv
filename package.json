@@ -47,7 +47,7 @@
   "bugs": {
     "url": "https://github.com/kamilmielnik/cv/issues"
   },
-  "homepage": "https://github.com/kamilmielnik/cv#readme",
+  "homepage": "http://cv.kamilmielnik.com",
   "dependencies": {
     "classnames": "^2.2.6",
     "normalize.css": "^8.0.1",

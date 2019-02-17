@@ -4,9 +4,7 @@ import styles from './contact-info-entry.module.scss';
 
 const ContactInfoEntry = ({ label, url, value }) => (
   <div className={styles.contactInfoEntry}>
-    <div className={styles.label}>
-      {label}
-    </div>
+    <div className={styles.label}>{label}</div>
 
     {url && (
       <a className={styles.value} href={url}>
@@ -14,11 +12,7 @@ const ContactInfoEntry = ({ label, url, value }) => (
       </a>
     )}
 
-    {!url && (
-      <div className={styles.value}>
-        {value}
-      </div>
-    )}
+    {!url && <div className={styles.value}>{value}</div>}
   </div>
 );
 

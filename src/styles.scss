@@ -1,11 +1,14 @@
 @import '~normalize.css';
 @import 'styles/globals';
 
-*, *:after, *:before {
+*,
+*:after,
+*:before {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0 auto;
   padding: 0;
   background-color: $background-color;
@@ -34,7 +37,10 @@ a {
   }
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
   margin: 0;

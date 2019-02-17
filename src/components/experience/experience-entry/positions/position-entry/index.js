@@ -10,19 +10,19 @@ const PositionEntry = ({ className, timePeriod, timePeriods, title }) => (
       {timePeriod || formatNumberOfMonths(sumTimePeriods(timePeriods))}
     </div>
 
-    <h4 className={styles.title}>
-      {title}
-    </h4>
+    <h4 className={styles.title}>{title}</h4>
   </div>
 );
 
 PositionEntry.propTypes = {
   className: PropTypes.string,
   timePeriod: PropTypes.string,
-  timePeriods: PropTypes.arrayOf(PropTypes.shape({
-    from: PropTypes.object.isRequired,
-    to: PropTypes.object.isRequired
-  })),
+  timePeriods: PropTypes.arrayOf(
+    PropTypes.shape({
+      from: PropTypes.object.isRequired,
+      to: PropTypes.object.isRequired
+    })
+  ),
   title: PropTypes.string.isRequired
 };
 

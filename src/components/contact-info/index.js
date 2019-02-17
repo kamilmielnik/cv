@@ -5,9 +5,7 @@ import ContactInfoEntry from './contact-info-entry';
 const ContactInfo = ({ contactInfo }) => (
   <div>
     {contactInfo.map((contactInfoEntry, index) => (
-      <ContactInfoEntry
-        key={index}
-        {...contactInfoEntry} />
+      <ContactInfoEntry key={index} {...contactInfoEntry} />
     ))}
   </div>
 );

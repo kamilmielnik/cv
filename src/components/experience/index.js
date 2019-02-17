@@ -6,10 +6,7 @@ import styles from './experience.module.scss';
 const Experience = ({ experience }) => (
   <div>
     {experience.map((experienceEntry, index) => (
-      <ExperienceEntry
-        key={index}
-        className={styles.experienceEntry}
-        {...experienceEntry} />
+      <ExperienceEntry key={index} className={styles.experienceEntry} {...experienceEntry} />
     ))}
   </div>
 );

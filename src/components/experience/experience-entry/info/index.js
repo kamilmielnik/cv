@@ -5,18 +5,11 @@ import styles from './info.module.scss';
 
 const Info = ({ className, location, organization, timePeriod }) => (
   <div className={classNames(styles.info, className)}>
-    <h3 className={styles.organization}>
-      {organization}
-    </h3>
+    <h3 className={styles.organization}>{organization}</h3>
 
     <div className={styles.details}>
-      <div className={styles.detailsRow}>
-        {location}
-      </div>
-
-      <div className={styles.detailsRow}>
-        {timePeriod}
-      </div>
+      <div className={styles.detailsRow}>{location}</div>
+      <div className={styles.detailsRow}>{timePeriod}</div>
     </div>
   </div>
 );

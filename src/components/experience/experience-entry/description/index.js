@@ -7,11 +7,7 @@ const Description = ({ className, description, extra }) => (
   <div className={classNames(styles.description, className)}>
     {description}
 
-    {extra && (
-      <div className={styles.extra}>
-        {extra}
-      </div>
-    )}
+    {extra && <div className={styles.extra}>{extra}</div>}
   </div>
 );
 

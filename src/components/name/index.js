@@ -4,9 +4,7 @@ import classNames from 'classnames';
 import styles from './name.module.scss';
 
 const Name = ({ className, name }) => (
-  <h1 className={classNames(styles.name, className)}>
-    {name}
-  </h1>
+  <h1 className={classNames(styles.name, className)}>{name}</h1>
 );
 
 Name.propTypes = {

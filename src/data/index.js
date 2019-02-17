@@ -4,10 +4,4 @@ import education from './education';
 import name from './name';
 import workExperience from './work-experience';
 
-export {
-  contactInfo,
-  description,
-  education,
-  name,
-  workExperience
-};
+export { contactInfo, description, education, name, workExperience };

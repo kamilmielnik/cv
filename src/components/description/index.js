@@ -4,9 +4,7 @@ import classNames from 'classnames';
 import styles from './description.module.scss';
 
 const Description = ({ className, description }) => (
-  <div className={classNames(styles.description, className)}>
-    {description}
-  </div>
+  <div className={classNames(styles.description, className)}>{description}</div>
 );
 
 Description.propTypes = {
