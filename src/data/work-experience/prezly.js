@@ -1,7 +1,7 @@
-import { CSS, JAVA_SCRIPT, REACT, REDUX } from 'constants/skills';
+import { CSS, JAVA_SCRIPT, REACT, REDUX, TYPE_SCRIPT } from 'constants/skills';
 
 export default {
-  description: [JAVA_SCRIPT, REACT, REDUX, CSS].join(', '),
+  description: [TYPE_SCRIPT, JAVA_SCRIPT, REACT, CSS].join(', '),
   location: 'Remote',
   organization: 'Prezly',
   positions: [

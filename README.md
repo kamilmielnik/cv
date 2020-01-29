@@ -1,2 +1,2 @@
 # Kamil Mielnik's Curriculum Vitae
-http://kamilmielnik.com/
+http://cv.kamilmielnik.com/
