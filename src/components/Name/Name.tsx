@@ -1,5 +1,6 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
+
 import styles from './Name.module.scss';
 
 interface Props {

@@ -1,5 +1,6 @@
 import React, { FunctionComponent, HTMLProps } from 'react';
 import classNames from 'classnames';
+
 import styles from './Button.module.scss';
 
 interface Props extends HTMLProps<HTMLButtonElement> {

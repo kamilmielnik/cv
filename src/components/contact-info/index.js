@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ContactInfoEntry from './contact-info-entry';
+
+import ContactInfoEntry from './ContactInfoEntry';
 
 const ContactInfo = ({ contactInfo }) => (
   <div>
