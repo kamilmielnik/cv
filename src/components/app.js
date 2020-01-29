@@ -3,7 +3,7 @@ import { contactInfo, description, education, name, workExperience } from 'data'
 import ContactInfo from 'components/contact-info';
 import Button from 'components/Button';
 import Name from 'components/Name';
-import Page from 'components/page';
+import Page from 'components/Page';
 import Section from 'components/Section';
 import Description from 'components/Description';
 import Experience from 'components/experience';
