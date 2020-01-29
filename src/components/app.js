@@ -5,7 +5,7 @@ import Button from 'components/Button';
 import Name from 'components/Name';
 import Page from 'components/page';
 import Section from 'components/section';
-import Description from 'components/description';
+import Description from 'components/Description';
 import Experience from 'components/experience';
 import styles from './app.module.scss';
 
@@ -18,7 +18,7 @@ const App = () => (
     <div className={styles.content}>
       <Page>
         <Name>{name}</Name>
-        <Description className={styles.description} description={description} />
+        <Description className={styles.description}>{description}</Description>
 
         <Section title="Contact Info">
           <ContactInfo contactInfo={contactInfo} />
