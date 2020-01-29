@@ -1,7 +1,7 @@
 import React from 'react';
 import { contactInfo, description, education, name, workExperience } from 'data';
 import ContactInfo from 'components/contact-info';
-import Button from 'components/button';
+import Button from 'components/Button';
 import Name from 'components/name';
 import Page from 'components/page';
 import Section from 'components/section';
@@ -34,11 +34,11 @@ const App = () => (
       </Page>
 
       <div className={styles.buttons}>
-        <Button className={styles.button} title="Print this page" onClick={print}>
+        <Button className={styles.button} title="Print this page" type="button" onClick={print}>
           Print
         </Button>
 
-        <Button className={styles.button} title="Download PDF" onClick={downloadPdf}>
+        <Button className={styles.button} title="Download PDF" type="button" onClick={downloadPdf}>
           Download PDF
         </Button>
       </div>

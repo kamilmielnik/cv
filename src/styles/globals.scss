@@ -26,6 +26,15 @@ $box-shadow: 0px 0px 5px 2px $shade-50;
   }
 }
 
+@mixin button-reset() {
+  padding: 0;
+  border: none;
+  outline: none;
+  font: inherit;
+  color: inherit;
+  background: none;
+}
+
 @mixin mobile {
   @media only screen and (max-width: $a4-width - 1) {
     @content;

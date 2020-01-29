@@ -1,6 +1,7 @@
 @import 'styles/globals';
 
 .button {
+  @include button-reset();
   @include clickable-effects();
 
   display: flex;
