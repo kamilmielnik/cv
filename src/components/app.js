@@ -2,7 +2,7 @@ import React from 'react';
 import { contactInfo, description, education, name, workExperience } from 'data';
 import ContactInfo from 'components/contact-info';
 import Button from 'components/Button';
-import Name from 'components/name';
+import Name from 'components/Name';
 import Page from 'components/page';
 import Section from 'components/section';
 import Description from 'components/description';
@@ -17,7 +17,7 @@ const App = () => (
   <div className={styles.app}>
     <div className={styles.content}>
       <Page>
-        <Name name={name} />
+        <Name>{name}</Name>
         <Description className={styles.description} description={description} />
 
         <Section title="Contact Info">
