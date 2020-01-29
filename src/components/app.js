@@ -4,7 +4,7 @@ import ContactInfo from 'components/contact-info';
 import Button from 'components/Button';
 import Name from 'components/Name';
 import Page from 'components/page';
-import Section from 'components/section';
+import Section from 'components/Section';
 import Description from 'components/Description';
 import Experience from 'components/experience';
 import styles from './app.module.scss';
