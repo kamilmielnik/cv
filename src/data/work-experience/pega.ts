@@ -1,6 +1,7 @@
-import { BACKBONE_JS, JAVA_SCRIPT, KNOCKBACK_JS, KNOCKOUT_JS, CSS } from 'constants/skills';
+import { BACKBONE_JS, JAVA_SCRIPT, KNOCKBACK_JS, KNOCKOUT_JS, CSS } from 'technologies';
+import { WorkExperienceData } from 'types';
 
-export default {
+const Pega: WorkExperienceData = {
   description: [JAVA_SCRIPT, KNOCKOUT_JS, KNOCKBACK_JS, BACKBONE_JS, CSS].join(', '),
   location: 'Kraków, Poland',
   organization: 'Pega',
@@ -26,3 +27,5 @@ export default {
   ],
   timePeriod: '2014 - 2015'
 };
+
+export default Pega;

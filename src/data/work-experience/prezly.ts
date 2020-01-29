@@ -1,6 +1,7 @@
-import { CSS, JAVA_SCRIPT, REACT, REDUX, TYPE_SCRIPT } from 'constants/skills';
+import { CSS, JAVA_SCRIPT, REACT, TYPE_SCRIPT } from 'technologies';
+import { WorkExperienceData } from 'types';
 
-export default {
+const Prezly: WorkExperienceData = {
   description: [TYPE_SCRIPT, JAVA_SCRIPT, REACT, CSS].join(', '),
   location: 'Remote',
   organization: 'Prezly',
@@ -18,3 +19,5 @@ export default {
   ],
   timePeriod: '2018 - present'
 };
+
+export default Prezly;

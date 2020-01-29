@@ -1,9 +1,11 @@
+import { WorkExperienceData } from 'types';
+
 import cern from './cern';
 import codete from './codete';
 import comarch from './comarch';
 import pega from './pega';
 import prezly from './prezly';
 
-const workExperience = [prezly, codete, pega, cern, comarch];
+const workExperience: WorkExperienceData[] = [prezly, codete, pega, cern, comarch];
 
 export default workExperience;

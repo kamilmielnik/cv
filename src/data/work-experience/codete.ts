@@ -6,16 +6,16 @@ import {
   REDUX_SAGA,
   RESELECT,
   TECHNICAL_RECRUITMENT
-} from 'constants/skills';
+} from 'technologies';
+import { WorkExperienceData } from 'types';
 
-export default {
+const Codete: WorkExperienceData = {
   description: [JAVA_SCRIPT, REACT, REDUX, REDUX_SAGA, RESELECT, CSS].join(', '),
   extra: TECHNICAL_RECRUITMENT,
   location: 'Kraków, Poland',
   organization: 'Codete',
   positions: [
     {
-      now: false,
       timePeriods: [
         {
           from: new Date('2016/06/01'),
@@ -25,7 +25,6 @@ export default {
       title: 'Technical Lead'
     },
     {
-      now: false,
       timePeriods: [
         {
           from: new Date('2015/08/01'),
@@ -37,3 +36,4 @@ export default {
   ],
   timePeriod: '2015 - 2017'
 };
+export default Codete;

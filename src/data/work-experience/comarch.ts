@@ -9,9 +9,10 @@ import {
   TYPE_SCRIPT,
   WINDOWS_PRESENTATION_FOUNDATION,
   ZEND_FRAMEWORK
-} from 'constants/skills';
+} from 'technologies';
+import { WorkExperienceData } from 'types';
 
-export default {
+const Comarch: WorkExperienceData = {
   description: [
     TYPE_SCRIPT,
     JAVA_SCRIPT,
@@ -52,3 +53,5 @@ export default {
   ],
   timePeriod: '2012 - 2013, 2014'
 };
+
+export default Comarch;
