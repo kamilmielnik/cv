@@ -1,4 +1,6 @@
-const contactInfo = [
+import { ContactInfoData } from 'types';
+
+const contactInfo: ContactInfoData[] = [
   {
     label: 'Email',
     url: 'mailto:kamil.adam.mielnik@gmail.com',
@@ -20,4 +22,5 @@ const contactInfo = [
     value: 'http://kamilmielnik.com'
   }
 ];
+
 export default contactInfo;
