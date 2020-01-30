@@ -1,18 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent } from 'react';
+
+import { ContactInfoData } from 'types';
 
 import ContactInfoEntry from './ContactInfoEntry';
 
-const ContactInfo = ({ contactInfo }) => (
+interface Props {
+  contactInfo: ContactInfoData[];
+}
+
+const ContactInfo: FunctionComponent<Props> = ({ contactInfo }) => (
   <div>
     {contactInfo.map((contactInfoEntry, index) => (
       <ContactInfoEntry key={index} {...contactInfoEntry} />
     ))}
   </div>
 );
-
-ContactInfo.propTypes = {
-  contactInfo: PropTypes.array.isRequired
-};
 
 export default ContactInfo;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { contactInfo, description, education, name, workExperience } from 'data';
-import ContactInfo from 'components/contact-info';
+import ContactInfo from 'components/ContactInfo';
 import Button from 'components/Button';
 import Name from 'components/Name';
 import Page from 'components/Page';
