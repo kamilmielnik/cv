@@ -7,7 +7,6 @@ const Prezly: WorkExperienceData = {
   organization: 'Prezly',
   positions: [
     {
-      now: true,
       timePeriods: [
         {
           from: new Date('2018/07/02'),

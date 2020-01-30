@@ -6,7 +6,7 @@ import Name from 'components/Name';
 import Page from 'components/Page';
 import Section from 'components/Section';
 import Description from 'components/Description';
-import Experience from 'components/experience';
+import Experience from 'components/Experience';
 import styles from './app.module.scss';
 
 const PDF_FILENAME = 'KamilMielnik.pdf';

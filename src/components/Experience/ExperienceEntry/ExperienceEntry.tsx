@@ -1,14 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
+
+import { WorkExperienceData } from 'types';
 
 import Description from './Description';
 import Info from './Info';
 import Positions from './Positions';
 
-import styles from './experience-entry.module.scss';
+import styles from './ExperienceEntry.module.scss';
 
-const ExperienceEntry = ({
+interface Props extends WorkExperienceData {
+  className?: string;
+}
+
+const ExperienceEntry: FunctionComponent<Props> = ({
   className,
   description,
   extra,
@@ -33,15 +38,5 @@ const ExperienceEntry = ({
     </div>
   </div>
 );
-
-ExperienceEntry.propTypes = {
-  className: PropTypes.string,
-  description: PropTypes.string.isRequired,
-  extra: PropTypes.string,
-  location: PropTypes.string.isRequired,
-  organization: PropTypes.string.isRequired,
-  positions: PropTypes.array.isRequired,
-  timePeriod: PropTypes.string.isRequired
-};
 
 export default ExperienceEntry;

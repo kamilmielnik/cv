@@ -21,7 +21,6 @@ export interface WorkExperienceData {
   location: string;
   organization: string;
   positions: {
-    now?: true;
     timePeriod?: string;
     timePeriods: TimePeriod[];
     title: string;

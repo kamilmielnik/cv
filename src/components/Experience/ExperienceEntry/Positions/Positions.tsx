@@ -1,12 +1,17 @@
 import React, { FunctionComponent } from 'react';
 
-import PositionEntry from './PositionEntry';
+import { TimePeriod } from 'types';
 
+import PositionEntry from './PositionEntry';
 import styles from './Positions.module.scss';
 
 interface Props {
   className?: string;
-  positions: [];
+  positions: {
+    timePeriod?: string;
+    timePeriods: TimePeriod[];
+    title: string;
+  }[];
 }
 
 const Positions: FunctionComponent<Props> = ({ className, positions }) => (
