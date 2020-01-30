@@ -1,7 +1,5 @@
-import contactInfo from './contact-info';
-import description from './description';
-import education from './education';
-import name from './name';
-import workExperience from './work-experience';
-
-export { contactInfo, description, education, name, workExperience };
+export { default as contactInfo } from './contact-info';
+export { default as description } from './description';
+export { default as education } from './education';
+export { default as name } from './name';
+export { default as workExperience } from './work-experience';

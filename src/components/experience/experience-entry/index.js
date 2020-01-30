@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Description from './description';
-import Info from './info';
+
+import Description from './Description';
+import Info from './Info';
 import Positions from './positions';
+
 import styles from './experience-entry.module.scss';
 
 const ExperienceEntry = ({
@@ -25,7 +27,9 @@ const ExperienceEntry = ({
     <div className={styles.details}>
       <Positions className={styles.positions} positions={positions} />
       <div className={styles.separator} />
-      <Description className={styles.description} description={description} extra={extra} />
+      <Description className={styles.description} extra={extra}>
+        {description}
+      </Description>
     </div>
   </div>
 );
