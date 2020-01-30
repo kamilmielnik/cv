@@ -1,12 +1,13 @@
 {
   "name": "cv",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Kamil Mielnik's Curriculum Vitae",
   "engines": {
     "node": ">=12.4.0"
   },
   "scripts": {
     "build": "better-npm-run build",
+    "deploy": "node scripts/deploy.js",
     "lint": "eslint src/ --ext '.js,.jsx,.ts,.tsx'",
     "lint:fix": "eslint src/ --ext '.js,.jsx,.ts,.tsx' --fix",
     "prettier": "npm run prettier:js && npm run prettier:scss",
@@ -60,11 +61,13 @@
     "@types/react-hot-loader": "^4.1.1",
     "babel-eslint": "^10.0.3",
     "better-npm-run": "^0.1.1",
+    "dotenv": "^8.2.0",
     "eslint": "6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.0",
     "node-sass": "^4.13.1",
+    "node-ssh": "^7.0.0",
     "prettier": "^1.19.1",
     "react-scripts": "^3.3.0",
     "typescript": "^3.7.5"
