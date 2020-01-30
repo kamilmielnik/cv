@@ -1,6 +1,7 @@
 import React, { FunctionComponent, HTMLProps } from 'react';
 import classNames from 'classnames';
 
+import Link from './Link';
 import styles from './Button.module.scss';
 
 interface Props extends HTMLProps<HTMLButtonElement> {
@@ -13,4 +14,6 @@ const Button: FunctionComponent<Props> = ({ className, children, ...props }) => 
   </button>
 );
 
-export default Button;
+export default Object.assign(Button, {
+  Link
+});

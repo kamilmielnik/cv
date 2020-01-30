@@ -6,7 +6,6 @@ import styles from './App.module.scss';
 
 const PDF_FILENAME = 'KamilMielnik.pdf';
 const print = () => window.print();
-const downloadPdf = () => window.open(window.location.href + PDF_FILENAME);
 
 const App = () => (
   <div className={styles.app}>
@@ -33,9 +32,14 @@ const App = () => (
           Print
         </Button>
 
-        <Button className={styles.button} title="Download PDF" type="button" onClick={downloadPdf}>
+        <Button.Link
+          className={styles.button}
+          href={PDF_FILENAME}
+          title="Download PDF"
+          type="button"
+        >
           Download PDF
-        </Button>
+        </Button.Link>
       </div>
     </div>
   </div>
