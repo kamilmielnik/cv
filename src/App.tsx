@@ -1,13 +1,8 @@
 import React from 'react';
 import { contactInfo, description, education, name, workExperience } from 'data';
-import ContactInfo from 'components/ContactInfo';
-import Button from 'components/Button';
-import Name from 'components/Name';
-import Page from 'components/Page';
-import Section from 'components/Section';
-import Description from 'components/Description';
-import Experience from 'components/Experience';
-import styles from './app.module.scss';
+import { ContactInfo, Button, Name, Page, Section, Description, Experience } from 'components';
+
+import styles from './App.module.scss';
 
 const PDF_FILENAME = 'KamilMielnik.pdf';
 const print = () => window.print();
