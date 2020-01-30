@@ -306,7 +306,7 @@ module.exports = {
     'space-in-parens': ['error', 'never'],
     'space-infix-ops': 'error',
     'space-unary-ops': 'error',
-    'spaced-comment': ['error', 'always'],
+    'spaced-comment': ['error', 'always', { markers: ['/'] }],
     'unicode-bom': ['error', 'never'],
     'wrap-regex': 'off',
 
@@ -387,7 +387,7 @@ module.exports = {
     'react/no-unknown-property': 'error',
     'react/prefer-es6-class': 'error',
     // 'react/prefer-stateless-function': 'error',
-    'react/prop-types': 'error',
+    'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'error',
     // 'react/require-optimization': 'error',
     'react/require-render-return': 'error',
@@ -429,7 +429,7 @@ module.exports = {
     'react/jsx-filename-extension': [
       'error',
       {
-        extensions: ['.js']
+        extensions: ['.tsx']
       }
     ],
     'react/jsx-first-prop-new-line': ['error', 'multiline'],
