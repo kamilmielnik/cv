@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import Description from './Description';
 import Info from './Info';
-import Positions from './positions';
+import Positions from './Positions';
 
 import styles from './experience-entry.module.scss';
 

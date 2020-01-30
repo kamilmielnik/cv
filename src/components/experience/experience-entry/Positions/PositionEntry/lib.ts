@@ -1,7 +1,9 @@
+import { TimePeriod } from 'types';
+
 const NUMBER_OF_MONTHS_IN_YEAR = 12;
 const NUMBER_OF_MONTHS_IN_HALF_YEAR = 6;
 
-export const formatNumberOfMonths = (numberOfMonths) => {
+export const formatNumberOfMonths = (numberOfMonths: number): string => {
   const years = Math.floor(numberOfMonths / NUMBER_OF_MONTHS_IN_YEAR);
   const months = numberOfMonths - years * NUMBER_OF_MONTHS_IN_YEAR;
 
@@ -20,13 +22,13 @@ export const formatNumberOfMonths = (numberOfMonths) => {
   return `${years} yr ${months} mo`;
 };
 
-export const sumTimePeriods = (timePeriods) =>
+export const sumTimePeriods = (timePeriods: TimePeriod[]): number =>
   timePeriods.reduce(
     (numberOfMonths, timePeriod) => numberOfMonths + monthDifference(timePeriod),
     0
   );
 
-const monthDifference = (timePeriod) => {
+const monthDifference = (timePeriod: TimePeriod): number => {
   const toYear = timePeriod.to.getFullYear();
   const fromYear = timePeriod.from.getFullYear();
   const fullYearsDifference = NUMBER_OF_MONTHS_IN_YEAR * (toYear - fromYear);

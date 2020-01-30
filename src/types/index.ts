@@ -10,6 +10,11 @@ export type Description = string;
 
 export type Name = string;
 
+export interface TimePeriod {
+  from: Date;
+  to: Date;
+}
+
 export interface WorkExperienceData {
   description: string;
   extra?: string;
@@ -18,7 +23,7 @@ export interface WorkExperienceData {
   positions: {
     now?: true;
     timePeriod?: string;
-    timePeriods: { from: Date; to: Date }[];
+    timePeriods: TimePeriod[];
     title: string;
   }[];
   timePeriod: string;
