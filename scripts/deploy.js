@@ -1,12 +1,12 @@
 const dotenv = require('dotenv');
 const NodeSsh = require('node-ssh');
 
-const { log, logError, logInfo, logSuccess } = require('./utils');
+const logger = require('./logger');
 
 dotenv.config();
 
 const connect = async (ssh) => {
-  logInfo('> Connecting');
+  logger.info('> Connecting');
   await ssh.connect({
     host: process.env.DEPLOY_HOST,
     username: process.env.DEPLOY_USERNAME,
@@ -16,25 +16,25 @@ const connect = async (ssh) => {
 
 const removeOldFiles = async (ssh) => {
   try {
-    logInfo('> Removing old files');
+    logger.info('> Removing old files');
     await ssh.exec(`rm -rf ${process.env.DEPLOY_TARGET_DIRECTORY}`, [], {
       cwd: process.env.DEPLOY_DIRECTORY
     });
   } catch (error) {
-    logError('> Failed to remove old files');
-    log(error, 1);
+    logger.error('> Failed to remove old files');
+    logger.log(error, 1);
   }
 };
 
 const ensureDirectoryExists = async (ssh) => {
-  logInfo('> Ensuring directory exists');
+  logger.info('> Ensuring directory exists');
   await ssh.exec(`mkdir ${process.env.DEPLOY_TARGET_DIRECTORY}`, [], {
     cwd: process.env.DEPLOY_DIRECTORY
   });
 };
 
 const upload = async (ssh) => {
-  logInfo('> Uploading');
+  logger.info('> Uploading');
   await ssh.putDirectory(
     process.env.DEPLOY_SOURCE_DIRECTORY,
     `${process.env.DEPLOY_DIRECTORY}/${process.env.DEPLOY_TARGET_DIRECTORY}/`,
@@ -45,7 +45,7 @@ const upload = async (ssh) => {
 };
 
 const disconnect = (ssh) => {
-  logInfo('> Disconnecting');
+  logger.info('> Disconnecting');
   ssh.dispose();
 };
 
@@ -54,7 +54,7 @@ const retry = async (action, retries = 3) => {
     await action();
   } catch (error) {
     if (retries > 0) {
-      log(error, 1);
+      logger.log(error, 1);
       await retry(action, retries - 1);
     } else {
       throw error;
@@ -71,7 +71,7 @@ const deploy = async () => {
     await ensureDirectoryExists(ssh);
     await retry(() => upload(ssh));
   } catch (error) {
-    log(error, 1);
+    logger.log(error, 1);
   } finally {
     disconnect(ssh);
   }

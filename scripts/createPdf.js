@@ -1,7 +1,8 @@
 const path = require('path');
 const puppeteer = require('puppeteer');
 const { HttpServer } = require('http-server');
-const { logInfo, logSuccess } = require('./utils');
+
+const logger = require('./logger');
 
 const BUILD_DIRECTORY = './build';
 const PDF_FILENAME = 'KamilMielnik.pdf';
@@ -10,20 +11,20 @@ const PORT = 8080;
 const URL = `http://${HOST}:${PORT}`;
 
 const createPdf = async () => {
-  logInfo('HTTP server: starting');
+  logger.info('HTTP server: starting');
   const server = new HttpServer({ root: BUILD_DIRECTORY });
   server.listen(PORT);
-  logSuccess(`HTTP server: listening at ${URL}`);
-  logInfo('Puppeteer: launching');
+  logger.success(`HTTP server: listening at ${URL}`);
+  logger.info('Puppeteer: launching');
   const browser = await puppeteer.launch();
-  logInfo(`Puppeteer: visiting ${URL}`);
+  logger.info(`Puppeteer: visiting ${URL}`);
   const page = await browser.newPage();
   await page.goto(URL, { waitUntil: 'networkidle2' });
-  logInfo('Puppeteer: generating PDF');
+  logger.info('Puppeteer: generating PDF');
   await page.pdf({ path: path.join(BUILD_DIRECTORY, PDF_FILENAME), format: 'A4' });
-  logInfo('Puppeteer: closing');
+  logger.info('Puppeteer: closing');
   await browser.close();
-  logInfo('HTTP server: closing');
+  logger.info('HTTP server: closing');
   server.close();
 };
 
