@@ -4,7 +4,6 @@ import { ContactInfo, Button, Name, Page, Section, Description, Experience } fro
 
 import styles from './App.module.scss';
 
-const PDF_FILENAME = 'KamilMielnik.pdf';
 const print = () => window.print();
 
 const App = () => (
@@ -34,7 +33,7 @@ const App = () => (
 
         <Button.Link
           className={styles.button}
-          href={PDF_FILENAME}
+          href={process.env.REACT_APP_PDF_FILENAME}
           title="Download PDF"
           type="button"
         >
