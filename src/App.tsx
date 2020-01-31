@@ -27,12 +27,17 @@ const App = () => (
       </Page>
 
       <div className={styles.buttons}>
-        <Button className={styles.button} title="Print this page" type="button" onClick={print}>
+        <Button
+          className={styles.printButton}
+          title="Print this page"
+          type="button"
+          onClick={print}
+        >
           Print
         </Button>
 
         <Button.Link
-          className={styles.button}
+          className={styles.downloadButton}
           href={process.env.REACT_APP_PDF_FILENAME}
           title="Download PDF"
           type="button"

@@ -40,18 +40,18 @@
   }
 }
 
-.button {
-  margin: 0 10px;
+.printButton {
+  margin-right: 10px;
 
-  &:first-child {
-    margin-left: 0;
-
-    @include mobile {
-      display: none;
-    }
+  @include mobile {
+    display: none;
   }
+}
 
-  &:last-child {
-    margin-right: 0;
+.downloadButton {
+  margin-left: 10px;
+
+  @include mobile {
+    margin-left: 0;
   }
 }
