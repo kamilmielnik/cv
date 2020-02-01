@@ -1,6 +1,6 @@
 {
   "name": "cv",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Kamil Mielnik's Curriculum Vitae",
   "engines": {
     "node": ">=12.4.0"
@@ -73,7 +73,7 @@
     "node-ssh": "^7.0.0",
     "prettier": "^1.19.1",
     "puppeteer": "^2.1.0",
-    "react-scripts": "^3.3.0",
+    "react-scripts": "^3.3.1",
     "typescript": "^3.7.5"
   },
   "browserslist": [
