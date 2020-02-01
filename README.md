@@ -1,5 +1,5 @@
 # Kamil Mielnik's Curriculum Vitae
-http://cv.kamilmielnik.com/
+https://cv.kamilmielnik.com/
 
 ## Setup
 1. `npm install`
@@ -17,7 +17,7 @@ Generate PDF version of the CV based on files in `./build/`
 ### `npm run deploy`
 Copy files from `./build/` to a remote server (setup via variables in `.env`)
 
-### `npm run publish` 
+### `npm run publish`
 Run `build`, `createPdf` & `deploy` scripts one by one
 
 ### `npm start`

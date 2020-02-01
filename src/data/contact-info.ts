@@ -18,8 +18,8 @@ const contactInfo: ContactInfoData[] = [
   },
   {
     label: 'Website',
-    url: 'http://kamilmielnik.com',
-    value: 'http://kamilmielnik.com'
+    url: 'https://kamilmielnik.com',
+    value: 'https://kamilmielnik.com'
   }
 ];
 

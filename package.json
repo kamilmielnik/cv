@@ -1,6 +1,6 @@
 {
   "name": "cv",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "Kamil Mielnik's Curriculum Vitae",
   "engines": {
     "node": ">=12.4.0"
@@ -43,13 +43,13 @@
   "author": {
     "name": "Kamil Mielnik",
     "email": "kamil.adam.mielnik@gmail.com",
-    "url": "http://kamilmielnik.com/"
+    "url": "https://kamilmielnik.com/"
   },
   "license": "CC BY-NC-ND 4.0",
   "bugs": {
     "url": "https://github.com/kamilmielnik/cv/issues"
   },
-  "homepage": "http://cv.kamilmielnik.com",
+  "homepage": "https://cv.kamilmielnik.com",
   "dependencies": {
     "classnames": "^2.2.6",
     "normalize.css": "^8.0.1",
