@@ -1,7 +1,7 @@
 import { CASTOR, CSS, JAVA, VAADIN, ZEROC_ICE } from 'technologies';
-import { WorkExperienceData } from 'types';
+import { ExperienceData } from 'types';
 
-const Cern: WorkExperienceData = {
+const Cern: ExperienceData = {
   description: [JAVA, VAADIN, CSS, ZEROC_ICE, CASTOR].join(', '),
   location: 'Genève, Switzerland',
   organization: 'CERN',

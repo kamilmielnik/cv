@@ -1,12 +1,12 @@
 import React, { FunctionComponent } from 'react';
 
-import { WorkExperienceData } from 'types';
+import { ExperienceData } from 'types';
 
 import ExperienceEntry from './ExperienceEntry';
 import styles from './Experience.module.scss';
 
 interface Props {
-  experience: WorkExperienceData[];
+  experience: ExperienceData[];
 }
 
 const Experience: FunctionComponent<Props> = ({ experience }) => (

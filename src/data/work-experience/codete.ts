@@ -7,9 +7,9 @@ import {
   RESELECT,
   TECHNICAL_RECRUITMENT
 } from 'technologies';
-import { WorkExperienceData } from 'types';
+import { ExperienceData } from 'types';
 
-const Codete: WorkExperienceData = {
+const Codete: ExperienceData = {
   description: [JAVA_SCRIPT, REACT, REDUX, REDUX_SAGA, RESELECT, CSS].join(', '),
   extra: TECHNICAL_RECRUITMENT,
   location: 'Kraków, Poland',

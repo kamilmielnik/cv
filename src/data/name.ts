@@ -1,5 +1,3 @@
-import { Name } from 'types';
-
-const name: Name = 'Kamil Mielnik';
+const name: string = 'Kamil Mielnik';
 
 export default name;

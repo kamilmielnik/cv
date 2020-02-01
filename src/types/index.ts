@@ -1,4 +1,7 @@
-export type Technology = string;
+export interface TimePeriod {
+  from: Date;
+  to: Date;
+}
 
 export interface ContactInfoData {
   label: string;
@@ -6,16 +9,7 @@ export interface ContactInfoData {
   value: string;
 }
 
-export type Description = string;
-
-export type Name = string;
-
-export interface TimePeriod {
-  from: Date;
-  to: Date;
-}
-
-export interface WorkExperienceData {
+export interface ExperienceData {
   description: string;
   extra?: string;
   location: string;

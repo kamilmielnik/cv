@@ -1,7 +1,7 @@
 import { BACKBONE_JS, JAVA_SCRIPT, KNOCKBACK_JS, KNOCKOUT_JS, CSS } from 'technologies';
-import { WorkExperienceData } from 'types';
+import { ExperienceData } from 'types';
 
-const Pega: WorkExperienceData = {
+const Pega: ExperienceData = {
   description: [JAVA_SCRIPT, KNOCKOUT_JS, KNOCKBACK_JS, BACKBONE_JS, CSS].join(', '),
   location: 'Kraków, Poland',
   organization: 'Pega',

@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { WorkExperienceData } from 'types';
+import { ExperienceData } from 'types';
 
 import Description from './Description';
 import Info from './Info';
@@ -9,7 +9,7 @@ import Positions from './Positions';
 
 import styles from './ExperienceEntry.module.scss';
 
-interface Props extends WorkExperienceData {
+interface Props extends ExperienceData {
   className?: string;
 }
 

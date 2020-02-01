@@ -10,9 +10,9 @@ import {
   WINDOWS_PRESENTATION_FOUNDATION,
   ZEND_FRAMEWORK
 } from 'technologies';
-import { WorkExperienceData } from 'types';
+import { ExperienceData } from 'types';
 
-const Comarch: WorkExperienceData = {
+const Comarch: ExperienceData = {
   description: [
     TYPE_SCRIPT,
     JAVA_SCRIPT,

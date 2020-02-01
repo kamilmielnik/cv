@@ -1,6 +1,6 @@
-import { WorkExperienceData } from 'types';
+import { ExperienceData } from 'types';
 
-const education: WorkExperienceData[] = [
+const education: ExperienceData[] = [
   {
     description: 'The Faculty of Computer Science, Electronics and Telecommunications',
     location: 'Kraków, Poland',

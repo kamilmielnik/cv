@@ -1,7 +1,7 @@
 import { CSS, JAVA_SCRIPT, REACT, TYPE_SCRIPT } from 'technologies';
-import { WorkExperienceData } from 'types';
+import { ExperienceData } from 'types';
 
-const Prezly: WorkExperienceData = {
+const Prezly: ExperienceData = {
   description: [TYPE_SCRIPT, JAVA_SCRIPT, REACT, CSS].join(', '),
   location: 'Remote',
   organization: 'Prezly',
