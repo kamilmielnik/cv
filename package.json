@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "better-npm-run build && npm run build:critical-css && npm run build:pdf",
-    "build:critical-css": "node scripts/criticalCss.js",
+    "build:inline-css": "node scripts/inlineCss.js",
     "build:pdf": "node scripts/createPdf.js",
     "clean": "rimraf build",
     "deploy": "node scripts/deploy.js",
@@ -70,7 +70,7 @@
     "eslint": "6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.18.0",
+    "eslint-plugin-react": "^7.18.2",
     "http-server": "^0.12.1",
     "node-sass": "^4.13.1",
     "node-ssh": "^7.0.0",
