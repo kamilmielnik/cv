@@ -9,16 +9,16 @@ https://cv.kamilmielnik.com/
 ## Scripts
 
 ### `npm run build`
-Generate CSS & JS bundles in `./build/`
+Run production build and place the output in `./build/`
 
-### `npm run createPdf`
-Generate PDF version of the CV based on files in `./build/`
+### `npm run clean`
+Remove `./build/` directory
 
 ### `npm run deploy`
 Copy files from `./build/` to a remote server (setup via variables in `.env`)
 
 ### `npm run publish`
-Run `build`, `createPdf` & `deploy` scripts one by one
+Run `clean`, `build`, & `deploy` scripts one by one
 
 ### `npm start`
 Run development server with hot-reload
