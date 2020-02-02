@@ -155,7 +155,7 @@ module.exports = {
     'no-use-before-define': 'off',
 
     // Node.js and CommonJS
-    'callback-return': 'error',
+    'callback-return': 'off',
     'global-require': 'off',
     'handle-callback-err': 'off',
     'no-mixed-requires': 'off',

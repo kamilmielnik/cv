@@ -1,14 +1,15 @@
 {
   "name": "cv",
-  "version": "1.5.7",
+  "version": "1.5.8",
   "description": "Kamil Mielnik's Curriculum Vitae",
   "engines": {
     "node": ">=12.4.0"
   },
   "scripts": {
-    "build": "better-npm-run build && npm run build:critical-css && npm run build:pdf",
+    "build": "better-npm-run build && npm run build:inline-css && npm run build:pdf && npm run build:sitemap",
     "build:inline-css": "node scripts/inlineCss.js",
     "build:pdf": "node scripts/createPdf.js",
+    "build:sitemap": "node scripts/createSitemap.js",
     "clean": "rimraf build",
     "deploy": "node scripts/deploy.js",
     "lint": "eslint src/ scripts/ --ext '.js,.jsx,.ts,.tsx'",
@@ -78,6 +79,7 @@
     "puppeteer": "^2.1.0",
     "react-scripts": "^3.3.1",
     "rimraf": "^3.0.1",
+    "sitemap": "^5.1.0",
     "typescript": "^3.7.5"
   },
   "browserslist": [

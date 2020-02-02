@@ -4,7 +4,7 @@ import { ContactInfo, Button, Name, Page, Section, Description, Experience } fro
 
 import styles from './App.module.scss';
 
-const PDF_URL = `${process.env.REACT_APP_PDF_FILENAME}?${Date.now()}`;
+const PDF_URL = `./${process.env.REACT_APP_PDF_FILENAME}?${Date.now()}`;
 
 const print = () => window.print();
 
