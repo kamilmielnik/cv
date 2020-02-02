@@ -1,8 +1,8 @@
 import React from 'react';
 import { hydrate, render } from 'react-dom';
 
-import App from './App';
 import './styles.scss';
+import App from './App';
 
 const rootElement = document.getElementById('app');
 

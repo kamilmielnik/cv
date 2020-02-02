@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 const WHITE = '\x1b[37m%s\x1b[0m';
 const YELLOW = '\x1b[33m%s\x1b[0m';
 const RED = '\x1b[31m%s\x1b[0m';
