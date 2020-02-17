@@ -1,6 +1,8 @@
 # Kamil Mielnik's Curriculum Vitae
 https://cv.kamilmielnik.com/
 
+![ESLint](https://github.com/kamilmielnik/cv/workflows/ESLint/badge.svg)
+
 ## Setup
 1. `npm install`
 2. `cp .env.example .env`
