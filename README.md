@@ -1,7 +1,9 @@
 # Kamil Mielnik's Curriculum Vitae
 https://cv.kamilmielnik.com/
 
+![Dependencies](https://img.shields.io/david/kamilmielnik/cv)
 ![ESLint](https://github.com/kamilmielnik/cv/workflows/ESLint/badge.svg)
+
 
 ## Setup
 1. `npm install`
