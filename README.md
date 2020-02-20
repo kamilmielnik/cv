@@ -2,6 +2,7 @@
 https://cv.kamilmielnik.com/
 
 ![Dependencies](https://img.shields.io/david/kamilmielnik/cv)
+![Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/kamilmielnik/cv)
 ![ESLint](https://github.com/kamilmielnik/cv/workflows/ESLint/badge.svg)
 
 
