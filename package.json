@@ -1,6 +1,6 @@
 {
   "name": "cv",
-  "version": "1.5.8",
+  "version": "1.5.9",
   "description": "Kamil Mielnik's Curriculum Vitae",
   "engines": {
     "node": ">=12.4.0"
@@ -61,7 +61,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.9",
-    "@types/react": "^16.9.19",
+    "@types/react": "^16.9.22",
     "@types/react-dom": "^16.9.5",
     "@types/react-hot-loader": "^4.1.1",
     "babel-eslint": "^10.0.3",
@@ -80,7 +80,7 @@
     "react-scripts": "^3.4.0",
     "rimraf": "^3.0.2",
     "sitemap": "^5.1.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.2"
   },
   "browserslist": [
     ">0.2%",
