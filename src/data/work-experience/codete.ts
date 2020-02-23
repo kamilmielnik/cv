@@ -14,6 +14,7 @@ const Codete: ExperienceData = {
   extra: TECHNICAL_RECRUITMENT,
   location: 'Kraków, Poland',
   organization: 'Codete',
+  url: 'https://codete.com/',
   positions: [
     {
       timePeriods: [

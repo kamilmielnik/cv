@@ -5,6 +5,7 @@ const Pega: ExperienceData = {
   description: [JAVA_SCRIPT, KNOCKOUT_JS, KNOCKBACK_JS, BACKBONE_JS, CSS].join(', '),
   location: 'Kraków, Poland',
   organization: 'Pega',
+  url: 'https://www.pega.com/',
   positions: [
     {
       timePeriods: [

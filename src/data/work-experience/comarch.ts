@@ -27,6 +27,7 @@ const Comarch: ExperienceData = {
   ].join(', '),
   location: 'Kraków, Poland',
   organization: 'Comarch',
+  url: 'https://www.comarch.com/',
   positions: [
     {
       timePeriods: [

@@ -5,6 +5,7 @@ const Prezly: ExperienceData = {
   description: [TYPE_SCRIPT, JAVA_SCRIPT, REACT, CSS].join(', '),
   location: 'Remote',
   organization: 'Prezly',
+  url: 'https://www.prezly.com/',
   positions: [
     {
       timePeriods: [

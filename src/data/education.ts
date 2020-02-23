@@ -5,6 +5,7 @@ const education: ExperienceData[] = [
     description: 'The Faculty of Computer Science, Electronics and Telecommunications',
     location: 'Kraków, Poland',
     organization: 'AGH UST',
+    url: 'https://www.agh.edu.pl/',
     positions: [
       {
         timePeriod: '1.5 yr',
