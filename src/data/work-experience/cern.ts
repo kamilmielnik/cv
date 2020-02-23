@@ -5,6 +5,7 @@ const Cern: ExperienceData = {
   description: [JAVA, VAADIN, CSS, ZEROC_ICE, CASTOR].join(', '),
   location: 'Genève, Switzerland',
   organization: 'CERN',
+  url: 'https://home.cern/',
   positions: [
     {
       timePeriods: [

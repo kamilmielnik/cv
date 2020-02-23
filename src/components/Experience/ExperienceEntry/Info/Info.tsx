@@ -8,11 +8,14 @@ interface Props {
   location: string;
   organization: string;
   timePeriod: string;
+  url: string;
 }
 
-const Info: FunctionComponent<Props> = ({ className, location, organization, timePeriod }) => (
+const Info: FunctionComponent<Props> = ({ className, location, organization, timePeriod, url }) => (
   <div className={classNames(styles.info, className)}>
-    <h3 className={styles.organization}>{organization}</h3>
+    <h3 className={styles.organization}>
+      <a href={url}>{organization}</a>
+    </h3>
 
     <div className={styles.details}>
       <div className={styles.detailsRow}>{location}</div>

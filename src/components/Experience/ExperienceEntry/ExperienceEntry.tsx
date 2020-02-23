@@ -20,7 +20,8 @@ const ExperienceEntry: FunctionComponent<Props> = ({
   location,
   organization,
   positions,
-  timePeriod
+  timePeriod,
+  url
 }) => (
   <div className={classNames(styles.experienceEntry, className)}>
     <Info
@@ -28,6 +29,7 @@ const ExperienceEntry: FunctionComponent<Props> = ({
       location={location}
       organization={organization}
       timePeriod={timePeriod}
+      url={url}
     />
     <div className={styles.details}>
       <Positions className={styles.positions} positions={positions} />

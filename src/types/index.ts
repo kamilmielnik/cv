@@ -14,6 +14,7 @@ export interface ExperienceData {
   extra?: string;
   location: string;
   organization: string;
+  url: string;
   positions: {
     timePeriod?: string;
     timePeriods: TimePeriod[];
