@@ -8,13 +8,11 @@ $shade-100: #fff;
 
 $background-color: $shade-70;
 $foreground-color: $shade-0;
-$foreground-color-secondary: $shade-0;
 
 $box-shadow: 0px 0px 5px 2px $shade-50;
 
 @mixin clickable-effects() {
   background-color: $shade-100;
-  color: $shade-0;
   cursor: pointer;
   box-shadow: $box-shadow;
 

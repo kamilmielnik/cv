@@ -10,8 +10,6 @@
 }
 
 .details {
-  color: $foreground-color-secondary;
-
   @include mobile {
     display: flex;
     justify-content: space-between;
