@@ -73,7 +73,7 @@
     "eslint-plugin-react": "^7.18.3",
     "http-server": "^0.12.1",
     "node-sass": "^4.13.1",
-    "node-ssh": "^7.0.1",
+    "node-ssh": "^8.0.0",
     "prettier": "^1.19.1",
     "puppeteer": "^2.1.1",
     "react-scripts": "^3.4.0",
