@@ -14,7 +14,9 @@ interface Props {
 const Info: FunctionComponent<Props> = ({ className, location, organization, timePeriod, url }) => (
   <div className={classNames(styles.info, className)}>
     <h3 className={styles.organization}>
-      <a href={url}>{organization}</a>
+      <a href={url} rel="noopener noreferrer">
+        {organization}
+      </a>
     </h3>
 
     <div className={styles.details}>

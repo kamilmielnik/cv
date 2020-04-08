@@ -1,6 +1,6 @@
 {
   "name": "cv",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "Kamil Mielnik's Curriculum Vitae",
   "engines": {
     "node": ">=12.4.0"
@@ -74,7 +74,7 @@
     "http-server": "^0.12.1",
     "node-sass": "^4.13.1",
     "node-ssh": "^8.0.0",
-    "prettier": "^2.0.2",
+    "prettier": "^2.0.4",
     "puppeteer": "^2.1.1",
     "react-scripts": "^3.4.1",
     "rimraf": "^3.0.2",
