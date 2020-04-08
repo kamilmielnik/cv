@@ -13,7 +13,7 @@ const ContactInfoEntry: FunctionComponent<Props> = ({ label, url, value }) => (
     <div className={styles.label}>{label}</div>
 
     {url && (
-      <a className={styles.value} href={url} rel="noopener noreferrer">
+      <a className={styles.value} href={url} rel="noopener noreferrer" target="_blank">
         {value}
       </a>
     )}
