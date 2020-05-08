@@ -10,7 +10,7 @@ dotenv.config();
 const createPdf = () => {
   runHttpServer(async (server, url) => {
     logger.info('Puppeteer: launching');
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
     logger.info(`Puppeteer: visiting ${url}`);
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: 'networkidle2' });
