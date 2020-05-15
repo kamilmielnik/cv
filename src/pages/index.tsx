@@ -1,18 +1,20 @@
 import React from 'react';
-import { contactInfo, description, education, name, workExperience } from 'data';
+
 import { ContactInfo, Button, Name, Page, Section, Description, Experience } from 'components';
+import { contactInfo, description, education, name, workExperience } from 'data';
 
-import styles from './App.module.scss';
+import styles from './index.module.scss';
 
-const PDF_URL = `./${process.env.REACT_APP_PDF_FILENAME}?${Date.now()}`;
+const PDF_URL = '/api/pdf';
 
 const print = () => window.print();
 
-const App = () => (
+const Index = () => (
   <div className={styles.app}>
     <div className={styles.content}>
       <Page>
         <Name>{name}</Name>
+
         <Description className={styles.description}>{description}</Description>
 
         <Section title="Contact Info">
@@ -51,4 +53,4 @@ const App = () => (
   </div>
 );
 
-export default App;
+export default Index;
