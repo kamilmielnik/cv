@@ -1,5 +1,6 @@
 *.db
 *.log
 .env
+.next/
 build/
 node_modules/
