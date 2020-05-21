@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "next": "9.4.1",
+    "next": "9.4.2",
     "normalize.css": "^8.0.1",
     "puppeteer": "^3.1.0",
     "react": "16.13.1",
