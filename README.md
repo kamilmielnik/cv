@@ -15,16 +15,10 @@ https://cv.kamilmielnik.com/
 ## Scripts
 
 ### `npm run build`
-Run production build and place the output in `./build/`
+Run production build and place the output in `./next/`
 
-### `npm run clean`
-Remove `./build/` directory
-
-### `npm run deploy`
-Copy files from `./build/` to a remote server (setup via variables in `.env`)
-
-### `npm run publish`
-Run `clean`, `build`, & `deploy` scripts one by one
+### `npm run dev`
+Run development server with hot-reload
 
 ### `npm start`
-Run development server with hot-reload
+Run production server
