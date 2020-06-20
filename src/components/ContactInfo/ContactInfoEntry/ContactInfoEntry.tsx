@@ -1,24 +1,24 @@
 import React, { FunctionComponent } from 'react';
 
+import { ContactInfoData } from 'types';
+
 import styles from './ContactInfoEntry.module.scss';
 
 interface Props {
-  label: string;
-  url?: string;
-  value: string;
+  contactInfo: ContactInfoData;
 }
 
-const ContactInfoEntry: FunctionComponent<Props> = ({ label, url, value }) => (
+const ContactInfoEntry: FunctionComponent<Props> = ({ contactInfo }) => (
   <div className={styles.contactInfoEntry}>
-    <div className={styles.label}>{label}</div>
+    <div className={styles.label}>{contactInfo.label}</div>
 
-    {url && (
-      <a className={styles.value} href={url} rel="noopener noreferrer" target="_blank">
-        {value}
+    {contactInfo.url && (
+      <a className={styles.value} href={contactInfo.url} rel="noopener noreferrer" target="_blank">
+        {contactInfo.value}
       </a>
     )}
 
-    {!url && <div className={styles.value}>{value}</div>}
+    {!contactInfo.url && <div className={styles.value}>{contactInfo.value}</div>}
   </div>
 );
 

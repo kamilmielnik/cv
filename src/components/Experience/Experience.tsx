@@ -12,7 +12,11 @@ interface Props {
 const Experience: FunctionComponent<Props> = ({ experience }) => (
   <div>
     {experience.map((experienceEntry, index) => (
-      <ExperienceEntry key={index} className={styles.experienceEntry} {...experienceEntry} />
+      <ExperienceEntry
+        className={styles.experienceEntry}
+        experience={experienceEntry}
+        key={index}
+      />
     ))}
   </div>
 );

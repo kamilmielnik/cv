@@ -11,7 +11,7 @@ interface Props {
 const ContactInfo: FunctionComponent<Props> = ({ contactInfo }) => (
   <div>
     {contactInfo.map((contactInfoEntry, index) => (
-      <ContactInfoEntry key={index} {...contactInfoEntry} />
+      <ContactInfoEntry contactInfo={contactInfoEntry} key={index} />
     ))}
   </div>
 );

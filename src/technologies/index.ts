@@ -20,10 +20,4 @@ export const WINDOWS_PRESENTATION_FOUNDATION: string = 'Windows Presentation Fou
 export const ZEND_FRAMEWORK: string = 'Zend Framework';
 export const ZEROC_ICE: string = 'ZeroC Ice';
 
-export const ATTENTION_TO_DETAIL: string = 'Attention to Detail';
-export const CLEAN_CODE: string = 'Clean Code';
-export const CODE_REVIEW: string = 'Code Review';
-export const DESIGN_PATTERNS: string = 'Design Patterns';
-export const OBJECT_ORIENTED_PROGRAMMING: string = 'Object-Oriented Programming';
-export const REFACTORING: string = 'Refactoring';
 export const TECHNICAL_RECRUITMENT: string = 'Technical Recruitment';

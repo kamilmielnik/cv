@@ -1,8 +1,3 @@
-export interface TimePeriod {
-  from: Date;
-  to: Date;
-}
-
 export interface ContactInfoData {
   label: string;
   url: string;
@@ -15,10 +10,17 @@ export interface ExperienceData {
   location: string;
   organization: string;
   url: string;
-  positions: {
-    timePeriod?: string;
-    timePeriods: TimePeriod[];
-    title: string;
-  }[];
+  positions: PositionData[];
   timePeriod: string;
+}
+
+export interface PositionData {
+  timePeriod?: string;
+  timePeriods: TimePeriod[];
+  title: string;
+}
+
+export interface TimePeriod {
+  from: Date;
+  to: Date;
 }

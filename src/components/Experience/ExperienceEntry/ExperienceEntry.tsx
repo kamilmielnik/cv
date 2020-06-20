@@ -9,33 +9,28 @@ import Positions from './Positions';
 
 import styles from './ExperienceEntry.module.scss';
 
-interface Props extends ExperienceData {
+interface Props {
   className?: string;
+  experience: ExperienceData;
 }
 
-const ExperienceEntry: FunctionComponent<Props> = ({
-  className,
-  description,
-  extra,
-  location,
-  organization,
-  positions,
-  timePeriod,
-  url
-}) => (
+const ExperienceEntry: FunctionComponent<Props> = ({ className, experience }) => (
   <div className={classNames(styles.experienceEntry, className)}>
     <Info
       className={styles.info}
-      location={location}
-      organization={organization}
-      timePeriod={timePeriod}
-      url={url}
+      location={experience.location}
+      organization={experience.organization}
+      timePeriod={experience.timePeriod}
+      url={experience.url}
     />
+
     <div className={styles.details}>
-      <Positions className={styles.positions} positions={positions} />
+      <Positions className={styles.positions} positions={experience.positions} />
+
       <div className={styles.separator} />
-      <Description className={styles.description} extra={extra}>
-        {description}
+
+      <Description className={styles.description} extra={experience.extra}>
+        {experience.description}
       </Description>
     </div>
   </div>

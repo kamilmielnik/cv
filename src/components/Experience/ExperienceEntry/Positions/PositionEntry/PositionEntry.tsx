@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { TimePeriod } from 'types';
+import { PositionData } from 'types';
 
 import { formatNumberOfMonths, sumTimePeriods } from './lib';
 
@@ -9,17 +9,15 @@ import styles from './PositionEntry.module.scss';
 
 interface Props {
   className?: string;
-  timePeriod?: string;
-  timePeriods: TimePeriod[];
-  title: string;
+  position: PositionData;
 }
 
-const PositionEntry: FunctionComponent<Props> = ({ className, timePeriod, timePeriods, title }) => (
+const PositionEntry: FunctionComponent<Props> = ({ className, position }) => (
   <div className={classNames(styles.positionEntry, className)}>
     <div className={styles.timePeriod}>
-      {timePeriod || formatNumberOfMonths(sumTimePeriods(timePeriods))}
+      {position.timePeriod || formatNumberOfMonths(sumTimePeriods(position.timePeriods))}
     </div>
-    <h4 className={styles.title}>{title}</h4>
+    <h4 className={styles.title}>{position.title}</h4>
   </div>
 );
 

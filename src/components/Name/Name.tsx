@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import styles from './Name.module.scss';
 
 interface Props {
-  className?: string;
   children: ReactNode;
+  className?: string;
 }
 
 const Name: FunctionComponent<Props> = ({ children, className }) => (
