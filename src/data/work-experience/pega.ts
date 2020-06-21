@@ -10,8 +10,8 @@ const Pega: ExperienceData = {
     {
       timePeriods: [
         {
-          from: new Date('2015/07/01'),
-          to: new Date('2015/07/31')
+          from: new Date(2015, 6, 1),
+          to: new Date(2015, 6, 31)
         }
       ],
       title: 'System Architect - Mobility'
@@ -19,8 +19,8 @@ const Pega: ExperienceData = {
     {
       timePeriods: [
         {
-          from: new Date('2014/07/01'),
-          to: new Date('2015/06/30')
+          from: new Date(2014, 6, 1),
+          to: new Date(2015, 5, 30)
         }
       ],
       title: 'Associate System Architect - Mobility'

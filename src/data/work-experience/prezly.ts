@@ -10,7 +10,7 @@ const Prezly: ExperienceData = {
     {
       timePeriods: [
         {
-          from: new Date('2018/07/02'),
+          from: new Date(2018, 6, 2),
           to: new Date()
         }
       ],
