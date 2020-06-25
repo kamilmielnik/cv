@@ -18,7 +18,7 @@ const education: ExperienceData[] = [
         title: 'Master of Science in Computer Science'
       },
       {
-        timePeriod: '3.5 yr',
+        timePeriod: '3.5 yrs',
         timePeriods: [
           {
             from: new Date(2010, 9, 1),
