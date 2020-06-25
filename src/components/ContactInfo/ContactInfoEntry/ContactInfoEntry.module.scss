@@ -17,5 +17,10 @@
 }
 
 .value {
+  min-width: 0;
   margin-left: 8px;
+}
+
+.valueContent {
+  @include ellipsis;
 }

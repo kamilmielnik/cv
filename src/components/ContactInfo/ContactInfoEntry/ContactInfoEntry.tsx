@@ -20,13 +20,13 @@ const ContactInfoEntry: FunctionComponent<Props> = ({ contactInfo }) => (
         target="_blank"
         title={contactInfo.value}
       >
-        {contactInfo.value}
+        <span className={styles.valueContent}>{contactInfo.value}</span>
       </a>
     )}
 
     {!contactInfo.url && (
       <div className={styles.value} title={contactInfo.value}>
-        {contactInfo.value}
+        <span className={styles.valueContent}>{contactInfo.value}</span>
       </div>
     )}
   </div>
