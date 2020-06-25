@@ -8,17 +8,37 @@ $shade-100: #fff;
 
 $background-color: $shade-70;
 $foreground-color: $shade-0;
+$focus-color: #268fff;
 
 $box-shadow: 0px 0px 5px 2px $shade-50;
 
-@mixin clickable-effects() {
-  background-color: $shade-100;
-  cursor: pointer;
-  box-shadow: $box-shadow;
+$border-radius: 4px;
 
-  &:hover,
-  &:active {
-    outline: 1px solid $shade-0;
+@mixin clickable-effects {
+  @include focus-effect;
+
+  background-color: $shade-100;
+  border: 1px solid $shade-50;
+  outline: none;
+  cursor: pointer;
+}
+
+@mixin focus-effect {
+  position: relative;
+
+  &:focus {
+    outline: none;
+
+    &:before {
+      content: ' ';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      box-shadow: 0 0 0 3px rgba($focus-color, 0.5);
+      border-radius: $border-radius;
+    }
   }
 }
 

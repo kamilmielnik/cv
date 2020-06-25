@@ -8,11 +8,14 @@
 .label,
 .value {
   font-size: 13px;
-  padding: 0 8px;
 }
 
 .label {
   flex: 0 0 60px;
-  padding-left: 0;
+  margin-right: 8px;
   text-align: right;
+}
+
+.value {
+  margin-left: 8px;
 }
