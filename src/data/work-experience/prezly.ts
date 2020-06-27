@@ -1,5 +1,6 @@
-import { CSS, JAVA_SCRIPT, REACT, TYPE_SCRIPT } from 'technologies';
 import { ExperienceData } from 'types';
+
+import { CSS, JAVA_SCRIPT, REACT, TYPE_SCRIPT } from './technologies';
 
 const Prezly: ExperienceData = {
   description: [TYPE_SCRIPT, JAVA_SCRIPT, REACT, CSS].join(', '),

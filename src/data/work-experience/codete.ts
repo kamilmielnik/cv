@@ -1,3 +1,5 @@
+import { ExperienceData } from 'types';
+
 import {
   CSS,
   JAVA_SCRIPT,
@@ -6,8 +8,7 @@ import {
   REDUX_SAGA,
   RESELECT,
   TECHNICAL_RECRUITMENT
-} from 'technologies';
-import { ExperienceData } from 'types';
+} from './technologies';
 
 const Codete: ExperienceData = {
   description: [JAVA_SCRIPT, REACT, REDUX, REDUX_SAGA, RESELECT, CSS].join(', '),

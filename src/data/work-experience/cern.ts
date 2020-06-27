@@ -1,5 +1,6 @@
-import { CASTOR, CSS, JAVA, VAADIN, ZEROC_ICE } from 'technologies';
 import { ExperienceData } from 'types';
+
+import { CASTOR, CSS, JAVA, VAADIN, ZEROC_ICE } from './technologies';
 
 const Cern: ExperienceData = {
   description: [JAVA, VAADIN, CSS, ZEROC_ICE, CASTOR].join(', '),

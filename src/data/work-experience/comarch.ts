@@ -1,3 +1,5 @@
+import { ExperienceData } from 'types';
+
 import {
   C_SHARP,
   CSS,
@@ -9,8 +11,7 @@ import {
   TYPE_SCRIPT,
   WINDOWS_PRESENTATION_FOUNDATION,
   ZEND_FRAMEWORK
-} from 'technologies';
-import { ExperienceData } from 'types';
+} from './technologies';
 
 const Comarch: ExperienceData = {
   description: [
