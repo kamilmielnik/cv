@@ -13,14 +13,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 60px;
+  padding: 60px 0;
 
   @media print {
-    margin-top: 0;
+    padding: 0;
   }
 
   @include mobile {
-    margin-top: 0;
+    padding-top: 0;
   }
 }
 
@@ -28,7 +28,7 @@
   display: flex;
   justify-content: space-between;
   width: $a4-width;
-  margin: 60px 0;
+  margin-top: 60px;
 
   @media print {
     display: none;
