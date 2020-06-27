@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Description: FunctionComponent<Props> = ({ children, className }) => (
-  <div className={classNames(styles.description, className)}>{children}</div>
+  <h2 className={classNames(styles.description, className)}>{children}</h2>
 );
 
 export default Description;
