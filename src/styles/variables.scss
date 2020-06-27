@@ -1,14 +1,13 @@
 $a4-width: 210mm;
 $a4-height: 297mm;
 
-$shade-0: #000;
 $shade-50: #666;
 $shade-60: #999;
 $shade-70: #aaa;
-$shade-100: #fff;
+$shade-80: #ccc;
 
-$background-color: $shade-70;
-$foreground-color: $shade-0;
+$background-color: $shade-80;
+$foreground-color: black;
 $focus-color: #268fff;
 
 $box-shadow: 0px 0px 5px 2px $shade-60;
@@ -19,7 +18,7 @@ $border-radius: 5px;
 @mixin clickable-effects {
   @include focus-effect;
 
-  background-color: $shade-100;
+  background-color: white;
   box-shadow: $box-shadow;
   outline: none;
   cursor: pointer;
@@ -65,7 +64,9 @@ $border-radius: 5px;
 }
 
 @mixin mobile {
-  @media only screen and (max-width: $a4-width - 1) {
+  $max-scrollbar-width: 20px;
+
+  @media only screen and (max-width: $a4-width + $max-scrollbar-width - 1) {
     @content;
   }
 }

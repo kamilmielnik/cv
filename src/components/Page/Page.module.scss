@@ -5,13 +5,15 @@
   height: $a4-height;
   padding: 20mm;
   background: white;
-  box-shadow: $box-shadow-dark;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
 
   @media print {
     width: 100%;
     height: auto;
     padding-bottom: 0;
     box-shadow: none;
+    border-radius: 0;
   }
 
   @include mobile {
@@ -19,5 +21,6 @@
     height: auto;
     padding: 20px;
     padding-top: 40px;
+    border-radius: 0;
   }
 }
