@@ -1,11 +1,21 @@
 import React from 'react';
 
-import { ContactInfo, Button, Name, Page, Section, Description, Experience } from 'components';
+import {
+  ContactInfo,
+  Button,
+  GitHubIcon,
+  Name,
+  Page,
+  Section,
+  Description,
+  Experience
+} from 'components';
 import { contactInfo, description, education, name, workExperience } from 'data';
 
 import styles from './index.module.scss';
 
 const PDF_URL = '/api/pdf';
+const GITHUB_URL = 'https://github.com/kamilmielnik/cv';
 
 const print = () => window.print();
 
@@ -31,23 +41,32 @@ const Index = () => (
       </Page>
 
       <div className={styles.buttons}>
-        <Button
-          className={styles.printButton}
-          title="Print this page"
-          type="button"
-          onClick={print}
-        >
-          Print
-        </Button>
+        <div className={styles.buttonsLeft}>
+          <Button.Link
+            className={styles.githubButton}
+            href={GITHUB_URL}
+            rel="noopener noreferrer"
+            target="_blank"
+            title="See this project on GitHub"
+          >
+            <GitHubIcon className={styles.githubIcon} />
+          </Button.Link>
+        </div>
 
-        <Button.Link
-          className={styles.downloadButton}
-          href={PDF_URL}
-          title="Download PDF"
-          type="button"
-        >
-          Download PDF
-        </Button.Link>
+        <div className={styles.buttonsRight}>
+          <Button
+            className={styles.printButton}
+            title="Print this page"
+            type="button"
+            onClick={print}
+          >
+            Print
+          </Button>
+
+          <Button.Link className={styles.downloadButton} href={PDF_URL} title="Download PDF">
+            Download PDF
+          </Button.Link>
+        </div>
       </div>
     </div>
   </div>
