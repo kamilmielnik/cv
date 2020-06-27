@@ -10,7 +10,7 @@ interface Props extends HTMLProps<HTMLButtonElement> {
 
 const Button: FunctionComponent<Props> = ({ className, children, ...props }) => (
   <button className={classNames(styles.button, className)} {...props}>
-    {children}
+    <span className={styles.buttonContent}>{children}</span>
   </button>
 );
 
