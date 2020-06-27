@@ -35,7 +35,10 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@types/lowdb": "^1.0.9",
     "classnames": "^2.2.6",
+    "fingerprintjs2": "^2.1.0",
+    "lowdb": "^1.0.0",
     "next": "9.4.4",
     "normalize.css": "^8.0.1",
     "puppeteer": "^4.0.1",
@@ -44,6 +47,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.10",
+    "@types/fingerprintjs2": "^2.0.0",
     "@types/jest": "^26.0.3",
     "@types/node": "^14.0.14",
     "@types/puppeteer": "^3.0.0",

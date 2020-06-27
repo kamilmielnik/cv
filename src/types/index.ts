@@ -24,3 +24,18 @@ export interface TimePeriod {
   from: Date;
   to: Date;
 }
+
+export interface TrackingData {
+  fingerprint: string;
+  language: string;
+  languages: string[];
+  platform?: string;
+  timezone?: string;
+  timezoneOffset: number;
+  userAgent: string;
+}
+
+export interface ServerTrackingData extends TrackingData {
+  ip: string;
+  serverTimestamp: number;
+}
