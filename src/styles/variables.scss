@@ -5,6 +5,7 @@ $shade-50: #666;
 $shade-60: #999;
 $shade-70: #aaa;
 $shade-80: #ccc;
+$shade-90: #eee;
 
 $background-color: $shade-80;
 $foreground-color: black;
@@ -15,6 +16,9 @@ $box-shadow-dark: 0px 0px 5px 2px $shade-50;
 
 $border-radius: 5px;
 
+$transition-duration: 100ms;
+$transition-easing: cubic-bezier(0.61, 1, 0.88, 1); // easeOutSine
+
 @mixin clickable-effects {
   @include focus-effect;
 
@@ -22,6 +26,11 @@ $border-radius: 5px;
   box-shadow: $box-shadow;
   outline: none;
   cursor: pointer;
+  transition: box-shadow $transition-duration $transition-easing;
+
+  &:active {
+    background-color: $shade-90;
+  }
 
   &:hover {
     box-shadow: $box-shadow-dark;
@@ -31,18 +40,24 @@ $border-radius: 5px;
 @mixin focus-effect {
   position: relative;
 
+  &:before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow $transition-duration $transition-easing;
+    border-radius: $border-radius;
+    box-shadow: 0 0 0 3px rgba($focus-color, 0);
+    pointer-events: none;
+  }
+
   &:focus {
     outline: none;
 
     &:before {
-      content: ' ';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
       box-shadow: 0 0 0 3px rgba($focus-color, 0.5);
-      border-radius: $border-radius;
     }
   }
 }
