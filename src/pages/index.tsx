@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Fingerprint2 from 'fingerprintjs2';
 
+import { apiRoutes, track } from 'api';
 import {
   ContactInfo,
   Button,
@@ -12,51 +13,23 @@ import {
   Experience
 } from 'components';
 import { contactInfo, description, education, name, workExperience } from 'data';
+import { getTrackingData, useIdle } from 'lib';
 import { ClientTrackingData } from 'types';
 
 import styles from './index.module.scss';
 
-const PDF_URL = '/api/pdf';
 const GITHUB_URL = 'https://github.com/kamilmielnik/cv';
 
 const print = () => window.print();
 
-const track = (components: Fingerprint2.Component[]) => {
-  const values = components.map(({ value }) => value);
-  const fingerprint = Fingerprint2.x64hash128(values.join(''), 31);
-  const trackingData: ClientTrackingData = {
-    fingerprint,
-    language: navigator.language,
-    languages: [...navigator.languages],
-    platform: components.find(({ key }) => key === 'platform')?.value,
-    timestamp: Date.now(),
-    timezone: components.find(({ key }) => key === 'timezone')?.value,
-    timezoneOffset: new Date().getTimezoneOffset(),
-    userAgent: navigator.userAgent
-  };
-
-  fetch('/api/track', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(trackingData)
-  });
-};
-
 const Index = () => {
+  const idle = useIdle();
+
   useEffect(() => {
-    const requestIdleCallback = (window as any).requestIdleCallback;
-    if (requestIdleCallback) {
-      requestIdleCallback(() => {
-        Fingerprint2.get(track);
-      });
-    } else {
-      setTimeout(() => {
-        Fingerprint2.get(track);
-      }, 500);
+    if (idle) {
+      getTrackingData().then(track);
     }
-  }, []);
+  }, [idle]);
 
   return (
     <div className={styles.app}>
@@ -102,7 +75,11 @@ const Index = () => {
               Print
             </Button>
 
-            <Button.Link className={styles.downloadButton} href={PDF_URL} title="Download PDF">
+            <Button.Link
+              className={styles.downloadButton}
+              href={apiRoutes.pdf}
+              title="Download PDF"
+            >
               Download PDF
             </Button.Link>
           </div>

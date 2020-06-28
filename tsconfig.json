@@ -11,8 +11,10 @@
     "moduleResolution": "node",
     "noEmit": true,
     "paths": {
+      "api": ["./src/api"],
       "components": ["./src/components"],
       "data": ["./src/data"],
+      "lib": ["./src/lib"],
       "pages": ["./src/pages"],
       "styles": ["./src/styles"],
       "types": ["./src/types"]
