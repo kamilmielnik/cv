@@ -20,12 +20,32 @@ module.exports = {
     jquery: true
   },
 
-  plugins: ['react'],
+  plugins: ['@typescript-eslint', 'react'],
+
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx']
+    }
+  },
 
   globals: {
     define: true,
     expect: true
   },
+
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: './tsconfig.json',
+        tsconfigRootDir: __dirname
+      },
+      rules: {
+        'no-unused-vars': 'off'
+      }
+    }
+  ],
 
   rules: {
     // Possible Errors
