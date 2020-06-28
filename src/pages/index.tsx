@@ -3,14 +3,14 @@ import Fingerprint2 from 'fingerprintjs2';
 
 import { apiRoutes, track } from 'api';
 import {
-  ContactInfo,
   Button,
+  ContactInfo,
+  Description,
+  Experience,
   GitHubIcon,
   Name,
   Page,
-  Section,
-  Description,
-  Experience
+  Section
 } from 'components';
 import { contactInfo, description, education, name, workExperience } from 'data';
 import { useTrackingData } from 'lib';
