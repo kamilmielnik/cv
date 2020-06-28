@@ -30,7 +30,6 @@ export interface ClientTrackingData {
   language: string;
   languages: string[];
   platform?: string;
-  timestamp: number;
   timezone?: string;
   timezoneOffset: number;
   userAgent: string;

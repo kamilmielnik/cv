@@ -9,7 +9,6 @@ const getTrackingData = async (): Promise<ClientTrackingData> => {
     language: navigator.language,
     languages: [...navigator.languages],
     platform: components.find(({ key }) => key === 'platform')?.value,
-    timestamp: Date.now(),
     timezone: components.find(({ key }) => key === 'timezone')?.value,
     timezoneOffset: new Date().getTimezoneOffset(),
     userAgent: navigator.userAgent
