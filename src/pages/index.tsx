@@ -13,7 +13,7 @@ import {
   Experience
 } from 'components';
 import { contactInfo, description, education, name, workExperience } from 'data';
-import { getTrackingData, useIdle } from 'lib';
+import { useTrackingData } from 'lib';
 import { ClientTrackingData } from 'types';
 
 import styles from './index.module.scss';
@@ -23,13 +23,13 @@ const GITHUB_URL = 'https://github.com/kamilmielnik/cv';
 const print = () => window.print();
 
 const Index = () => {
-  const idle = useIdle();
+  const trackingData = useTrackingData();
 
   useEffect(() => {
-    if (idle) {
-      getTrackingData().then(track);
+    if (trackingData) {
+      track(trackingData);
     }
-  }, [idle]);
+  }, [trackingData]);
 
   return (
     <div className={styles.app}>
