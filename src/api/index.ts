@@ -1,12 +1,12 @@
-import { ClientTrackingData } from 'types';
+import { ClientTrackingData, TrackingAction } from 'types';
 
 export const apiRoutes = {
   pdf: '/api/pdf',
-  track: '/api/track'
+  track: '/api/track/:action'
 };
 
-export const track = (trackingData: ClientTrackingData) =>
-  fetch(apiRoutes.track, {
+export const track = (action: TrackingAction, trackingData: ClientTrackingData) =>
+  fetch(apiRoutes.track.replace(':action', action), {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import Fingerprint2 from 'fingerprintjs2';
 
 import { apiRoutes, track } from 'api';
@@ -20,14 +20,31 @@ import styles from './index.module.scss';
 
 const GITHUB_URL = 'https://github.com/kamilmielnik/cv';
 
-const print = () => window.print();
-
 const Index = () => {
   const trackingData = useTrackingData();
 
+  const handleGithubClick = useCallback(() => {
+    if (trackingData) {
+      track('github', trackingData);
+    }
+  }, [trackingData]);
+
+  const handlePdfClick = useCallback(() => {
+    if (trackingData) {
+      track('pdf', trackingData);
+    }
+  }, [trackingData]);
+
+  const handlePrintClick = useCallback(() => {
+    if (trackingData) {
+      track('print', trackingData);
+    }
+    window.print();
+  }, [trackingData]);
+
   useEffect(() => {
     if (trackingData) {
-      track(trackingData);
+      track('visit', trackingData);
     }
   }, [trackingData]);
 
@@ -57,6 +74,7 @@ const Index = () => {
             <Button.Link
               className={styles.githubButton}
               href={GITHUB_URL}
+              onClick={handleGithubClick}
               rel="noopener noreferrer"
               target="_blank"
               title="See this project on GitHub"
@@ -70,7 +88,7 @@ const Index = () => {
               className={styles.printButton}
               title="Print this page"
               type="button"
-              onClick={print}
+              onClick={handlePrintClick}
             >
               Print
             </Button>
@@ -78,6 +96,7 @@ const Index = () => {
             <Button.Link
               className={styles.downloadButton}
               href={apiRoutes.pdf}
+              onClick={handlePdfClick}
               title="Download PDF"
             >
               Download PDF

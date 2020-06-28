@@ -44,7 +44,10 @@ export interface ServerTrackingData {
   xRealIp?: string | string[];
 }
 
+export type TrackingAction = 'github' | 'pdf' | 'print' | 'visit';
+
 export interface TrackingData {
+  action: TrackingAction;
   client: ClientTrackingData;
   server: ServerTrackingData;
 }
