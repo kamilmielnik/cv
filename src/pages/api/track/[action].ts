@@ -13,7 +13,7 @@ db.defaults({ track: [] }).write();
 const trackingDb = db.get('track') as CollectionChain<TrackingData>;
 
 const getTrackingData = (request: NextApiRequest): TrackingData => {
-  const action: TrackingAction = request.query.action;
+  const action: TrackingAction = request.query.action as TrackingAction;
   const client: ClientTrackingData = request.body;
   const server: ServerTrackingData = {
     origin: request.headers.origin,
