@@ -12,7 +12,7 @@ import {
   Experience
 } from 'components';
 import { contactInfo, description, education, name, workExperience } from 'data';
-import { TrackingData } from 'types';
+import { ClientTrackingData } from 'types';
 
 import styles from './index.module.scss';
 
@@ -24,11 +24,12 @@ const print = () => window.print();
 const track = (components: Fingerprint2.Component[]) => {
   const values = components.map(({ value }) => value);
   const fingerprint = Fingerprint2.x64hash128(values.join(''), 31);
-  const trackingData: TrackingData = {
+  const trackingData: ClientTrackingData = {
     fingerprint,
     language: navigator.language,
     languages: [...navigator.languages],
     platform: components.find(({ key }) => key === 'platform')?.value,
+    timestamp: Date.now(),
     timezone: components.find(({ key }) => key === 'timezone')?.value,
     timezoneOffset: new Date().getTimezoneOffset(),
     userAgent: navigator.userAgent
@@ -45,7 +46,7 @@ const track = (components: Fingerprint2.Component[]) => {
 
 const Index = () => {
   useEffect(() => {
-    const requestIdleCallback = window['requestIdleCallback']; // eslint-disable-line dot-notation
+    const requestIdleCallback = (window as any).requestIdleCallback;
     if (requestIdleCallback) {
       requestIdleCallback(() => {
         Fingerprint2.get(track);

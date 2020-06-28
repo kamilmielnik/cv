@@ -25,17 +25,27 @@ export interface TimePeriod {
   to: Date;
 }
 
-export interface TrackingData {
+export interface ClientTrackingData {
   fingerprint: string;
   language: string;
   languages: string[];
   platform?: string;
+  timestamp: number;
   timezone?: string;
   timezoneOffset: number;
   userAgent: string;
 }
 
-export interface ServerTrackingData extends TrackingData {
-  ip: string;
-  serverTimestamp: number;
+export interface ServerTrackingData {
+  origin?: string;
+  referer?: string;
+  timestamp: number;
+  userAgent?: string;
+  xForwardedFor?: string | string[];
+  xRealIp?: string | string[];
+}
+
+export interface TrackingData {
+  client: ClientTrackingData;
+  server: ServerTrackingData;
 }
