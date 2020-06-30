@@ -24,3 +24,28 @@ export interface TimePeriod {
   from: Date;
   to: Date;
 }
+
+export interface ClientTrackingData {
+  fingerprint: string;
+  language?: string;
+  platform?: string;
+  timezone?: string;
+  timezoneOffset: number;
+}
+
+export interface ServerTrackingData {
+  origin?: string;
+  referer?: string;
+  timestamp: number;
+  userAgent?: string;
+  xForwardedFor?: string | string[];
+  xRealIp?: string | string[];
+}
+
+export type TrackingAction = 'github' | 'pdf' | 'print' | 'visit';
+
+export interface TrackingData {
+  action: TrackingAction;
+  client: ClientTrackingData;
+  server: ServerTrackingData;
+}
