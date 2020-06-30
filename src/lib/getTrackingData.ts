@@ -3,26 +3,16 @@ import Fingerprint2 from 'fingerprintjs2';
 import { ClientTrackingData } from 'types';
 
 const getTrackingData = async (): Promise<ClientTrackingData> => {
-  const navigator = getNavigator();
   const components = await Fingerprint2.getPromise();
   const trackingData: ClientTrackingData = {
     fingerprint: getFingerprint(components),
-    language: navigator.language,
-    languages: [...navigator.languages],
+    language: global.navigator?.language,
     platform: components.find(({ key }) => key === 'platform')?.value,
     timezone: components.find(({ key }) => key === 'timezone')?.value,
-    timezoneOffset: new Date().getTimezoneOffset(),
-    userAgent: navigator.userAgent
+    timezoneOffset: new Date().getTimezoneOffset()
   };
   return trackingData;
 };
-
-const getNavigator = () =>
-  global.navigator || {
-    language: undefined,
-    languages: [],
-    userAgent: undefined
-  };
 
 const getFingerprint = (components: Fingerprint2.Component[]): string => {
   const values = components.map(({ value }) => value);

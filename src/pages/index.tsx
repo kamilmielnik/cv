@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import Fingerprint2 from 'fingerprintjs2';
 
-import { apiRoutes, track } from 'api';
 import {
   Button,
   ContactInfo,
@@ -14,11 +13,18 @@ import {
 } from 'components';
 import { contactInfo, description, education, name, workExperience } from 'data';
 import { useTrackingData } from 'lib';
-import { ClientTrackingData } from 'types';
+import { ClientTrackingData, TrackingAction } from 'types';
 
 import styles from './index.module.scss';
 
-const GITHUB_URL = 'https://github.com/kamilmielnik/cv';
+const track = (action: TrackingAction, trackingData: ClientTrackingData) =>
+  fetch(`/api/track/${action}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(trackingData)
+  });
 
 const Index = () => {
   const trackingData = useTrackingData();
@@ -73,7 +79,7 @@ const Index = () => {
           <div className={styles.buttonsLeft}>
             <Button.Link
               className={styles.githubButton}
-              href={GITHUB_URL}
+              href="https://github.com/kamilmielnik/cv"
               onClick={handleGithubClick}
               rel="noopener noreferrer"
               target="_blank"
@@ -95,7 +101,7 @@ const Index = () => {
 
             <Button.Link
               className={styles.downloadButton}
-              href={apiRoutes.pdf}
+              href="/api/pdf"
               onClick={handlePdfClick}
               title="Download PDF"
             >

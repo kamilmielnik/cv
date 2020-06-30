@@ -27,12 +27,10 @@ export interface TimePeriod {
 
 export interface ClientTrackingData {
   fingerprint: string;
-  language: string;
-  languages: string[];
+  language?: string;
   platform?: string;
   timezone?: string;
   timezoneOffset: number;
-  userAgent: string;
 }
 
 export interface ServerTrackingData {
