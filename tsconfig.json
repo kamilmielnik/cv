@@ -17,6 +17,7 @@
       "lib": ["./src/lib"],
       "pages": ["./src/pages"],
       "styles": ["./src/styles"],
+      "tracking": ["./src/tracking"],
       "types": ["./src/types"]
     },
     "resolveJsonModule": true,

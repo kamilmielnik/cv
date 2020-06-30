@@ -1,10 +1,10 @@
+import { Observable } from 'lib';
 import { ClientTrackingData } from 'types';
 
 import getTrackingData from './getTrackingData';
 import observableIdle from './observableIdle';
-import ObservableValue from './ObservableValue';
 
-const observableTrackingData = new ObservableValue<ClientTrackingData | null>(null);
+const observableTrackingData = new Observable<ClientTrackingData | null>(null);
 
 observableIdle.subscribe(async (idle) => {
   if (idle) {

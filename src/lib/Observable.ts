@@ -1,7 +1,7 @@
 type Subscription<T> = (value: T) => void;
 type Unsubscribe = () => void;
 
-class ObservableValue<T> {
+class Observable<T> {
   private subscriptions: Subscription<T>[];
   private value: T;
 
@@ -37,4 +37,4 @@ class ObservableValue<T> {
   };
 }
 
-export default ObservableValue;
+export default Observable;

@@ -12,7 +12,7 @@ import {
   Section
 } from 'components';
 import { contactInfo, description, education, name, workExperience } from 'data';
-import { useTrackingData } from 'lib';
+import { useTrackingData } from 'tracking';
 import { ClientTrackingData, TrackingAction } from 'types';
 
 import styles from './index.module.scss';

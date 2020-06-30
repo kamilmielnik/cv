@@ -1,10 +1,9 @@
-import ObservableValue from './ObservableValue';
-import wait from './wait';
+import { Observable, wait } from 'lib';
 
 const DEFAULT_UNTIL_IDLE = 500;
 const SAFETY_IDLE = 100;
 
-const observableIdle = new ObservableValue<boolean>(false);
+const observableIdle = new Observable<boolean>(false);
 const requestIdleCallback = (global as any).requestIdleCallback;
 
 if (requestIdleCallback) {
