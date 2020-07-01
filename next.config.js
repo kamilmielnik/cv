@@ -25,6 +25,16 @@ module.exports = {
         ...config.resolve.alias,
         ...tsConfigAliases
       }
+    },
+    module: {
+      ...config.module,
+      rules: [
+        ...config.module.rules,
+        {
+          test: /\.svg$/,
+          loader: 'svg-sprite-loader'
+        }
+      ]
     }
   })
 };

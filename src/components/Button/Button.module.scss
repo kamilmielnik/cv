@@ -11,7 +11,7 @@
   }
 }
 
-.buttonContent {
+.content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,4 +19,12 @@
   text-transform: uppercase;
   text-align: center;
   font-size: 18px;
+}
+
+.icon {
+  $size: 24px;
+
+  width: $size;
+  height: $size;
+  margin-right: 10px;
 }

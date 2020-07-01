@@ -14,6 +14,7 @@
       "api": ["./src/api"],
       "components": ["./src/components"],
       "data": ["./src/data"],
+      "icons": ["./src/icons"],
       "lib": ["./src/lib"],
       "pages": ["./src/pages"],
       "styles": ["./src/styles"],
@@ -27,5 +28,6 @@
     "target": "es5"
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "./src"]
+  "include": ["next-env.d.ts", "./src"],
+  "files": ["./src/icons/@types/icons.d.ts"]
 }

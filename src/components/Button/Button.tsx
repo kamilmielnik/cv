@@ -1,16 +1,22 @@
 import React, { FunctionComponent, HTMLProps } from 'react';
 import classNames from 'classnames';
 
+import SvgIcon from '../SvgIcon';
+
 import Link from './Link';
 import styles from './Button.module.scss';
 
 interface Props extends HTMLProps<HTMLButtonElement> {
+  icon: BrowserSpriteSymbol;
   type: 'button' | 'submit' | 'reset' | undefined;
 }
 
-const Button: FunctionComponent<Props> = ({ className, children, ...props }) => (
+const Button: FunctionComponent<Props> = ({ className, children, icon, ...props }) => (
   <button className={classNames(styles.button, className)} {...props}>
-    <span className={styles.buttonContent}>{children}</span>
+    <span className={styles.content}>
+      <SvgIcon className={styles.icon} icon={icon} />
+      {children}
+    </span>
   </button>
 );
 

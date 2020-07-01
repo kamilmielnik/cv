@@ -1,19 +1,9 @@
 import React, { useCallback, useEffect } from 'react';
 import Fingerprint2 from 'fingerprintjs2';
 
-import {
-  Button,
-  ContactInfo,
-  Description,
-  DownloadIcon,
-  Experience,
-  GitHubIcon,
-  Name,
-  Page,
-  PrintIcon,
-  Section
-} from 'components';
+import { Button, ContactInfo, Description, Experience, Name, Page, Section } from 'components';
 import { contactInfo, description, education, name, workExperience } from 'data';
+import { download, github, print } from 'icons';
 import { useTrackingData } from 'tracking';
 import { ClientTrackingData, TrackingAction } from 'types';
 
@@ -81,12 +71,12 @@ const Index = () => {
           <div className={styles.buttonsLeft}>
             <Button.Link
               href="https://github.com/kamilmielnik/cv"
+              icon={github}
               onClick={handleGithubClick}
               rel="noopener noreferrer"
               target="_blank"
               title="See this project on GitHub"
             >
-              <GitHubIcon width={24} height={24} style={{ marginRight: 10 }} />
               GitHub
             </Button.Link>
           </div>
@@ -94,21 +84,21 @@ const Index = () => {
           <div className={styles.buttonsRight}>
             <Button
               className={styles.printButton}
+              icon={print}
               title="Print CV"
               type="button"
               onClick={handlePrintClick}
             >
-              <PrintIcon width={24} height={24} style={{ marginRight: 10 }} />
               Print
             </Button>
 
             <Button.Link
               className={styles.downloadButton}
               href="/api/pdf"
+              icon={download}
               onClick={handlePdfClick}
               title="Download PDF"
             >
-              <DownloadIcon width={24} height={24} style={{ marginRight: 10 }} />
               PDF
             </Button.Link>
           </div>
