@@ -5,10 +5,12 @@ import {
   Button,
   ContactInfo,
   Description,
+  DownloadIcon,
   Experience,
   GitHubIcon,
   Name,
   Page,
+  PrintIcon,
   Section
 } from 'components';
 import { contactInfo, description, education, name, workExperience } from 'data';
@@ -78,24 +80,25 @@ const Index = () => {
         <div className={styles.buttons}>
           <div className={styles.buttonsLeft}>
             <Button.Link
-              className={styles.githubButton}
               href="https://github.com/kamilmielnik/cv"
               onClick={handleGithubClick}
               rel="noopener noreferrer"
               target="_blank"
               title="See this project on GitHub"
             >
-              <GitHubIcon className={styles.githubIcon} />
+              <GitHubIcon width={24} height={24} style={{ marginRight: 10 }} />
+              GitHub
             </Button.Link>
           </div>
 
           <div className={styles.buttonsRight}>
             <Button
               className={styles.printButton}
-              title="Print this page"
+              title="Print CV"
               type="button"
               onClick={handlePrintClick}
             >
+              <PrintIcon width={24} height={24} style={{ marginRight: 10 }} />
               Print
             </Button>
 
@@ -105,7 +108,8 @@ const Index = () => {
               onClick={handlePdfClick}
               title="Download PDF"
             >
-              Download PDF
+              <DownloadIcon width={24} height={24} style={{ marginRight: 10 }} />
+              PDF
             </Button.Link>
           </div>
         </div>
