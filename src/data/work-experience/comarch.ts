@@ -33,12 +33,12 @@ const Comarch: ExperienceData = {
     {
       timePeriods: [
         {
-          from: new Date(2012, 9, 1),
-          to: new Date(2013, 2, 31)
+          start: new Date(2012, 9, 1),
+          end: new Date(2013, 2, 31)
         },
         {
-          from: new Date(2014, 1, 7),
-          to: new Date(2014, 5, 30)
+          start: new Date(2014, 1, 7),
+          end: new Date(2014, 5, 30)
         }
       ],
       title: 'Software Engineer'
@@ -46,8 +46,8 @@ const Comarch: ExperienceData = {
     {
       timePeriods: [
         {
-          from: new Date(2012, 6, 1),
-          to: new Date(2012, 8, 30)
+          start: new Date(2012, 6, 1),
+          end: new Date(2012, 8, 30)
         }
       ],
       title: 'Software Engineer - Intern'

@@ -11,8 +11,8 @@ const Cern: ExperienceData = {
     {
       timePeriods: [
         {
-          from: new Date(2013, 9, 1),
-          to: new Date(2014, 0, 31)
+          start: new Date(2013, 9, 1),
+          end: new Date(2014, 0, 31)
         }
       ],
       title: 'User'
@@ -20,8 +20,8 @@ const Cern: ExperienceData = {
     {
       timePeriods: [
         {
-          from: new Date(2013, 6, 1),
-          to: new Date(2013, 8, 30)
+          start: new Date(2013, 6, 1),
+          end: new Date(2013, 8, 30)
         }
       ],
       title: 'Cooperation Associate'

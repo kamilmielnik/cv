@@ -21,8 +21,8 @@ export interface PositionData {
 }
 
 export interface TimePeriod {
-  from: Date;
-  to: Date;
+  end: Date | null;
+  start: Date;
 }
 
 export interface ClientTrackingData {

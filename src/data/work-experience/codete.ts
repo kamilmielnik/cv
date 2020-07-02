@@ -20,8 +20,8 @@ const Codete: ExperienceData = {
     {
       timePeriods: [
         {
-          from: new Date(2016, 5, 1),
-          to: new Date(2017, 11, 31)
+          start: new Date(2016, 5, 1),
+          end: new Date(2017, 11, 31)
         }
       ],
       title: 'Technical Lead'
@@ -29,8 +29,8 @@ const Codete: ExperienceData = {
     {
       timePeriods: [
         {
-          from: new Date(2015, 7, 1),
-          to: new Date(2016, 4, 31)
+          start: new Date(2015, 7, 1),
+          end: new Date(2016, 4, 31)
         }
       ],
       title: 'JavaScript Developer'

@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { PositionData } from 'types';
 
 import { formatNumberOfMonths, formatTimePeriods, sumTimePeriods } from './lib';
-
 import styles from './PositionEntry.module.scss';
 
 interface Props {

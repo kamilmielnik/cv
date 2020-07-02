@@ -12,8 +12,16 @@ const dateTimeFormat = new Intl.DateTimeFormat(undefined, {
 export const formatTimePeriods = (timePeriods: TimePeriod[]): string =>
   timePeriods.map(formatTimePeriod).join(' and ');
 
-const formatTimePeriod = (timePeriod: TimePeriod): string =>
-  `${dateTimeFormat.format(timePeriod.from)} - ${dateTimeFormat.format(timePeriod.to)}`;
+const formatTimePeriod = (timePeriod: TimePeriod): string => {
+  const start = dateTimeFormat.format(timePeriod.start);
+
+  if (timePeriod.end === null) {
+    return `${start} - present`;
+  }
+
+  const end = dateTimeFormat.format(timePeriod.end);
+  return `${start} - ${end}`;
+};
 
 export const formatNumberOfMonths = (numberOfMonths: number): string => {
   const years = Math.floor(numberOfMonths / NUMBER_OF_MONTHS_IN_YEAR);
@@ -49,10 +57,11 @@ export const sumTimePeriods = (timePeriods: TimePeriod[]): number =>
   );
 
 const monthDifference = (timePeriod: TimePeriod): number => {
-  const toYear = timePeriod.to.getFullYear();
-  const fromYear = timePeriod.from.getFullYear();
-  const fullYearsDifference = NUMBER_OF_MONTHS_IN_YEAR * (toYear - fromYear);
-  const monthsDifference = timePeriod.to.getMonth() - timePeriod.from.getMonth() + 1;
+  const endDate = timePeriod.end || new Date();
+  const endYear = endDate.getFullYear();
+  const startYear = timePeriod.start.getFullYear();
+  const fullYearsDifference = NUMBER_OF_MONTHS_IN_YEAR * (endYear - startYear);
+  const monthsDifference = endDate.getMonth() - timePeriod.start.getMonth() + 1;
   const difference = fullYearsDifference + monthsDifference;
   return difference;
 };
