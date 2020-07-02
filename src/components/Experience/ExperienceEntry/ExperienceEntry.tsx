@@ -16,13 +16,7 @@ interface Props {
 
 const ExperienceEntry: FunctionComponent<Props> = ({ className, experience }) => (
   <div className={classNames(styles.experienceEntry, className)}>
-    <Info
-      className={styles.info}
-      location={experience.location}
-      organization={experience.organization}
-      timePeriod={experience.timePeriod}
-      url={experience.url}
-    />
+    <Info className={styles.info} experience={experience} />
 
     <div className={styles.details}>
       <Positions className={styles.positions} positions={experience.positions} />

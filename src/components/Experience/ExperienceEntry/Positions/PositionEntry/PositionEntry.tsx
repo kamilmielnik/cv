@@ -16,6 +16,7 @@ const PositionEntry: FunctionComponent<Props> = ({ className, position }) => (
     <div className={styles.timePeriod} title={formatTimePeriods(position.timePeriods)}>
       {position.timePeriod || formatNumberOfMonths(sumTimePeriods(position.timePeriods))}
     </div>
+
     <h4 className={styles.title}>{position.title}</h4>
   </div>
 );
