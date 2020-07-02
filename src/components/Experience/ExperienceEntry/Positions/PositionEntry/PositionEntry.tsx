@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
+import { formatNumberOfMonths, formatTimePeriods, sumTimePeriods } from 'lib';
 import { PositionData } from 'types';
 
-import { formatNumberOfMonths, formatTimePeriods, sumTimePeriods } from './lib';
 import styles from './PositionEntry.module.scss';
 
 interface Props {
