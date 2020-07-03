@@ -17,8 +17,7 @@ const Prezly: ExperienceData = {
       ],
       title: 'Frontend Engineer'
     }
-  ],
-  timePeriod: '2018 - present'
+  ]
 };
 
 export default Prezly;

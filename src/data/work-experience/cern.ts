@@ -26,8 +26,7 @@ const Cern: ExperienceData = {
       ],
       title: 'Cooperation Associate'
     }
-  ],
-  timePeriod: '2013 - 2014'
+  ]
 };
 
 export default Cern;

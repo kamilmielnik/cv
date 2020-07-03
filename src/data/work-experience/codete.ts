@@ -35,7 +35,7 @@ const Codete: ExperienceData = {
       ],
       title: 'JavaScript Developer'
     }
-  ],
-  timePeriod: '2015 - 2017'
+  ]
 };
+
 export default Codete;

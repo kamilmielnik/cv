@@ -26,8 +26,7 @@ const Pega: ExperienceData = {
       ],
       title: 'Associate System Architect - Mobility'
     }
-  ],
-  timePeriod: '2014 - 2015'
+  ]
 };
 
 export default Pega;

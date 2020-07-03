@@ -1,13 +1,13 @@
 import { ExperienceData } from 'types';
 
-import formatTimePeriods from './formatTimePeriods';
+import formatTimePeriodsYears from './formatTimePeriodsYears';
 import getExperienceTimePeriods from './getExperienceTimePeriods';
 import joinContinuousTimePeriods from './joinContinuousTimePeriods';
 
-const formatExperienceTimePeriods = (experience: ExperienceData): string => {
+const formatExperienceTimePeriodsYears = (experience: ExperienceData): string => {
   const timePeriods = getExperienceTimePeriods(experience);
   const continuousTimePeriods = joinContinuousTimePeriods(timePeriods);
-  return formatTimePeriods(continuousTimePeriods);
+  return formatTimePeriodsYears(continuousTimePeriods);
 };
 
-export default formatExperienceTimePeriods;
+export default formatExperienceTimePeriodsYears;

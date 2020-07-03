@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { FunctionComponent } from 'react';
 
-import { formatExperienceTimePeriods } from 'lib';
+import { formatExperienceTimePeriods, formatExperienceTimePeriodsYears } from 'lib';
 import { ExperienceData } from 'types';
 
 import styles from './Info.module.scss';
@@ -22,7 +22,7 @@ const Info: FunctionComponent<Props> = ({ className, experience }) => (
     <div className={styles.details}>
       <div className={styles.detailsRow}>{experience.location}</div>
       <div className={styles.detailsRow} title={formatExperienceTimePeriods(experience)}>
-        {experience.timePeriod}
+        {formatExperienceTimePeriodsYears(experience)}
       </div>
     </div>
   </div>

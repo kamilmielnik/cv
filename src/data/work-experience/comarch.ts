@@ -52,8 +52,7 @@ const Comarch: ExperienceData = {
       ],
       title: 'Software Engineer - Intern'
     }
-  ],
-  timePeriod: '2012 - 2013, 2014'
+  ]
 };
 
 export default Comarch;

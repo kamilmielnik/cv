@@ -27,8 +27,8 @@ const education: ExperienceData[] = [
         ],
         title: 'Bachelor of Science in Computer Science'
       }
-    ],
-    timePeriod: '2010 - 2015'
+    ]
   }
 ];
+
 export default education;
