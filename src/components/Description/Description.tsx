@@ -1,5 +1,5 @@
-import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
+import React, { FunctionComponent, ReactNode } from 'react';
 
 import styles from './Description.module.scss';
 
