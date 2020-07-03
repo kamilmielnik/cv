@@ -1,6 +1,6 @@
 export { default as formatDate } from './formatDate';
 export { default as formatExperienceTimePeriods } from './formatExperienceTimePeriods';
-export { default as formatExperienceTimePeriodsYears } from './formatExperienceTimePeriodsYears';
+export { default as formatExperienceYears } from './formatExperienceYears';
 export { default as formatNumberOfMonths } from './formatNumberOfMonths';
 export { default as formatTimePeriod } from './formatTimePeriod';
 export { default as formatTimePeriods } from './formatTimePeriods';
