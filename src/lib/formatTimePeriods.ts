@@ -5,7 +5,7 @@ import sortTimePeriods from './sortTimePeriods';
 
 const formatTimePeriods = (timePeriods: TimePeriod[]): string => {
   const sortedTimePeriods = sortTimePeriods(timePeriods);
-  return sortedTimePeriods.map(formatTimePeriod).join(' and ');
+  return sortedTimePeriods.map(formatTimePeriod).join('\n');
 };
 
 export default formatTimePeriods;
