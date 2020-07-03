@@ -9,8 +9,9 @@ export interface ExperienceData {
   extra?: string;
   location: string;
   organization: string;
-  url: string;
   positions: PositionData[];
+  timePeriod?: string;
+  url: string;
 }
 
 export interface PositionData {

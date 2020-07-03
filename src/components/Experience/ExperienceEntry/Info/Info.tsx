@@ -22,7 +22,7 @@ const Info: FunctionComponent<Props> = ({ className, experience }) => (
     <div className={styles.details}>
       <div className={styles.detailsRow}>{experience.location}</div>
       <div className={styles.detailsRow} title={formatExperienceTimePeriods(experience)}>
-        {formatExperienceYears(experience)}
+        {experience.timePeriod || formatExperienceYears(experience)}
       </div>
     </div>
   </div>
