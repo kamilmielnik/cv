@@ -1,14 +1,20 @@
 module.exports = {
   parser: 'babel-eslint',
 
-  extends: ['eslint:recommended', 'plugin:prettier/recommended', 'prettier/react'],
+  extends: [
+    'eslint:recommended',
+    'plugin:prettier/recommended',
+    'prettier/react',
+    'prettier/@typescript-eslint'
+  ],
 
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
       impliedStrict: true,
-      jsx: true
+      jsx: true,
+      modules: true
     }
   },
 
@@ -42,6 +48,7 @@ module.exports = {
         tsconfigRootDir: __dirname
       },
       rules: {
+        'no-undef': 'off',
         'no-unused-vars': 'off'
       }
     }

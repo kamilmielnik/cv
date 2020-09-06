@@ -1,3 +1,5 @@
+/* eslint-env browser */
+
 import { ClientTrackingData } from 'types';
 
 const isClientTrackingData = (payload: any): payload is ClientTrackingData => {
