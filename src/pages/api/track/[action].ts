@@ -1,12 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { getServerTrackingData, isClientTrackingData, isTrackingAction, trackingDb } from 'api';
+import { getServerTrackingData, isClientTrackingData, isTrackingAction, getTrackingDb } from 'api';
 import { ClientTrackingData, TrackingAction, TrackingData } from 'types';
 
 const track = async (request: NextApiRequest, response: NextApiResponse): Promise<void> => {
   try {
     const trackingData = getTrackingData(request);
-    trackingDb.push(trackingData).write();
+    getTrackingDb().push(trackingData).write();
     response.status(200).send('OK');
   } catch (error) {
     response.status(500).send('Server error');
