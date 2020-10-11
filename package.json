@@ -1,6 +1,6 @@
 {
   "name": "cv",
-  "version": "1.7.16",
+  "version": "1.7.17",
   "description": "Kamil Mielnik's Curriculum Vitae",
   "engines": {
     "node": ">=12.4.0"
