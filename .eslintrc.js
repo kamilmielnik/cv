@@ -1,3 +1,8 @@
+const fs = require('fs');
+
+const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
+const [reactVersion] = packageJson.dependencies['react'].match(/\d+\.\d+\.\d+/);
+
 module.exports = {
   parser: 'babel-eslint',
 
@@ -31,6 +36,9 @@ module.exports = {
   settings: {
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx']
+    },
+    react: {
+      version: reactVersion
     }
   },
 
