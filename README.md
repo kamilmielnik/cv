@@ -1,4 +1,5 @@
 # Kamil Mielnik's Curriculum Vitae
+
 https://cv.kamilmielnik.com/
 
 ![Version](https://img.shields.io/github/package-json/v/kamilmielnik/cv)
@@ -9,17 +10,18 @@ https://cv.kamilmielnik.com/
 
 
 ## Setup
-1. `npm install`
-2. `cp .env.example .env`
-3. Fill in missing values in `.env`
+
+```Shell
+npm install
+```
 
 ## Scripts
 
 ### `npm run build`
-Run production build and place the output in `./next/`
+Run production build and place the output in `./next/`.
 
 ### `npm run dev`
-Run development server with hot-reload
+Run development server with hot-reload.
 
 ### `npm start`
-Run production server
+Run production server.

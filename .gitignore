@@ -1,7 +1,6 @@
 *.db
 *.log
 *.pdf
-.env
 .next/
 build/
 node_modules/

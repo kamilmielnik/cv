@@ -38,11 +38,11 @@
     "classnames": "^2.2.6",
     "fingerprintjs2": "^2.1.2",
     "lowdb": "^1.0.0",
-    "next": "10.0.3",
+    "next": "^10.0.3",
     "normalize.css": "^8.0.1",
     "puppeteer": "^5.5.0",
-    "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
