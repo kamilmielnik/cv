@@ -1,0 +1,22 @@
+diff --git a/node_modules/svg-sprite-loader/lib/utils/get-matched-rule-4.js b/node_modules/svg-sprite-loader/lib/utils/get-matched-rule-4.js
+index 5d5e108..b2e10cd 100644
+--- a/node_modules/svg-sprite-loader/lib/utils/get-matched-rule-4.js
++++ b/node_modules/svg-sprite-loader/lib/utils/get-matched-rule-4.js
+@@ -1,6 +1,6 @@
+ /* eslint-disable import/no-unresolved */
+ // eslint-disable-next-line import/no-extraneous-dependencies
+-const RuleSet = require('webpack/lib/RuleSet');
++const RuleSetCompiler = require('webpack/lib/rules/RuleSetCompiler');
+ 
+ const flattenAndExtractUse = rules => rules.reduce((pre, rule) => {
+   if ('rules' in rule || 'oneOf' in rule) {
+@@ -12,7 +12,8 @@ const flattenAndExtractUse = rules => rules.reduce((pre, rule) => {
+ 
+ module.exports = (compiler) => {
+   const rawRules = compiler.options.module.rules;
+-  const { rules } = new RuleSet(rawRules);
++  const ruleSetCompiler = new RuleSetCompiler();
++  const { rules } = ruleSetCompiler.compile(rawRules);
+   const rule = flattenAndExtractUse(rules)
+     .find((item) => {
+       return /svg-sprite-loader/.test(item.loader);
