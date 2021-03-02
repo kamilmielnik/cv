@@ -44,7 +44,7 @@ const readCacheTimestamp = (): number => {
 const createPdf = async (): Promise<Buffer> => {
   const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
   const page = await browser.newPage();
-  await page.goto(URL, { waitUntil: 'networkidle2' });
+  await page.goto(URL, { waitUntil: 'networkidle0' });
   const pdfBuffer = await page.pdf({ format: 'a4', path: PDF_FILEPATH });
   await browser.close();
   return pdfBuffer;
