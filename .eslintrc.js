@@ -6,12 +6,7 @@ const [reactVersion] = packageJson.dependencies['react'].match(/\d+\.\d+\.\d+/);
 module.exports = {
   parser: 'babel-eslint',
 
-  extends: [
-    'eslint:recommended',
-    'plugin:prettier/recommended',
-    'prettier/react',
-    'prettier/@typescript-eslint'
-  ],
+  extends: ['eslint:recommended', 'plugin:prettier/recommended', 'prettier'],
 
   parserOptions: {
     ecmaVersion: 2018,
