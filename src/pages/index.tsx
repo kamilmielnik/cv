@@ -4,47 +4,29 @@ import Fingerprint2 from 'fingerprintjs2';
 import { Button, ContactInfo, Description, Experience, Name, Page, Section } from 'components';
 import { contactInfo, description, education, name, workExperience } from 'data';
 import { download, github, print } from 'icons';
-import { useTrackingData } from 'tracking';
-import { ClientTrackingData, TrackingAction } from 'types';
+import { useTrack } from 'tracking';
 
 import styles from './index.module.scss';
 
-const track = (action: TrackingAction, trackingData: ClientTrackingData) =>
-  fetch(`/api/track/${action}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(trackingData)
-  });
-
 const Index = () => {
-  const trackingData = useTrackingData();
+  const track = useTrack();
 
-  const handleGithubClick = useCallback(() => {
-    if (trackingData) {
-      track('github', trackingData);
-    }
-  }, [trackingData]);
+  const handleGithubClick = () => {
+    track('github');
+  };
 
-  const handlePdfClick = useCallback(() => {
-    if (trackingData) {
-      track('pdf', trackingData);
-    }
-  }, [trackingData]);
+  const handlePdfClick = () => {
+    track('pdf');
+  };
 
-  const handlePrintClick = useCallback(() => {
-    if (trackingData) {
-      track('print', trackingData);
-    }
+  const handlePrintClick = () => {
+    track('print');
     window.print();
-  }, [trackingData]);
+  };
 
   useEffect(() => {
-    if (trackingData) {
-      track('visit', trackingData);
-    }
-  }, [trackingData]);
+    track('visit');
+  }, [track]);
 
   return (
     <div className={styles.app}>

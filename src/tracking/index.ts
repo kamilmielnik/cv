@@ -1,1 +1,1 @@
-export { default as useTrackingData } from './useTrackingData';
+export { default as useTrack } from './useTrack';
