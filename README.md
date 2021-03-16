@@ -9,7 +9,6 @@ https://cv.kamilmielnik.com/
 ![Test](https://github.com/kamilmielnik/cv/workflows/Test/badge.svg)
 ![ESLint](https://github.com/kamilmielnik/cv/workflows/ESLint/badge.svg)
 
-
 ## Setup
 
 ```Shell
@@ -19,10 +18,13 @@ npm install
 ## Scripts
 
 ### `npm run build`
-Run production build and place the output in `./next/`.
+
+Run production build.
 
 ### `npm run dev`
+
 Run development server with hot-reload.
 
 ### `npm start`
+
 Run production server.
