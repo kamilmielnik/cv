@@ -1,9 +1,10 @@
 import { ExperienceData } from 'types';
 
-import { CSS, JAVA_SCRIPT, REACT, TYPE_SCRIPT } from './technologies';
+import { CSS, JAVA_SCRIPT, REACT, TECHNICAL_RECRUITMENT, TYPE_SCRIPT } from './technologies';
 
 const Prezly: ExperienceData = {
   description: [TYPE_SCRIPT, JAVA_SCRIPT, REACT, CSS].join(', '),
+  extra: TECHNICAL_RECRUITMENT,
   location: 'Remote',
   organization: 'Prezly',
   url: 'https://www.prezly.com/',
