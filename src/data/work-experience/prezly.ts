@@ -13,7 +13,7 @@ const Prezly: ExperienceData = {
       timePeriods: [
         {
           start: new Date(2018, 6, 2),
-          end: null
+          end: new Date(2021, 9, 29)
         }
       ],
       title: 'Frontend Engineer'
