@@ -1,9 +1,9 @@
+const tsConfig = require('./tsconfig.jest.json');
+
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.jest.json'
-    }
+  transform: {
+    '^.+.tsx?$': ['ts-jest', tsConfig]
   }
 };
