@@ -1,5 +1,5 @@
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
 
 const tsConfig = fs.readFileSync('tsconfig.json', 'utf-8');
 const tsConfigJson = JSON.parse(tsConfig);
@@ -14,7 +14,6 @@ const tsConfigAliases = Object.keys(tsConfigJson.compilerOptions.paths).reduce(
 module.exports = {
   compress: false,
   devIndicators: {
-    autoPrerender: false,
     buildActivity: false
   },
   webpack: (config) => ({

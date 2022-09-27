@@ -11,8 +11,6 @@
       "dom.iterable",
       "esnext"
     ],
-    "module": "esnext",
-    "moduleResolution": "node",
     "noEmit": true,
     "paths": {
       "api": [
@@ -48,16 +46,18 @@
     "skipLibCheck": true,
     "strict": false,
     "target": "es5",
-    "incremental": true
+    "incremental": true,
+    "module": "esnext",
+    "moduleResolution": "node"
   },
   "exclude": [
     "node_modules"
   ],
+  "files": [
+    "./src/icons/@types/icons.d.ts"
+  ],
   "include": [
     "next-env.d.ts",
     "./src"
-  ],
-  "files": [
-    "./src/icons/@types/icons.d.ts"
   ]
 }
