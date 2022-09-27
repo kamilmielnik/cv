@@ -1,20 +1,23 @@
-import { CollectionChain } from 'lodash';
-import lowdb from 'lowdb';
-import FileSync from 'lowdb/adapters/FileSync';
+import { Low, JSONFile } from 'lowdb';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { getServerTrackingData, isClientTrackingData, isTrackingAction } from 'api';
 import { ClientTrackingData, TrackingAction, TrackingData } from 'types';
 
-const adapter = new FileSync('tracking.json');
-const db = lowdb(adapter);
-db.defaults({ track: [] }).write();
-const trackingDb = db.get('track') as CollectionChain<TrackingData>;
+interface Data {
+  track: TrackingData[];
+}
+
+const adapter = new JSONFile<Data>('tracking.json');
+const db = new Low(adapter);
+db.data ||= { track: [] };
+db.write();
 
 const track = async (request: NextApiRequest, response: NextApiResponse): Promise<void> => {
   try {
     const trackingData = getTrackingData(request);
-    trackingDb.push(trackingData).write();
+    db.data.track.push(trackingData);
+    await db.write();
     response.status(200).send('OK');
   } catch (error) {
     response.status(500).send('Server error');
