@@ -3,12 +3,9 @@ const path = require('path');
 
 const tsConfig = fs.readFileSync('tsconfig.json', 'utf-8');
 const tsConfigJson = JSON.parse(tsConfig);
-const tsConfigAliases = Object.keys(tsConfigJson.compilerOptions.paths).reduce(
-  (result, key) => ({
-    ...result,
-    [key]: path.resolve(__dirname, tsConfigJson.compilerOptions.paths[key][0])
-  }),
-  {}
+const paths = tsConfigJson.compilerOptions.paths;
+const tsConfigAliases = Object.fromEntries(
+  Object.entries(paths).map(([key, value]) => [key, path.resolve(__dirname, ...value)])
 );
 
 module.exports = {
