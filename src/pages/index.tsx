@@ -77,6 +77,7 @@ const Index = () => {
               className={styles.downloadButton}
               href="/api/pdf"
               icon={download}
+              target="_blank"
               title="Download PDF"
               onClick={handlePdfClick}
             >
