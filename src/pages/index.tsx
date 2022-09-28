@@ -53,10 +53,10 @@ const Index = () => {
             <Button.Link
               href="https://github.com/kamilmielnik/cv"
               icon={github}
-              onClick={handleGithubClick}
               rel="noopener noreferrer"
               target="_blank"
               title="See this project on GitHub"
+              onClick={handleGithubClick}
             >
               GitHub
             </Button.Link>
@@ -77,8 +77,8 @@ const Index = () => {
               className={styles.downloadButton}
               href="/api/pdf"
               icon={download}
-              onClick={handlePdfClick}
               title="Download PDF"
+              onClick={handlePdfClick}
             >
               PDF
             </Button.Link>
