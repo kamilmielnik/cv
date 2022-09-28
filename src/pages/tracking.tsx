@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
 import { TrackingData } from 'types';
@@ -30,17 +29,15 @@ const formatLanguage = (language?: string): string => (language || '--').toUpper
 const Tracking = () => {
   const [trackingData, setTrackingData] = useState<TrackingData[]>([]);
   const [error, setError] = useState<string | undefined>(undefined);
-  const router = useRouter();
 
   useEffect(() => {
-    const queryPassword = router.query.password;
     // eslint-disable-next-line no-alert
-    const password = typeof queryPassword === 'string' ? queryPassword : window.prompt('Password');
+    const password = window.prompt('Password');
 
     getTrackingData(password)
       .then(setTrackingData)
       .catch((error) => setError(error.message));
-  }, [router.query.password]);
+  }, []);
 
   if (error) {
     return <div>{error}</div>;
