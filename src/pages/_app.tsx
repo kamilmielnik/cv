@@ -25,7 +25,7 @@ const KEYWORDS = [
 const App = ({ Component, pageProps }: AppProps) => (
   <>
     <Head>
-      <title>{name} - CV</title>
+      <title>{`${name} - CV`}</title>
       <meta charSet="utf-8" />
       <meta name="author" content={name} />
       <meta name="description" content={DESCRIPTION} />
