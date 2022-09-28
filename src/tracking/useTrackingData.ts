@@ -4,8 +4,8 @@ import { ClientTrackingData } from 'types';
 
 import observableTrackingData from './observableTrackingData';
 
-const useTrackingData = (): ClientTrackingData => {
-  const [trackingData, setTrackingData] = useState<ClientTrackingData>(
+const useTrackingData = (): ClientTrackingData | null => {
+  const [trackingData, setTrackingData] = useState<ClientTrackingData | null>(
     observableTrackingData.get()
   );
 
