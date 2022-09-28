@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
 import { formatExperienceTimePeriods, formatExperienceYears } from 'lib';
 import { ExperienceData } from 'types';

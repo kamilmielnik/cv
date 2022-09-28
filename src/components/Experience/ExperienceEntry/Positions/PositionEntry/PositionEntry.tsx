@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
 import { formatNumberOfMonths, formatTimePeriods, sumTimePeriods } from 'lib';
 import { PositionData } from 'types';

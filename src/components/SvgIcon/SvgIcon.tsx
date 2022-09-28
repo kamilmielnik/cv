@@ -1,4 +1,4 @@
-import React, { FunctionComponent, SVGAttributes } from 'react';
+import { FunctionComponent, SVGAttributes } from 'react';
 
 interface Props extends SVGAttributes<SVGElement> {
   icon: BrowserSpriteSymbol;

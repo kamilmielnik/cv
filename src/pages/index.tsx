@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { Button, ContactInfo, Description, Experience, Name, Page, Section } from 'components';
 import { contactInfo, description, education, name, workExperience } from 'data';
