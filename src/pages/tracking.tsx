@@ -33,8 +33,9 @@ const Tracking = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const password =
-      typeof router.query.password === 'string' ? router.query.password : window.prompt('Password');
+    const queryPassword = router.query.password;
+    // eslint-disable-next-line no-alert
+    const password = typeof queryPassword === 'string' ? queryPassword : window.prompt('Password');
 
     getTrackingData(password)
       .then(setTrackingData)
