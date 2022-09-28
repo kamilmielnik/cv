@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
-import Fingerprint2 from 'fingerprintjs2';
+import React, { useEffect } from 'react';
 
 import { Button, ContactInfo, Description, Experience, Name, Page, Section } from 'components';
 import { contactInfo, description, education, name, workExperience } from 'data';
