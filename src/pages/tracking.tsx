@@ -1,15 +1,24 @@
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
 import { TrackingData } from 'types';
 
 import styles from './tracking.module.scss';
 
-const getTrackingData = (): Promise<TrackingData[]> =>
+const getTrackingData = (password: string): Promise<TrackingData[]> =>
   fetch('/api/tracking', {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ password })
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
     }
-  }).then((response) => response.json());
+
+    throw new Error('Unauthorized');
+  });
 
 const formatTimestamp = (timestamp: number): string => {
   const date = new Date(timestamp);
@@ -20,10 +29,20 @@ const formatLanguage = (language?: string): string => (language || '--').toUpper
 
 const Tracking = () => {
   const [trackingData, setTrackingData] = useState<TrackingData[]>([]);
+  const [error, setError] = useState<string | undefined>(undefined);
+  const router = useRouter();
 
   useEffect(() => {
-    getTrackingData().then(setTrackingData);
-  }, []);
+    if (typeof router.query.password === 'string') {
+      getTrackingData(router.query.password)
+        .then(setTrackingData)
+        .catch((error) => setError(error.message));
+    }
+  }, [router.query.password]);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <table className={styles.table}>
