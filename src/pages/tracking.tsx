@@ -33,11 +33,12 @@ const Tracking = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (typeof router.query.password === 'string') {
-      getTrackingData(router.query.password)
-        .then(setTrackingData)
-        .catch((error) => setError(error.message));
-    }
+    const password =
+      typeof router.query.password === 'string' ? router.query.password : window.prompt('Password');
+
+    getTrackingData(password)
+      .then(setTrackingData)
+      .catch((error) => setError(error.message));
   }, [router.query.password]);
 
   if (error) {
