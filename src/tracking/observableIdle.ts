@@ -4,7 +4,7 @@ const DEFAULT_UNTIL_IDLE = 500;
 const SAFETY_IDLE = 100;
 
 const observableIdle = new Observable<boolean>(false);
-const requestIdleCallback = (global as any).requestIdleCallback;
+const requestIdleCallback = globalThis.requestIdleCallback;
 
 if (requestIdleCallback) {
   requestIdleCallback(() => {
