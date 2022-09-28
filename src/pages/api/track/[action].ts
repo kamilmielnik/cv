@@ -1,21 +1,12 @@
-import { Low, JSONFile } from 'lowdb';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { getServerTrackingData, isClientTrackingData, isTrackingAction } from 'api';
+import { getServerTrackingData, getTrackingDb, isClientTrackingData, isTrackingAction } from 'api';
 import { ClientTrackingData, TrackingAction, TrackingData } from 'types';
-
-interface Data {
-  track: TrackingData[];
-}
-
-const adapter = new JSONFile<Data>('tracking.json');
-const db = new Low(adapter);
-db.data ||= { track: [] };
-db.write();
 
 const track = async (request: NextApiRequest, response: NextApiResponse): Promise<void> => {
   try {
     const trackingData = getTrackingData(request);
+    const db = getTrackingDb();
     db.data.track.push(trackingData);
     await db.write();
     response.status(200).send('OK');
