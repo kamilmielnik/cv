@@ -13,6 +13,9 @@ module.exports = {
   devIndicators: {
     buildActivity: false
   },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'src')]
+  },
   webpack: (config) => ({
     ...config,
     resolve: {

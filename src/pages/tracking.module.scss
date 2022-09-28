@@ -1,0 +1,15 @@
+@import 'styles/variables';
+
+.table {
+  $border: 1px solid $shade-60;
+
+  width: 100%;
+  background-color: white;
+  border: $border;
+  border-collapse: collapse;
+
+  td {
+    border: $border;
+    padding: 2px 4px;
+  }
+}

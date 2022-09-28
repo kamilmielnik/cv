@@ -13,6 +13,7 @@ https://cv.kamilmielnik.com/
 
 ```Shell
 npm install
+cp .env.example .env
 ```
 
 ## Scripts
