@@ -45,7 +45,7 @@
     "rootDir": "./src",
     "skipLibCheck": true,
     "strict": false,
-    "target": "es5",
+    "target": "es2021",
     "incremental": true,
     "module": "esnext",
     "moduleResolution": "node"
