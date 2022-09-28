@@ -3,7 +3,7 @@
   "version": "1.8.8",
   "description": "Kamil Mielnik's Curriculum Vitae",
   "engines": {
-    "node": ">=12.4.0"
+    "node": ">=16"
   },
   "repository": {
     "type": "git",
