@@ -45,7 +45,6 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/classnames": "^2.3.0",
     "@types/fingerprintjs2": "^2.0.0",
     "@types/jest": "^29.1.1",
     "@types/lowdb": "^1.0.11",
