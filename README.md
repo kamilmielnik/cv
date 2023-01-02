@@ -1,6 +1,6 @@
 # Kamil Mielnik's Curriculum Vitae
 
-https://cv.kamilmielnik.com/
+https://kamilmielnik.com/
 
 ![Version](https://img.shields.io/github/package-json/v/kamilmielnik/cv)
 ![Build](https://github.com/kamilmielnik/cv/workflows/Build/badge.svg)
