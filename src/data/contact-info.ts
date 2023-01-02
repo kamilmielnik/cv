@@ -3,8 +3,8 @@ import { ContactInfoData } from 'types';
 const contactInfo: ContactInfoData[] = [
   {
     label: 'Email',
-    url: 'mailto:kamil.adam.mielnik@gmail.com',
-    value: 'kamil.adam.mielnik@gmail.com'
+    url: 'mailto:kamil@kamilmielnik.com',
+    value: 'kamil@kamilmielnik.com'
   },
   {
     label: 'LinkedIn',
