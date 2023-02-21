@@ -9,7 +9,7 @@ interface Props extends HTMLProps<HTMLAnchorElement> {
   icon: BrowserSpriteSymbol;
 }
 
-const Link: FunctionComponent<Props> = ({ className, children, icon, ...props }) => (
+const Link: FunctionComponent<Props> = ({ children, className, icon, ...props }) => (
   <a className={classNames(styles.button, styles.content, className)} {...props}>
     <SvgIcon className={styles.icon} icon={icon} />
     {children}
