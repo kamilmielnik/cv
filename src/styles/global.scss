@@ -14,8 +14,8 @@ body {
   background-color: $background-color;
   color: $foreground-color;
   font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: var(--font-size--m);
+  line-height: var(--line-height);
 
   @media print {
     background: white;
