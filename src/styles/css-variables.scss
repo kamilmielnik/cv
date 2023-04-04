@@ -19,6 +19,15 @@
 
   --line-height: 1.5;
 
+  --border-radius: 5px;
+
+  --color--background: #ccc;
   --color--focus: #268fff80;
   --color--icon: #333;
+  --color--text: black;
+
+  --transition: all var(--transition--duration) var(--transition--easing);
+  --transition--easing: cubic-bezier(0.61, 1, 0.88, 1); // easeOutSine
+  --transition--easing: cubic-bezier(0.61, 1, 0.88, 1); // easeOutSine
+
 }

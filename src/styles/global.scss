@@ -11,8 +11,8 @@ html,
 body {
   margin: 0 auto;
   padding: 0;
-  background-color: $background-color;
-  color: $foreground-color;
+  background-color: var(--color--background);
+  color: var(--color--text);
   font-family: 'Open Sans', sans-serif;
   font-size: var(--font-size--m);
   line-height: var(--line-height);

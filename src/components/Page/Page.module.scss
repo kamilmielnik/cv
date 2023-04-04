@@ -7,7 +7,7 @@
   padding: 20mm;
   background: white;
   box-shadow: $box-shadow;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 
   @media print {
     width: 100%;

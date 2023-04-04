@@ -4,7 +4,7 @@
   @include button-reset();
   @include clickable-effects();
 
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
 
   &:hover {
     text-decoration: none;
