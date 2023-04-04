@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { Button, ContactInfo, Experience, Page, Section } from 'components';
+import { Button, ContactInfo, Experience, Page } from 'components';
 import { contactInfo, description, education, name, workExperience } from 'data';
 import { download, github, print } from 'icons';
 import { useTrack } from 'tracking';
@@ -32,17 +32,12 @@ const Index = () => {
       <div className={styles.content}>
         <Page>
           <h1 className={styles.name}>{name}</h1>
-          <h2 className={styles.description}>{description}</h2>
-
+          <p className={styles.description}>{description}</p>
           <ContactInfo className={styles.contactInfo} contactInfo={contactInfo} />
-
-          <Section title="Work Experience">
-            <Experience experience={workExperience} />
-          </Section>
-
-          <Section title="Education">
-            <Experience experience={education} />
-          </Section>
+          <h2 className={styles.sectionTitle}>Work Experience</h2>
+          <Experience experience={workExperience} />
+          <h2 className={styles.sectionTitle}>Education</h2>
+          <Experience experience={education} />
         </Page>
 
         <div className={styles.buttons}>
