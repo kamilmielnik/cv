@@ -1,7 +1,7 @@
 import { email, github } from 'icons';
 import { Data } from 'types';
 
-import education from './education';
+import agh from './agh';
 import workExperience from './work-experience';
 
 const data: Data = {
@@ -21,7 +21,7 @@ const data: Data = {
       value: 'github.com/kamilmielnik'
     }
   ],
-  education,
+  education: [agh],
   workExperience
 };
 
