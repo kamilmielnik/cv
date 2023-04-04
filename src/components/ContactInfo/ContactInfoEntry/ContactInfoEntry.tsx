@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { FunctionComponent } from 'react';
 
 import { ContactInfoData } from 'types';
@@ -7,11 +8,12 @@ import SvgIcon from '../../SvgIcon';
 import styles from './ContactInfoEntry.module.scss';
 
 interface Props {
+  className?: string;
   contactInfo: ContactInfoData;
 }
 
-const ContactInfoEntry: FunctionComponent<Props> = ({ contactInfo }) => (
-  <div className={styles.contactInfoEntry}>
+const ContactInfoEntry: FunctionComponent<Props> = ({ className, contactInfo }) => (
+  <div className={classNames(styles.contactInfoEntry, className)}>
     <SvgIcon className={styles.icon} icon={contactInfo.icon} />
 
     {contactInfo.url && (

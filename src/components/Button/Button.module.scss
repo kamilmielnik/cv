@@ -25,7 +25,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6px 14px;
+  gap: var(--spacing--l);
+  padding: var(--spacing--m) var(--spacing--xl);
   text-transform: uppercase;
   text-align: center;
   font-size: var(--font-size--xl);
@@ -36,6 +37,5 @@
 
   width: var(--size);
   height: var(--size);
-  margin-right: 10px;
   color: var(--color--icon);
 }

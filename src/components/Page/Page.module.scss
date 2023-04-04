@@ -20,8 +20,8 @@
   @include mobile {
     width: 100%;
     height: auto;
-    padding: 20px;
-    padding-top: 40px;
+    padding: var(--spacing--xxl);
+    padding-top: var(--spacing--xxxl);
     border-radius: 0;
   }
 }

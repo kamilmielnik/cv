@@ -18,7 +18,7 @@
 
 .detailsRow {
   @include mobile {
-    margin: 0 5px;
+    margin: 0 var(--spacing--s);
 
     &:first-child {
       margin-left: 0;

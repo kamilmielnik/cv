@@ -5,7 +5,7 @@
   border-collapse: collapse;
 
   td {
-    padding: 2px 4px;
+    padding: var(--spacing--xs) var(--spacing--s);
     border: 1px dotted var(--color--separator);
   }
 }

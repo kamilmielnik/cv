@@ -1,3 +1,5 @@
 .experienceEntry {
-  margin-bottom: 26px;
+  & + & {
+    margin-top: var(--spacing--xxl);
+  }
 }

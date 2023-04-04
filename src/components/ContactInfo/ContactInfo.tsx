@@ -1,7 +1,9 @@
+import classNames from 'classnames';
 import { FunctionComponent } from 'react';
 
 import { ContactInfoData } from 'types';
 
+import styles from './ContactInfo.module.scss';
 import ContactInfoEntry from './ContactInfoEntry';
 
 interface Props {
@@ -10,9 +12,9 @@ interface Props {
 }
 
 const ContactInfo: FunctionComponent<Props> = ({ className, contactInfo }) => (
-  <div className={className}>
+  <div className={classNames(styles.contactInfo, className)}>
     {contactInfo.map((contactInfoEntry, index) => (
-      <ContactInfoEntry contactInfo={contactInfoEntry} key={index} />
+      <ContactInfoEntry className={styles.entry} contactInfo={contactInfoEntry} key={index} />
     ))}
   </div>
 );
