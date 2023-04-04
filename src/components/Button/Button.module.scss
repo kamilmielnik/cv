@@ -32,10 +32,10 @@
 }
 
 .icon {
-  $size: 24px;
+  --size: 24px;
 
-  width: $size;
-  height: $size;
+  width: var(--size);
+  height: var(--size);
   margin-right: 10px;
   color: var(--color--icon);
 }

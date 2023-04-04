@@ -6,11 +6,11 @@
 }
 
 .icon {
-  $size: 18px;
+  --size: 18px;
 
   flex: 0 0 auto;
-  width: $size;
-  height: $size;
+  width: var(--size);
+  height: var(--size);
   margin-right: 12px;
   color: var(--color--icon);
 }
