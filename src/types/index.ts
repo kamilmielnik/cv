@@ -1,4 +1,5 @@
 export interface ContactInfoData {
+  icon: BrowserSpriteSymbol;
   label: string;
   url: string;
   value: string;

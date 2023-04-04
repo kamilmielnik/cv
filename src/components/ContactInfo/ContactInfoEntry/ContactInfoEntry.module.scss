@@ -2,23 +2,21 @@
 
 .contactInfoEntry {
   display: flex;
-  padding: 2px 0;
+  padding: 3px 0;
 }
 
-.label,
-.value {
-  font-size: 13px;
-}
+.icon {
+  $size: 18px;
 
-.label {
-  flex: 0 0 60px;
-  margin-right: 8px;
-  text-align: right;
+  flex: 0 0 auto;
+  width: $size;
+  height: $size;
+  margin-right: 12px;
+  color: $shade-30;
 }
 
 .value {
   min-width: 0;
-  margin-left: 8px;
 }
 
 .valueContent {

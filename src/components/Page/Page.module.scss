@@ -1,6 +1,7 @@
 @import 'styles/variables';
 
 .page {
+  position: relative;
   width: $a4-width;
   height: $a4-height;
   padding: 20mm;

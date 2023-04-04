@@ -35,9 +35,7 @@ const Index = () => {
 
           <Description className={styles.description}>{description}</Description>
 
-          <Section title="Contact Info">
-            <ContactInfo contactInfo={contactInfo} />
-          </Section>
+          <ContactInfo className={styles.contactInfo} contactInfo={contactInfo} />
 
           <Section title="Work Experience">
             <Experience experience={workExperience} />

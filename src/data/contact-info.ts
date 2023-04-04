@@ -1,25 +1,18 @@
+import { email, github, linkedin } from 'icons';
 import { ContactInfoData } from 'types';
 
 const contactInfo: ContactInfoData[] = [
   {
+    icon: email,
     label: 'Email',
     url: 'mailto:kamil@kamilmielnik.com',
     value: 'kamil@kamilmielnik.com'
   },
   {
-    label: 'LinkedIn',
-    url: 'https://linkedin.com/in/kamilmielnik',
-    value: 'https://linkedin.com/in/kamilmielnik'
-  },
-  {
+    icon: github,
     label: 'GitHub',
     url: 'https://github.com/kamilmielnik',
     value: 'https://github.com/kamilmielnik'
-  },
-  {
-    label: 'Website',
-    url: 'https://kamilmielnik.com',
-    value: 'https://kamilmielnik.com'
   }
 ];
 

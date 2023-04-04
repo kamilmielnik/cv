@@ -16,7 +16,7 @@ export const REDUX_SAGA: string = 'Redux-Saga';
 export const RESELECT: string = 'Reselect';
 export const TYPE_SCRIPT: string = 'TypeScript';
 export const VAADIN: string = 'Vaadin';
-export const WINDOWS_PRESENTATION_FOUNDATION: string = 'Windows Presentation Foundation';
+export const WINDOWS_PRESENTATION_FOUNDATION: string = 'WPF';
 export const ZEND_FRAMEWORK: string = 'Zend Framework';
 export const ZEROC_ICE: string = 'ZeroC Ice';
 

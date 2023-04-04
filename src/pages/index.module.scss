@@ -5,11 +5,8 @@
 }
 
 .description {
-  margin-top: 14px;
-  margin-bottom: 33px;
-
   margin-top: 16px;
-  margin-bottom: 28px;
+  margin-bottom: 50px;
 }
 
 .content {
@@ -25,6 +22,12 @@
   @include mobile {
     padding-top: 0;
   }
+}
+
+.contactInfo {
+  position: absolute;
+  top: 20mm;
+  right: 20mm;
 }
 
 .buttons {

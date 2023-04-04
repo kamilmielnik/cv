@@ -2,6 +2,8 @@ import { FunctionComponent } from 'react';
 
 import { ContactInfoData } from 'types';
 
+import SvgIcon from '../../SvgIcon';
+
 import styles from './ContactInfoEntry.module.scss';
 
 interface Props {
@@ -10,7 +12,7 @@ interface Props {
 
 const ContactInfoEntry: FunctionComponent<Props> = ({ contactInfo }) => (
   <div className={styles.contactInfoEntry}>
-    <div className={styles.label}>{contactInfo.label}</div>
+    <SvgIcon className={styles.icon} icon={contactInfo.icon} />
 
     {contactInfo.url && (
       <a
