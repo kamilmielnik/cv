@@ -2,7 +2,11 @@ import { email, github } from 'icons';
 import { Data } from 'types';
 
 import agh from './agh';
-import workExperience from './work-experience';
+import cern from './cern';
+import codete from './codete';
+import comarch from './comarch';
+import pega from './pega';
+import prezly from './prezly';
 
 const data: Data = {
   name: 'Kamil Mielnik',
@@ -22,7 +26,7 @@ const data: Data = {
     }
   ],
   education: [agh],
-  workExperience
+  workExperience: [prezly, codete, pega, cern, comarch]
 };
 
 export default data;
