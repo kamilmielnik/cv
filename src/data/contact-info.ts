@@ -12,7 +12,7 @@ const contactInfo: ContactInfoData[] = [
     icon: github,
     label: 'GitHub',
     url: 'https://github.com/kamilmielnik',
-    value: 'https://github.com/kamilmielnik'
+    value: 'github.com/kamilmielnik'
   }
 ];
 
