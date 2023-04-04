@@ -27,6 +27,7 @@ export interface PositionData {
   timePeriod?: string;
   timePeriods: TimePeriod[];
   title: string;
+  url?: string;
 }
 
 export interface TimePeriod {

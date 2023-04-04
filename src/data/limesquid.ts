@@ -16,7 +16,8 @@ const limesquid: ExperienceData = {
           end: null
         }
       ],
-      title: 'Websktop'
+      title: 'Websktop',
+      url: 'https://websktop.com'
     },
     {
       timePeriods: [
@@ -25,7 +26,8 @@ const limesquid: ExperienceData = {
           end: new Date(2018, 9, 19)
         }
       ],
-      title: 'R-Factor'
+      title: 'R-Factor',
+      url: 'https://r-factor.org'
     }
   ],
   timePeriod: '2018 - present'
