@@ -1,6 +1,6 @@
 import { ExperienceData } from 'types';
 
-const education: ExperienceData = {
+const agh: ExperienceData = {
   description: 'The Faculty of Computer Science, Electronics and Telecommunications',
   location: 'Kraków, Poland',
   organization: 'AGH UST',
@@ -30,4 +30,4 @@ const education: ExperienceData = {
   timePeriod: '2010 - 2015'
 };
 
-export default education;
+export default agh;

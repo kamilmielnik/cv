@@ -10,7 +10,7 @@ import {
   TECHNICAL_RECRUITMENT
 } from './technologies';
 
-const Codete: ExperienceData = {
+const codete: ExperienceData = {
   description: [JAVA_SCRIPT, REACT, REDUX, REDUX_SAGA, RESELECT, CSS].join(', '),
   extra: TECHNICAL_RECRUITMENT,
   location: 'Kraków, Poland',
@@ -38,4 +38,4 @@ const Codete: ExperienceData = {
   ]
 };
 
-export default Codete;
+export default codete;

@@ -2,7 +2,7 @@ import { ExperienceData } from 'types';
 
 import { CSS, JAVA_SCRIPT, REACT, TECHNICAL_RECRUITMENT, TYPE_SCRIPT } from './technologies';
 
-const Prezly: ExperienceData = {
+const prezly: ExperienceData = {
   description: [TYPE_SCRIPT, JAVA_SCRIPT, REACT, CSS].join(', '),
   extra: TECHNICAL_RECRUITMENT,
   location: 'Remote',
@@ -21,4 +21,4 @@ const Prezly: ExperienceData = {
   ]
 };
 
-export default Prezly;
+export default prezly;
