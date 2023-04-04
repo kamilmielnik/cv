@@ -1,17 +1,9 @@
 import { ExperienceData } from 'types';
 
-import {
-  CSS,
-  JAVA_SCRIPT,
-  REACT,
-  REDUX,
-  REDUX_SAGA,
-  RESELECT,
-  TECHNICAL_RECRUITMENT
-} from './technologies';
+import { CSS, JAVA_SCRIPT, REACT, REDUX, TECHNICAL_RECRUITMENT } from './technologies';
 
 const codete: ExperienceData = {
-  description: [JAVA_SCRIPT, REACT, REDUX, REDUX_SAGA, RESELECT, CSS].join(', '),
+  description: [JAVA_SCRIPT, REACT, REDUX, CSS].join(', '),
   extra: TECHNICAL_RECRUITMENT,
   location: 'Kraków, Poland',
   organization: 'Codete',
