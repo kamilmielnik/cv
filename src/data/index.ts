@@ -1,5 +1,13 @@
-export { default as contactInfo } from './contact-info';
-export { default as description } from './description';
-export { default as education } from './education';
-export { default as name } from './name';
-export { default as workExperience } from './work-experience';
+import contactInfo from './contact-info';
+import education from './education';
+import workExperience from './work-experience';
+
+const data = {
+  name: 'Kamil Mielnik',
+  description: 'Senior Frontend Engineer with over 10 years of professional experience',
+  contactInfo,
+  education,
+  workExperience
+};
+
+export default data;

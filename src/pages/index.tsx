@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { Button, ContactInfo, Experience, Page } from 'components';
-import { contactInfo, description, education, name, workExperience } from 'data';
+import data from 'data';
 import { download, github, print } from 'icons';
 import { useTrack } from 'tracking';
 
@@ -31,13 +31,13 @@ const Index = () => {
     <div className={styles.app}>
       <div className={styles.content}>
         <Page>
-          <h1 className={styles.name}>{name}</h1>
-          <p className={styles.description}>{description}</p>
-          <ContactInfo className={styles.contactInfo} contactInfo={contactInfo} />
+          <h1 className={styles.name}>{data.name}</h1>
+          <p className={styles.description}>{data.description}</p>
+          <ContactInfo className={styles.contactInfo} contactInfo={data.contactInfo} />
           <h2 className={styles.sectionTitle}>Work Experience</h2>
-          <Experience experience={workExperience} />
+          <Experience experience={data.workExperience} />
           <h2 className={styles.sectionTitle}>Education</h2>
-          <Experience experience={education} />
+          <Experience experience={data.education} />
         </Page>
 
         <div className={styles.buttons}>
