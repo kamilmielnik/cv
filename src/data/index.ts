@@ -7,6 +7,7 @@ import codete from './codete';
 import comarch from './comarch';
 import pega from './pega';
 import prezly from './prezly';
+import websktop from './websktop';
 
 const data: Data = {
   name: 'Kamil Mielnik',
@@ -26,7 +27,7 @@ const data: Data = {
     }
   ],
   education: [agh],
-  workExperience: [prezly, codete, pega, cern, comarch]
+  workExperience: [websktop, prezly, codete, pega, cern, comarch]
 };
 
 export default data;
