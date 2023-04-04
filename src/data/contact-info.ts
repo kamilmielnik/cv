@@ -1,4 +1,4 @@
-import { email, github, linkedin } from 'icons';
+import { email, github } from 'icons';
 import { ContactInfoData } from 'types';
 
 const contactInfo: ContactInfoData[] = [

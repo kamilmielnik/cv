@@ -3,8 +3,8 @@ import Head from 'next/head';
 
 import { description, name } from 'data';
 
-import 'styles/css-variables.scss';
 import 'styles/global.scss';
+import 'styles/variables.scss';
 
 const DESCRIPTION = `${name} - ${description} - Curriculum Vitae`;
 
