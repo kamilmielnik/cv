@@ -54,7 +54,7 @@
     "node_modules"
   ],
   "files": [
-    "./src/icons/@types/icons.d.ts"
+    "./src/@types/icons.d.ts"
   ],
   "include": [
     "next-env.d.ts",
