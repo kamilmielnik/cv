@@ -1,3 +1,3 @@
-const description: string = 'JavaScript Developer specializing in React';
+const description: string = 'Senior Frontend Engineer';
 
 export default description;
