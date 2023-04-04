@@ -1,12 +1,22 @@
 @import 'styles/variables';
 
 .button {
-  @include button-reset();
-  @include clickable-effects();
+  @include button-reset;
 
+  background-color: var(--color--button);
   border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  outline: none;
+  cursor: pointer;
+  transition: var(--transition);
 
+  &:active {
+    background-color: var(--color--button--active);
+  }
+
+  &:active,
   &:hover {
+    box-shadow: var(--box-shadow--active);
     text-decoration: none;
   }
 }

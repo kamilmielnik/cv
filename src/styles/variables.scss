@@ -1,29 +1,3 @@
-$shade-50: #666;
-$shade-60: #999;
-$shade-70: #aaa;
-$shade-90: #eee;
-
-$box-shadow: 0px 0px 5px 2px $shade-60;
-$box-shadow-dark: 0px 0px 5px 2px $shade-50;
-
-@mixin clickable-effects {
-  @include focus-effect;
-
-  background-color: white;
-  box-shadow: $box-shadow;
-  outline: none;
-  cursor: pointer;
-  transition: var(--transition);
-
-  &:active {
-    background-color: $shade-90;
-  }
-
-  &:hover {
-    box-shadow: $box-shadow-dark;
-  }
-}
-
 @mixin focus-effect {
   position: relative;
 

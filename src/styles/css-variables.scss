@@ -1,6 +1,7 @@
 :root {
   --a4--width: 210mm;
   --a4--height: 297mm;
+  --a4--padding: 20mm;
 
   --spacing--xs: 2px;
   --spacing--s: 4px;
@@ -21,13 +22,19 @@
 
   --border-radius: 5px;
 
-  --color--background: #ccc;
+  --color--background: #cccccc;
+  --color--button: #ffffff;
+  --color--button--active: #eeeeee;
   --color--focus: #268fff80;
-  --color--icon: #333;
-  --color--text: black;
+  --color--icon: #333333;
+  --color--separator: #aaaaaa;
+  --color--shadow: #999999;
+  --color--shadow--active: #666666;
+  --color--text: #000000;
 
   --transition: all var(--transition--duration) var(--transition--easing);
   --transition--easing: cubic-bezier(0.61, 1, 0.88, 1); // easeOutSine
-  --transition--easing: cubic-bezier(0.61, 1, 0.88, 1); // easeOutSine
 
+  --box-shadow: 0px 0px 5px 2px var(--color--shadow);
+  --box-shadow--active: 0px 0px 5px 2px var(--color--shadow--active);
 }

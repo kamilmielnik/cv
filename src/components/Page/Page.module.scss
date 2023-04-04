@@ -4,9 +4,9 @@
   position: relative;
   width: var(--a4--width);
   height: var(--a4--height);
-  padding: 20mm;
+  padding: var(--a4--padding);
   background: white;
-  box-shadow: $box-shadow;
+  box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
 
   @media print {

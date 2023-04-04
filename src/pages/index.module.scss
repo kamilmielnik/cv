@@ -43,8 +43,8 @@
 
 .contactInfo {
   position: absolute;
-  top: 20mm;
-  right: 20mm;
+  top: var(--a4--padding);
+  right: var(--a4--padding);
 }
 
 .buttons {

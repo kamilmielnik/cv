@@ -31,7 +31,7 @@
 
 .separator {
   border: none;
-  border-bottom: 1px dotted $shade-70;
+  border-bottom: 1px dotted var(--color--separator);
 }
 
 .description {
