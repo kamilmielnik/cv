@@ -6,7 +6,6 @@ $shade-90: #eee;
 
 $background-color: $shade-80;
 $foreground-color: black;
-$focus-color: #268fff;
 
 $box-shadow: 0px 0px 5px 2px $shade-60;
 $box-shadow-dark: 0px 0px 5px 2px $shade-50;
@@ -46,7 +45,7 @@ $transition-easing: cubic-bezier(0.61, 1, 0.88, 1); // easeOutSine
     left: 0;
     transition: box-shadow $transition-duration $transition-easing;
     border-radius: $border-radius;
-    box-shadow: 0 0 0 3px rgba($focus-color, 0);
+    box-shadow: 0 0 0 3px transparent;
     pointer-events: none;
   }
 
@@ -54,7 +53,7 @@ $transition-easing: cubic-bezier(0.61, 1, 0.88, 1); // easeOutSine
     outline: none;
 
     &:before {
-      box-shadow: 0 0 0 3px rgba($focus-color, 0.5);
+      box-shadow: 0 0 0 3px var(--color--focus);
     }
   }
 }
