@@ -21,7 +21,7 @@ const ExperienceEntry: FunctionComponent<Props> = ({ className, experience }) =>
     <div className={styles.details}>
       <Positions className={styles.positions} positions={experience.positions} />
 
-      <div className={styles.separator} />
+      <hr className={styles.separator} />
 
       <Description className={styles.description} extra={experience.extra}>
         {experience.description}
