@@ -5,7 +5,7 @@
 }
 
 .name {
-  margin-bottom: var(--spacing--xl);
+  margin-bottom: var(--spacing--l);
   font-family: 'Lato', sans-serif;
   font-size: var(--font-size--xxl);
   line-height: 1;
@@ -14,6 +14,7 @@
 }
 
 .description {
+  margin-top: var(--spacing--l);
   margin-bottom: var(--spacing--xxxl);
   font-size: var(--font-size--l);
   font-weight: 300;
