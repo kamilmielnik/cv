@@ -11,7 +11,7 @@ import prezly from './prezly';
 
 const data: Data = {
   name: 'Kamil Mielnik',
-  description: 'Senior Frontend Engineer with over 10 years of professional experience',
+  description: 'Senior Frontend Engineer',
   contactInfo: [
     {
       icon: email,
