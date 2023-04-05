@@ -54,7 +54,8 @@
     "node_modules"
   ],
   "files": [
-    "./src/@types/icons.d.ts"
+    "./src/@types/icons.d.ts",
+    "./src/@types/lowdb.d.ts"
   ],
   "include": [
     "next-env.d.ts",

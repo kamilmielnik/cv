@@ -37,7 +37,7 @@
   "dependencies": {
     "classnames": "^2.3.2",
     "fingerprintjs2": "^2.1.2",
-    "lowdb": "^3.0.0",
+    "lowdb": "^5.1.0",
     "next": "^13.2.4",
     "normalize.css": "^8.0.1",
     "puppeteer": "^19.8.3",
@@ -47,7 +47,6 @@
   "devDependencies": {
     "@types/fingerprintjs2": "^2.0.0",
     "@types/jest": "^29.5.0",
-    "@types/lowdb": "^1.0.11",
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.33",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
