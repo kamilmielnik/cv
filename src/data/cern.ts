@@ -2,7 +2,7 @@ import { ExperienceData } from 'types';
 
 import { CASTOR, CSS, JAVA, VAADIN, ZEROC_ICE } from './technologies';
 
-const Cern: ExperienceData = {
+const cern: ExperienceData = {
   description: [JAVA, VAADIN, CSS, ZEROC_ICE, CASTOR].join(', '),
   location: 'Genève, Switzerland',
   organization: 'CERN',
@@ -29,4 +29,4 @@ const Cern: ExperienceData = {
   ]
 };
 
-export default Cern;
+export default cern;

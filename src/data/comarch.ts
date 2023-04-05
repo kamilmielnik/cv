@@ -13,7 +13,7 @@ import {
   ZEND_FRAMEWORK
 } from './technologies';
 
-const Comarch: ExperienceData = {
+const comarch: ExperienceData = {
   description: [
     TYPE_SCRIPT,
     JAVA_SCRIPT,
@@ -55,4 +55,4 @@ const Comarch: ExperienceData = {
   ]
 };
 
-export default Comarch;
+export default comarch;

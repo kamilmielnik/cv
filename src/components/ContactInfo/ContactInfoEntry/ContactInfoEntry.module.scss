@@ -1,24 +1,21 @@
-@import 'styles/variables';
+@import 'styles/mixins';
 
 .contactInfoEntry {
   display: flex;
-  padding: 2px 0;
+  gap: var(--spacing--l);
 }
 
-.label,
-.value {
-  font-size: 13px;
-}
+.icon {
+  --size: 18px;
 
-.label {
-  flex: 0 0 60px;
-  margin-right: 8px;
-  text-align: right;
+  flex: 0 0 auto;
+  width: var(--size);
+  height: var(--size);
+  color: var(--color--icon);
 }
 
 .value {
   min-width: 0;
-  margin-left: 8px;
 }
 
 .valueContent {

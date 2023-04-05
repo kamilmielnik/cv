@@ -1,12 +1,22 @@
-@import 'styles/variables';
+@import 'styles/mixins';
 
 .button {
-  @include button-reset();
-  @include clickable-effects();
+  @include button-reset;
 
-  border-radius: $border-radius;
+  background-color: var(--color--button);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  outline: none;
+  cursor: pointer;
+  transition: var(--transition);
 
+  &:active {
+    background-color: var(--color--button--active);
+  }
+
+  &:active,
   &:hover {
+    box-shadow: var(--box-shadow--active);
     text-decoration: none;
   }
 }
@@ -15,16 +25,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6px 14px;
+  gap: var(--spacing--l);
+  padding: var(--spacing--m) var(--spacing--xl);
   text-transform: uppercase;
   text-align: center;
-  font-size: 18px;
+  font-size: var(--font-size--l);
 }
 
 .icon {
-  $size: 24px;
+  --size: 24px;
 
-  width: $size;
-  height: $size;
-  margin-right: 10px;
+  width: var(--size);
+  height: var(--size);
+  color: var(--color--icon);
 }

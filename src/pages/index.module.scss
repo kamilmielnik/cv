@@ -1,15 +1,30 @@
-@import 'styles/variables';
+@import 'styles/mixins';
 
 .app {
   height: 100%;
 }
 
-.description {
-  margin-top: 14px;
-  margin-bottom: 33px;
+.name {
+  margin-bottom: var(--spacing--xl);
+  font-family: 'Lato', sans-serif;
+  font-size: var(--font-size--xxl);
+  line-height: 1;
+  font-weight: 300;
+  text-transform: capitalize;
+}
 
-  margin-top: 16px;
-  margin-bottom: 28px;
+.description {
+  margin-bottom: var(--spacing--xxxl);
+  font-size: var(--font-size--l);
+  font-weight: 300;
+  text-align: justify;
+}
+
+.name,
+.description {
+  @include mobile {
+    text-align: center;
+  }
 }
 
 .content {
@@ -27,11 +42,32 @@
   }
 }
 
+.contactInfo {
+  position: absolute;
+  top: var(--a4--padding);
+  right: var(--a4--padding);
+
+  @include mobile {
+    position: static;
+    margin-bottom: var(--spacing--xxxl);
+  }
+}
+
+.sectionTitle {
+  margin-bottom: var(--spacing--xl);
+  margin-top: var(--spacing--xxxl);
+  font-family: 'Lato', sans-serif;
+  font-size: var(--font-size--xl);
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
 .buttons {
   display: flex;
   justify-content: space-between;
-  width: $a4-width;
-  margin-top: 40px;
+  gap: var(--spacing--xl);
+  width: var(--a4--width);
+  margin-top: var(--spacing--xxxl);
 
   @media print {
     display: none;
@@ -45,26 +81,15 @@
 
 .buttonsLeft {
   display: flex;
-  margin-right: 10px;
 }
 
 .buttonsRight {
   display: flex;
-  margin-left: 10px;
+  gap: var(--spacing--xxl);
 }
 
 .printButton {
-  margin-right: 10px;
-
   @include mobile {
     display: none;
-  }
-}
-
-.downloadButton {
-  margin-left: 10px;
-
-  @include mobile {
-    margin-left: 0;
   }
 }

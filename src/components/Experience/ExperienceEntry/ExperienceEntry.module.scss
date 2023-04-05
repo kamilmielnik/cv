@@ -1,7 +1,8 @@
-@import 'styles/variables';
+@import 'styles/mixins';
 
 .experienceEntry {
   display: flex;
+  gap: var(--spacing--l);
 
   @include mobile {
     display: block;
@@ -10,14 +11,13 @@
 
 .info {
   position: relative;
-  top: -5px;
+  top: calc(var(--font-size--m) - var(--font-size--l));
   flex: 0 0 125px;
-  margin-right: 14px;
 
   @include mobile {
     position: static;
     margin-right: 0;
-    margin-bottom: 6px;
+    margin-bottom: var(--spacing--l);
   }
 }
 
@@ -25,14 +25,8 @@
   flex-grow: 1;
 }
 
-.positions {
-  margin-bottom: 8px;
-}
-
-.separator {
-  border-bottom: 1px dotted $shade-70;
-}
-
-.description {
-  margin-top: 6px;
+.positionEntry {
+  & + & {
+    margin-top: var(--spacing--s);
+  }
 }

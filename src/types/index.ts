@@ -1,4 +1,13 @@
+export interface Data {
+  contactInfo: ContactInfoData[];
+  description: string;
+  education: ExperienceData[];
+  name: string;
+  workExperience: ExperienceData[];
+}
+
 export interface ContactInfoData {
+  icon: BrowserSpriteSymbol;
   label: string;
   url: string;
   value: string;
@@ -18,6 +27,7 @@ export interface PositionData {
   timePeriod?: string;
   timePeriods: TimePeriod[];
   title: string;
+  url?: string;
 }
 
 export interface TimePeriod {

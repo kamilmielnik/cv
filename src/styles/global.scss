@@ -1,5 +1,5 @@
 @import '~normalize.css';
-@import 'variables.scss';
+@import './mixins';
 
 *,
 *:after,
@@ -11,11 +11,11 @@ html,
 body {
   margin: 0 auto;
   padding: 0;
-  background-color: $background-color;
-  color: $foreground-color;
+  background-color: var(--color--background);
+  color: var(--color--text);
   font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: var(--font-size--m);
+  line-height: var(--line-height);
 
   @media print {
     background: white;
@@ -46,4 +46,10 @@ h4 {
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
   margin: 0;
+}
+
+hr {
+  margin: var(--spacing--m) 0;
+  border: none;
+  border-bottom: 1px dotted var(--color--separator);
 }

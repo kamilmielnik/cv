@@ -1,12 +1,13 @@
-@import 'styles/variables';
+@import 'styles/mixins';
 
 .page {
-  width: $a4-width;
-  height: $a4-height;
-  padding: 20mm;
+  position: relative;
+  width: var(--a4--width);
+  height: var(--a4--height);
+  padding: var(--a4--padding);
   background: white;
-  box-shadow: $box-shadow;
-  border-radius: $border-radius;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
 
   @media print {
     width: 100%;
@@ -19,8 +20,8 @@
   @include mobile {
     width: 100%;
     height: auto;
-    padding: 20px;
-    padding-top: 40px;
+    padding: var(--spacing--xxl);
+    padding-top: var(--spacing--xxxl);
     border-radius: 0;
   }
 }

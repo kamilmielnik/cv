@@ -2,7 +2,7 @@ import { ExperienceData } from 'types';
 
 import { BACKBONE_JS, JAVA_SCRIPT, KNOCKBACK_JS, KNOCKOUT_JS, CSS } from './technologies';
 
-const Pega: ExperienceData = {
+const pega: ExperienceData = {
   description: [JAVA_SCRIPT, KNOCKOUT_JS, KNOCKBACK_JS, BACKBONE_JS, CSS].join(', '),
   location: 'Kraków, Poland',
   organization: 'Pega',
@@ -29,4 +29,4 @@ const Pega: ExperienceData = {
   ]
 };
 
-export default Pega;
+export default pega;

@@ -4,10 +4,9 @@ import { FunctionComponent } from 'react';
 import { ExperienceData } from 'types';
 
 import Description from './Description';
-import Info from './Info';
-import Positions from './Positions';
-
 import styles from './ExperienceEntry.module.scss';
+import Info from './Info';
+import PositionEntry from './PositionEntry';
 
 interface Props {
   className?: string;
@@ -19,13 +18,11 @@ const ExperienceEntry: FunctionComponent<Props> = ({ className, experience }) =>
     <Info className={styles.info} experience={experience} />
 
     <div className={styles.details}>
-      <Positions className={styles.positions} positions={experience.positions} />
-
-      <div className={styles.separator} />
-
-      <Description className={styles.description} extra={experience.extra}>
-        {experience.description}
-      </Description>
+      {experience.positions.map((positionEntry, index) => (
+        <PositionEntry className={styles.positionEntry} key={index} position={positionEntry} />
+      ))}
+      <hr />
+      <Description extra={experience.extra}>{experience.description}</Description>
     </div>
   </div>
 );
