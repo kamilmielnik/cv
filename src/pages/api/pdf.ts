@@ -3,6 +3,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import path from 'path';
 import puppeteer from 'puppeteer';
 
+const HOUR = 60 * 60 * 1000;
+const CACHE_TTL = 24 * HOUR;
 const PDF_FILENAME = 'KamilMielnik.pdf';
 const PDF_FILEPATH = path.resolve(PDF_FILENAME);
 const URL = 'http://127.0.0.1:3000';
@@ -26,7 +28,7 @@ const pdf = async (request: NextApiRequest, response: NextApiResponse): Promise<
 const canUseCache = (): boolean => {
   if (cacheExists()) {
     const timestamp = readCacheTimestamp();
-    return timestamp + 24 * 60 * 60 * 1000 > Date.now();
+    return timestamp + CACHE_TTL > Date.now();
   }
 
   return false;
