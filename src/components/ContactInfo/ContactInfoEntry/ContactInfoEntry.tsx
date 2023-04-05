@@ -13,27 +13,19 @@ interface Props {
 }
 
 const ContactInfoEntry: FunctionComponent<Props> = ({ className, contactInfo }) => (
-  <div className={classNames(styles.contactInfoEntry, className)}>
+  <a
+    className={classNames(styles.contactInfoEntry, className)}
+    href={contactInfo.url}
+    rel="noopener noreferrer"
+    target="_blank"
+    title={contactInfo.value}
+  >
     <SvgIcon className={styles.icon} icon={contactInfo.icon} />
 
-    {contactInfo.url && (
-      <a
-        className={styles.value}
-        href={contactInfo.url}
-        rel="noopener noreferrer"
-        target="_blank"
-        title={contactInfo.value}
-      >
-        <span className={styles.valueContent}>{contactInfo.value}</span>
-      </a>
-    )}
-
-    {!contactInfo.url && (
-      <div className={styles.value} title={contactInfo.value}>
-        <span className={styles.valueContent}>{contactInfo.value}</span>
-      </div>
-    )}
-  </div>
+    <div className={styles.value} title={contactInfo.value}>
+      <span className={styles.valueContent}>{contactInfo.value}</span>
+    </div>
+  </a>
 );
 
 export default ContactInfoEntry;
