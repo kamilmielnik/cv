@@ -16,7 +16,7 @@ const limesquid: ExperienceData = {
           end: null
         }
       ],
-      title: 'Websktop',
+      title: 'Websktop Product Engineer',
       url: 'https://websktop.com'
     },
     {
@@ -26,7 +26,7 @@ const limesquid: ExperienceData = {
           end: new Date(2018, 9, 19)
         }
       ],
-      title: 'R-Factor',
+      title: 'R-Factor Product Engineer',
       url: 'https://r-factor.org'
     }
   ],
