@@ -11,7 +11,7 @@
 
 .info {
   position: relative;
-  top: calc(var(--font-size--m) - var(--font-size--xl));
+  top: calc(var(--font-size--m) - var(--font-size--l));
   flex: 0 0 125px;
 
   @include mobile {
