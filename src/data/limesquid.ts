@@ -1,10 +1,9 @@
 import { ExperienceData } from 'types';
 
-import { CSS, DESIGN, JAVA_SCRIPT, NODE_JS, REACT, TYPE_SCRIPT } from './technologies';
+import { CSS, JAVA_SCRIPT, NODE_JS, REACT, TYPE_SCRIPT } from './technologies';
 
 const limesquid: ExperienceData = {
   description: [TYPE_SCRIPT, JAVA_SCRIPT, NODE_JS, REACT, CSS].join(', '),
-  extra: DESIGN,
   location: 'Remote',
   organization: 'LimeSquid',
   url: 'https://limesquid.com/',

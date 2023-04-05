@@ -19,5 +19,4 @@ export const WINDOWS_PRESENTATION_FOUNDATION = 'WPF';
 export const ZEND_FRAMEWORK = 'Zend';
 export const ZEROC_ICE = 'ZeroC Ice';
 
-export const DESIGN = 'Design';
 export const TECHNICAL_RECRUITMENT = 'Technical Recruitment';
