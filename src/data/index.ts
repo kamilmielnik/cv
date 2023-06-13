@@ -6,6 +6,7 @@ import cern from './cern';
 import codete from './codete';
 import comarch from './comarch';
 import limesquid from './limesquid';
+import metabase from './metabase';
 import pega from './pega';
 import prezly from './prezly';
 
@@ -27,7 +28,7 @@ const data: Data = {
     }
   ],
   education: [agh],
-  workExperience: [limesquid, prezly, codete, pega, cern, comarch]
+  workExperience: [metabase, limesquid, prezly, codete, pega, cern, comarch]
 };
 
 export default data;
