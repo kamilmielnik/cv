@@ -7,6 +7,7 @@ export const DOCTRINE = 'Doctrine';
 export const EXPRESS = 'Express';
 export const JAVA = 'Java';
 export const JAVA_SCRIPT = 'JavaScript';
+export const JEST = 'Jest';
 export const JQUERY = 'jQuery';
 export const KNOCKBACK_JS = 'Knockback.js';
 export const KNOCKOUT_JS = 'Knockout.js';

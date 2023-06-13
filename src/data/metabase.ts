@@ -4,6 +4,7 @@ import {
   CSS,
   CYPRESS,
   JAVA_SCRIPT,
+  JEST,
   REACT,
   REDUX,
   TESTING_LIBRARY,
@@ -11,7 +12,9 @@ import {
 } from './technologies';
 
 const metabase: ExperienceData = {
-  description: [TYPE_SCRIPT, JAVA_SCRIPT, REACT, REDUX, CSS, TESTING_LIBRARY, CYPRESS].join(', '),
+  description: [TYPE_SCRIPT, JAVA_SCRIPT, REACT, REDUX, CSS, JEST, TESTING_LIBRARY, CYPRESS].join(
+    ', '
+  ),
   location: 'Remote',
   organization: 'Metabase',
   url: 'https://www.metabase.com/',
