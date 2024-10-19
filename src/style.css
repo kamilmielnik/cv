@@ -180,6 +180,7 @@ a {
 
 .name {
   margin-bottom: var(--spacing--l);
+  margin-inline: -4px;
   font-family: var(--font-family--heading);
   font-size: var(--font-size--xxl);
   font-weight: 300;
