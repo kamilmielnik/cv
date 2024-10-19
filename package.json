@@ -23,7 +23,7 @@
   "scripts": {
     "prettier": "prettier --list-different './src/**/*.{js,jsx,ts,tsx,html,css}'",
     "prettier:fix": "npm run prettier -- --write",
-    "start": "node src/index.js"
+    "start": "NODE_ENV=production node src/index.js"
   },
   "dependencies": {
     "@minify-html/node": "^0.15.0",
