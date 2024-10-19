@@ -21,9 +21,9 @@
   },
   "homepage": "https://cv.kamilmielnik.com",
   "scripts": {
-    "prettier": "prettier --list-different './src/**/*.{js,jsx,ts,tsx,html,css}'",
+    "prettier": "prettier --list-different './src/**/*.{js,mjs,html,css}'",
     "prettier:fix": "npm run prettier -- --write",
-    "start": "NODE_ENV=production node src/index.js"
+    "start": "NODE_ENV=production node src/index.mjs"
   },
   "dependencies": {
     "@minify-html/node": "^0.15.0",

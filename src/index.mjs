@@ -5,9 +5,9 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { createPdfIfNeeded } from './pdf.js';
-import { getClientTrackingData, getServerTrackingData, trackingDb } from './tracking.js';
-import { formatNumberOfMonths, minify, sumTimePeriods } from './utils.js';
+import { createPdfIfNeeded } from './pdf.mjs';
+import { getClientTrackingData, getServerTrackingData, trackingDb } from './tracking.mjs';
+import { formatNumberOfMonths, minify, sumTimePeriods } from './utils.mjs';
 
 const PORT = 3000;
 const PDF_FILENAME = 'KamilMielnik.pdf';
