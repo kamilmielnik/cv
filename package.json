@@ -22,7 +22,7 @@
   "homepage": "https://cv.kamilmielnik.com",
   "scripts": {
     "prettier": "prettier --list-different './src/**/*.{js,jsx,ts,tsx,html,css}'",
-    "prettier:fix": "npm run prettier -- --write --no-list-different",
+    "prettier:fix": "npm run prettier -- --write",
     "start": "node src/index.js"
   },
   "dependencies": {
@@ -33,6 +33,6 @@
     "puppeteer": "^23.6.0"
   },
   "devDependencies": {
-    "prettier": "^2.8.7"
+    "prettier": "^3.3.3"
   }
 }
