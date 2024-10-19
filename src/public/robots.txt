@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /KamilMielnik.pdf
+
+Sitemap: https://kamilmielnik.com/sitemap.xml

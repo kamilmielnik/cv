@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /KamilMielnik.pdf
-
-Sitemap: https://cv.kamilmielnik.com/sitemap.xml

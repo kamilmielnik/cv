@@ -1,9 +1,0 @@
-.contactInfo {
-  margin: var(--spacing--xs) 0;
-}
-
-.entry {
-  & + & {
-    margin-top: var(--spacing--m);
-  }
-}
