@@ -1,6 +1,6 @@
 {
   "name": "cv",
-  "version": "1.10.1",
+  "version": "1.11.0",
   "description": "Kamil Mielnik's Curriculum Vitae",
   "type": "module",
   "engines": {
