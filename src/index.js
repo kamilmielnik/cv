@@ -29,6 +29,7 @@ app.get('/', (_request, response) => {
     response.send(html);
   } catch (error) {
     response.status(500).send(error?.message ?? 'Server error');
+    console.log(error);
   }
 });
 
@@ -38,20 +39,22 @@ app.get('/pdf', async (_request, response) => {
     response.download(PDF_FILEPATH, PDF_FILENAME);
   } catch (error) {
     response.status(500).send(error?.message ?? 'Server error');
+    console.log(error);
   }
 });
 
-app.post(/^\/track\/(github|pdf|print|visit)$/, async (request, response) => {
+app.post(/^\/track\/(github|pdf|print|visit)$/, (request, response) => {
   try {
     trackingDb.data.track.push({
       action: request.path.split('/').at(-1),
       client: getClientTrackingData(request),
       server: getServerTrackingData(request),
     });
-    await trackingDb.write();
+    trackingDb.write();
     response.send();
   } catch (error) {
     response.status(500).send(error?.message ?? 'Server error');
+    console.log(error);
   }
 });
 
