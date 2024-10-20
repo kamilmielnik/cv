@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/kamilmielnik/cv/issues"
   },
-  "homepage": "https://cv.kamilmielnik.com",
+  "homepage": "https://kamilmielnik.com",
   "scripts": {
     "prettier": "prettier --list-different './src/**/*.{js,mjs,html,css}'",
     "prettier:fix": "npm run prettier -- --write",
