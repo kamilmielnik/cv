@@ -17,19 +17,15 @@ const PDF_URL = `http://127.0.0.1:${PORT}`;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const indexHtml = getIndexHtml();
 const app = createApp();
+const indexHtml = getIndexHtml();
 
 app.get('/', (_request, response) => {
   try {
-    const html = renderTemplate(indexHtml, {
-      currentPositionDuration: formatNumberOfMonths(sumTimePeriods([{ start: new Date(2023, 4, 15), end: null }])),
-    });
-
-    response.send(html);
+    response.send(renderIndexHtml());
   } catch (error) {
     response.status(500).send(error?.message ?? 'Server error');
-    console.log(error);
+    console.error(error);
   }
 });
 
@@ -39,7 +35,7 @@ app.get('/pdf', async (_request, response) => {
     response.download(PDF_FILEPATH, PDF_FILENAME);
   } catch (error) {
     response.status(500).send(error?.message ?? 'Server error');
-    console.log(error);
+    console.error(error);
   }
 });
 
@@ -54,7 +50,7 @@ app.post(/^\/track\/(github|pdf|print|visit)$/, (request, response) => {
     response.send();
   } catch (error) {
     response.status(500).send(error?.message ?? 'Server error');
-    console.log(error);
+    console.error(error);
   }
 });
 
@@ -71,20 +67,18 @@ function createApp() {
 }
 
 function getIndexHtml() {
-  const minifiedIndexHtml = minify(readIndexHtml());
-  const minifiedCss = minify(readStyleCss());
+  const indexHtml = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8');
+  const css = fs.readFileSync(path.resolve(__dirname, 'style.css'), 'utf-8');
+  const minifiedIndexHtml = minify(indexHtml);
+  const minifiedCss = minify(css);
   const minifiedHtml = minifiedIndexHtml.replace('<style></style>', `<style>${minifiedCss}</style>`);
   return minifiedHtml;
 }
 
-function readIndexHtml() {
-  return fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8');
-}
-
-function readStyleCss() {
-  return fs.readFileSync(path.resolve(__dirname, 'style.css'), 'utf-8');
-}
-
-function renderTemplate(html, { currentPositionDuration }) {
-  return html.replace('{{ currentPositionDuration }}', currentPositionDuration);
+function renderIndexHtml() {
+  const start = new Date(2023, 4, 15);
+  const months = sumTimePeriods([{ start, end: null }]);
+  const currentPositionDuration = formatNumberOfMonths(months);
+  const html = indexHtml.replace('{{ currentPositionDuration }}', currentPositionDuration);
+  return html;
 }
