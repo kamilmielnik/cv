@@ -4,7 +4,7 @@
   "description": "Kamil Mielnik's Curriculum Vitae",
   "type": "module",
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "repository": {
     "type": "git",
@@ -27,12 +27,12 @@
   },
   "dependencies": {
     "@minify-html/node": "^0.15.0",
-    "compression": "^1.7.4",
-    "express": "^4.21.1",
+    "compression": "^1.7.5",
+    "express": "^4.21.2",
     "lowdb": "^7.0.1",
-    "puppeteer": "^23.6.0"
+    "puppeteer": "^24.1.1"
   },
   "devDependencies": {
-    "prettier": "^3.3.3"
+    "prettier": "^3.4.2"
   }
 }
