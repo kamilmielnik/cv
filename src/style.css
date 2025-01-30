@@ -416,7 +416,7 @@ a {
 }
 
 .button-icon {
-  --size: 24px;
+  --size: 18px;
 
   width: var(--size);
   height: var(--size);
