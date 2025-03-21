@@ -55,7 +55,7 @@ app.post(/^\/track\/(github|pdf|print|visit)$/, (request, response) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`app listening on port ${PORT}`);
+  console.log(`app listening on http://localhost:${PORT}/`);
 });
 
 function createApp() {
