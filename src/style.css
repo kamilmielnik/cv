@@ -343,6 +343,7 @@ a {
 .experience-description {
   display: flex;
   justify-content: space-between;
+  gap: var(--spacing--xl);
 
   @media only screen and (max-width: 220mm) {
     display: block;
@@ -351,7 +352,6 @@ a {
 
 .experience-extra {
   flex: 0 0 auto;
-  margin-left: var(--spacing--xxxl);
   text-align: right;
 
   &:before {
