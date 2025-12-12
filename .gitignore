@@ -1,6 +1,7 @@
 *.db
 *.log
 *.pdf
+.cache/
 node_modules/
 todo.txt
 tracking.json
