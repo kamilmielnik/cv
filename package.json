@@ -4,7 +4,7 @@
   "description": "Kamil Mielnik's Curriculum Vitae",
   "type": "module",
   "engines": {
-    "node": ">=22"
+    "node": ">=24"
   },
   "repository": {
     "type": "git",
