@@ -13,16 +13,16 @@ export function getServerTrackingData(request) {
   };
 }
 
-export function getClientTrackingData(request) {
-  if (!isClientTrackingData(request.body)) {
+export function getClientTrackingData(requestBody) {
+  if (!isClientTrackingData(requestBody)) {
     throw new Error('Invalid request body');
   }
 
   return {
-    language: request.body.language,
-    platform: request.body.platform,
-    timezone: request.body.timezone,
-    timezoneOffset: request.body.timezoneOffset,
+    language: requestBody.language,
+    platform: requestBody.platform,
+    timezone: requestBody.timezone,
+    timezoneOffset: requestBody.timezoneOffset,
   };
 }
 

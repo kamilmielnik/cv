@@ -1,8 +1,8 @@
-import bodyParser from 'body-parser';
+import cero from '0http';
 import compression from 'compression';
-import express from 'express';
 import fs from 'fs';
 import path from 'path';
+import serveStatic from 'serve-static';
 import { fileURLToPath } from 'url';
 
 import { createPdfIfNeeded } from './pdf.mjs';
@@ -17,54 +17,79 @@ const PDF_URL = `http://127.0.0.1:${PORT}`;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const app = createApp();
+const { router, server } = cero();
 const indexHtml = getIndexHtml();
 
-app.get('/', (_request, response) => {
+router.use('/', compression());
+router.use('/', serveStatic(path.resolve(__dirname, 'public')));
+
+router.get('/', (_request, response) => {
   try {
-    response.send(renderIndexHtml());
+    response.setHeader('Content-Type', 'text/html');
+    response.end(renderIndexHtml());
   } catch (error) {
-    response.status(500).send(error?.message ?? 'Server error');
+    response.statusCode = 500;
+    response.end(error?.message ?? 'Server error');
     console.error(error);
   }
 });
 
-app.get('/pdf', async (_request, response) => {
+router.get('/pdf', async (_request, response) => {
   try {
     await createPdfIfNeeded(PDF_FILEPATH, PDF_URL);
-    response.download(PDF_FILEPATH, PDF_FILENAME);
+    response.setHeader('Content-Disposition', `attachment; filename="${PDF_FILENAME}"`);
+    response.setHeader('Content-Type', 'application/pdf');
+    fs.createReadStream(PDF_FILEPATH).pipe(response);
   } catch (error) {
-    response.status(500).send(error?.message ?? 'Server error');
+    response.statusCode = 500;
+    response.end(error?.message ?? 'Server error');
     console.error(error);
   }
 });
 
-app.post(/^\/track\/(github|pdf|print|visit)$/, (request, response) => {
+const VALID_TRACK_ACTIONS = new Set(['github', 'pdf', 'print', 'visit']);
+
+router.post('/track/:action', (request, response) => {
   try {
-    trackingDb.data.track.push({
-      action: request.path.split('/').at(-1),
-      client: getClientTrackingData(request),
-      server: getServerTrackingData(request),
+    const { action } = request.params;
+
+    if (!VALID_TRACK_ACTIONS.has(action)) {
+      response.statusCode = 404;
+      response.end('Not Found');
+      return;
+    }
+
+    let body = '';
+
+    request.on('data', (chunk) => {
+      body += chunk;
     });
-    trackingDb.write();
-    response.send();
+
+    request.on('end', () => {
+      try {
+        trackingDb.data.track.push({
+          action,
+          client: getClientTrackingData(body ? JSON.parse(body) : {}),
+          server: getServerTrackingData(request),
+        });
+        trackingDb.write();
+        response.end();
+      } catch (error) {
+        response.statusCode = 500;
+        response.end(error?.message ?? 'Server error');
+        console.error(error);
+      }
+    });
   } catch (error) {
-    response.status(500).send(error?.message ?? 'Server error');
+    response.statusCode = 500;
+    response.end(error?.message ?? 'Server error');
     console.error(error);
   }
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`app listening on http://localhost:${PORT}/`);
 });
-
-function createApp() {
-  const app = express();
-  app.use(compression());
-  app.use(express.static(path.resolve(__dirname, 'public')));
-  app.use(bodyParser.json());
-  return app;
-}
 
 function getIndexHtml() {
   const indexHtml = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8');
