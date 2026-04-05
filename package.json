@@ -30,9 +30,9 @@
     "compression": "^1.8.1",
     "express": "^5.2.1",
     "lowdb": "^7.0.1",
-    "puppeteer": "^24.33.0"
+    "puppeteer": "^24.40.0"
   },
   "devDependencies": {
-    "prettier": "^3.7.4"
+    "prettier": "^3.8.1"
   }
 }
