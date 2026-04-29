@@ -4,6 +4,7 @@
   "description": "Kamil Mielnik's Curriculum Vitae",
   "type": "module",
   "engines": {
+    "bun": ">=1.3",
     "node": ">=24"
   },
   "repository": {
@@ -22,8 +23,8 @@
   "homepage": "https://kamilmielnik.com",
   "scripts": {
     "prettier": "prettier --list-different './src/**/*.{js,mjs,html,css}'",
-    "prettier:fix": "npm run prettier -- --write",
-    "start": "NODE_ENV=production node src/index.mjs"
+    "prettier:fix": "bun run prettier --write",
+    "start": "NODE_ENV=production bun src/index.mjs"
   },
   "dependencies": {
     "0http": "^4.4.0",
