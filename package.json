@@ -26,14 +26,14 @@
     "start": "NODE_ENV=production bun src/index.mjs"
   },
   "dependencies": {
-    "0http": "^4.4.0",
+    "0http": "^5.0.0",
     "@minify-html/node": "^0.18.1",
     "compression": "^1.8.1",
     "lowdb": "^7.0.1",
     "serve-static": "^2.2.1",
-    "puppeteer": "^24.43.0"
+    "puppeteer": "^25.1.0"
   },
   "devDependencies": {
-    "oxfmt": "^0.48.0"
+    "oxfmt": "^0.52.0"
   }
 }
