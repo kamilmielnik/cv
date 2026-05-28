@@ -89,6 +89,7 @@ body {
   line-height: var(--line-height);
 
   @media print {
+    padding-block: var(--a4--padding);
     background: white;
   }
 
