@@ -3,7 +3,6 @@
 
   <p>
     <img src="https://img.shields.io/github/package-json/v/kamilmielnik/cv" alt="Version" />
-    <img src="https://img.shields.io/badge/bun-%3E=1.3-brightgreen.svg" />
     <img src="https://img.shields.io/badge/node-%3E=24-brightgreen.svg" />
     <img src="https://github.com/kamilmielnik/cv/actions/workflows/oxfmt.yml/badge.svg" alt="Format" />
   </p>
@@ -18,6 +17,6 @@
 ## Setup
 
 ```Shell
-bun install
-bun start
+npm install
+npm start
 ```
