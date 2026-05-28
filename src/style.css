@@ -80,7 +80,7 @@
 
 body {
   margin: 0 auto;
-  padding-block: 60px;
+  padding-block: var(--spacing--xxxl);
   padding-inline: 0;
   background-color: var(--color--background);
   color: var(--color--text);
