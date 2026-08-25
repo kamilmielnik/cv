@@ -24,4 +24,5 @@ jobs:
             git checkout ${{ inputs.branch }}
             git pull origin ${{ inputs.branch }}
             npm install
+            npx puppeteer install chrome
             sudo systemctl restart cv.service
