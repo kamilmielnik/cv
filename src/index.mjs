@@ -10,6 +10,7 @@ import { getClientTrackingData, getServerTrackingData, trackingDb } from './trac
 import { formatNumberOfMonths, minify, sumTimePeriods } from './utils.mjs';
 
 const PORT = 3000;
+const SITE_URL = 'https://kamilmielnik.com';
 const PDF_FILENAME = 'KamilMielnik.pdf';
 const PDF_FILEPATH = path.resolve(PDF_FILENAME);
 const PDF_URL = `http://127.0.0.1:${PORT}`;
@@ -28,9 +29,7 @@ router.get('/', (_request, response) => {
     response.setHeader('Content-Type', 'text/html');
     response.end(renderIndexHtml());
   } catch (error) {
-    response.statusCode = 500;
-    response.end(error?.message ?? 'Server error');
-    console.error(error);
+    sendServerError(response, error);
   }
 });
 
@@ -39,11 +38,10 @@ router.get('/pdf', async (_request, response) => {
     await createPdfIfNeeded(PDF_FILEPATH, PDF_URL);
     response.setHeader('Content-Disposition', `attachment; filename="${PDF_FILENAME}"`);
     response.setHeader('Content-Type', 'application/pdf');
+    response.setHeader('Link', `<${SITE_URL}/>; rel="canonical"`);
     fs.createReadStream(PDF_FILEPATH).pipe(response);
   } catch (error) {
-    response.statusCode = 500;
-    response.end(error?.message ?? 'Server error');
-    console.error(error);
+    sendServerError(response, error);
   }
 });
 
@@ -75,15 +73,11 @@ router.post('/track/:action', (request, response) => {
         trackingDb.write();
         response.end();
       } catch (error) {
-        response.statusCode = 500;
-        response.end(error?.message ?? 'Server error');
-        console.error(error);
+        sendServerError(response, error);
       }
     });
   } catch (error) {
-    response.statusCode = 500;
-    response.end(error?.message ?? 'Server error');
-    console.error(error);
+    sendServerError(response, error);
   }
 });
 
@@ -106,4 +100,10 @@ function renderIndexHtml() {
   const currentPositionDuration = formatNumberOfMonths(months);
   const html = indexHtml.replace('{{ currentPositionDuration }}', currentPositionDuration);
   return html;
+}
+
+function sendServerError(response, error) {
+  console.error(error);
+  response.statusCode = 500;
+  response.end('Server error');
 }
