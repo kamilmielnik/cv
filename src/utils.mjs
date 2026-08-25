@@ -49,5 +49,5 @@ function monthDifference(timePeriod) {
 }
 
 export function minify(htmlOrCss) {
-  return String(minifyHtml.minify(Buffer.from(htmlOrCss), {}));
+  return String(minifyHtml.minify(Buffer.from(htmlOrCss), { keep_html_and_head_opening_tags: true }));
 }
