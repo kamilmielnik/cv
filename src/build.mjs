@@ -1,3 +1,4 @@
+import { execFile } from 'node:child_process';
 import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -9,6 +10,7 @@ import { formatNumberOfMonths, minify, sumTimePeriods } from './utils.mjs';
 
 const DAY = 24 * 60 * 60 * 1000;
 const SITE_URL = 'https://kamilmielnik.com';
+const ROOT_DIR = path.resolve(import.meta.dirname, '..');
 const PUBLIC_DIR = path.join(import.meta.dirname, 'public');
 const HTML_TEMPLATE_PATH = path.join(import.meta.dirname, 'index.html');
 const CSS_TEMPLATE_PATH = path.join(import.meta.dirname, 'style.css');
@@ -21,6 +23,7 @@ const BROTLI_OPTIONS = { params: { [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.c
 const GZIP_OPTIONS = { level: zlib.constants.Z_BEST_COMPRESSION };
 
 const brotliCompress = promisify(zlib.brotliCompress);
+const execFileAsync = promisify(execFile);
 const gzip = promisify(zlib.gzip);
 
 export function keepSiteFresh(distDir, previewUrl) {
@@ -57,6 +60,19 @@ async function hashFilename(filename) {
   return `${path.basename(filename, extension)}.${hash}${extension}`;
 }
 
+async function getLastModified() {
+  const { stdout } = await execFileAsync('git', ['log', '-1', '--format=%cs', '--', ...TEMPLATE_PATHS], {
+    cwd: ROOT_DIR,
+  });
+  const lastModified = stdout.trim();
+
+  if (lastModified === '') {
+    throw new Error('No commit touches the templates');
+  }
+
+  return lastModified;
+}
+
 async function copyPublicFiles(distDir, hashedFilenames) {
   const filenames = await fs.readdir(PUBLIC_DIR);
   return Promise.all(
@@ -66,12 +82,6 @@ async function copyPublicFiles(distDir, hashedFilenames) {
       return distFilename;
     }),
   );
-}
-
-async function getLastModified() {
-  const stats = await Promise.all(TEMPLATE_PATHS.map((filepath) => fs.stat(filepath)));
-  const modifiedAt = Math.max(...stats.map((stat) => stat.mtimeMs));
-  return new Date(modifiedAt).toISOString().slice(0, 'YYYY-MM-DD'.length);
 }
 
 function renderSitemapXml(lastModified) {
