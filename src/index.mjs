@@ -75,24 +75,59 @@ function sendIndexHtml(request, response) {
 
 async function sendPdf(request, response) {
   try {
-    if (!fs.existsSync(PDF_FILEPATH)) {
+    const file = await openPdf();
+
+    if (file === null) {
       response.setHeader('Retry-After', '10');
       sendStatus(response, 503);
       return;
     }
 
-    response.setHeader('Content-Disposition', `inline; filename="${PDF_FILENAME}"`);
-    response.setHeader('Content-Type', 'application/pdf');
-    response.setHeader('Link', `<${SITE_URL}/>; rel="canonical"`);
-    if (request.method === 'HEAD') {
-      response.end();
-      return;
+    try {
+      await sendPdfFile(file, request, response);
+    } finally {
+      await file.close();
     }
-
-    await pipeline(fs.createReadStream(PDF_FILEPATH), response);
   } catch (error) {
     sendServerError(response, error);
   }
+}
+
+async function openPdf() {
+  try {
+    return await fs.promises.open(PDF_FILEPATH);
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      return null;
+    }
+
+    throw error;
+  }
+}
+
+async function sendPdfFile(file, request, response) {
+  const { size, mtime } = await file.stat();
+  const lastModified = mtime.toUTCString();
+  response.setHeader('Cache-Control', 'no-cache');
+  response.setHeader('Last-Modified', lastModified);
+
+  if (request.headers['if-modified-since'] === lastModified) {
+    response.statusCode = 304;
+    response.end();
+    return;
+  }
+
+  response.setHeader('Content-Disposition', `inline; filename="${PDF_FILENAME}"`);
+  response.setHeader('Content-Length', size);
+  response.setHeader('Content-Type', 'application/pdf');
+  response.setHeader('Link', `<${SITE_URL}/>; rel="canonical"`);
+
+  if (request.method === 'HEAD') {
+    response.end();
+    return;
+  }
+
+  await pipeline(file.createReadStream({ autoClose: false }), response);
 }
 
 function sendSitemapXml(_request, response) {
