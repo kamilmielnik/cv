@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import puppeteer from 'puppeteer';
 
 const HOUR = 60 * 60 * 1000;

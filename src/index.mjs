@@ -1,9 +1,8 @@
 import cero from '0http';
 import compression from 'compression';
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import serveStatic from 'serve-static';
-import { fileURLToPath } from 'url';
 
 import { createPdfIfNeeded } from './pdf.mjs';
 import { getClientTrackingData, getServerTrackingData, trackingDb } from './tracking.mjs';
@@ -15,14 +14,11 @@ const PDF_FILENAME = 'KamilMielnik.pdf';
 const PDF_FILEPATH = path.resolve(PDF_FILENAME);
 const PDF_URL = `http://127.0.0.1:${PORT}`;
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 const { router, server } = cero();
 const indexHtml = getIndexHtml();
 
 router.use('/', compression());
-router.use('/', serveStatic(path.resolve(__dirname, 'public')));
+router.use('/', serveStatic(path.resolve(import.meta.dirname, 'public')));
 
 router.get('/', (_request, response) => {
   try {
@@ -86,8 +82,8 @@ server.listen(PORT, () => {
 });
 
 function getIndexHtml() {
-  const indexHtml = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8');
-  const css = fs.readFileSync(path.resolve(__dirname, 'style.css'), 'utf-8');
+  const indexHtml = fs.readFileSync(path.resolve(import.meta.dirname, 'index.html'), 'utf-8');
+  const css = fs.readFileSync(path.resolve(import.meta.dirname, 'style.css'), 'utf-8');
   const minifiedIndexHtml = minify(indexHtml);
   const minifiedCss = minify(css);
   const minifiedHtml = minifiedIndexHtml.replace('<style></style>', `<style>${minifiedCss}</style>`);
