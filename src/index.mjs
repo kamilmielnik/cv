@@ -28,6 +28,8 @@ const lastModified = getLastModified();
 const indexHtml = getIndexHtml(lastModified);
 const sitemapXml = renderSitemapXml(lastModified);
 
+router.use(rejectTrailingSlash);
+
 router.get('/', sendIndexHtml);
 router.head('/', sendIndexHtml);
 router.get('/pdf', sendPdf);
@@ -41,6 +43,15 @@ server.listen(PORT, HOST, () => {
   console.log(`app listening on http://${HOST}:${PORT}/`);
   keepPdfFresh(PDF_FILEPATH, RENDER_URL);
 });
+
+function rejectTrailingSlash(request, response, next) {
+  if (request.path.length > 1 && request.path.endsWith('/')) {
+    sendStatus(response, 404);
+    return;
+  }
+
+  next();
+}
 
 function sendIndexHtml(request, response) {
   try {
