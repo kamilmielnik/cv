@@ -60,8 +60,9 @@
   --color--shadow--active: #666666;
   --color--text: #000000;
 
-  --transition: all var(--transition--duration) var(--transition--easing);
+  --transition--duration: 150ms;
   --transition--easing: cubic-bezier(0.61, 1, 0.88, 1); /* easeOutSine */
+  --transition: all var(--transition--duration) var(--transition--easing);
 
   --box-shadow: 0px 0px 5px 2px var(--color--shadow);
   --box-shadow--active: 0px 0px 5px 2px var(--color--shadow--active);
