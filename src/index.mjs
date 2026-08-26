@@ -54,6 +54,11 @@ router.post('/track/:action', async (request, response) => {
       return;
     }
 
+    if (!isSameOrigin(request)) {
+      sendStatus(response, 403);
+      return;
+    }
+
     if (!isJsonRequest(request)) {
       sendStatus(response, 415);
       return;
@@ -100,6 +105,11 @@ function renderIndexHtml() {
   const currentPositionDuration = formatNumberOfMonths(months);
   const html = indexHtml.replace('{{ currentPositionDuration }}', currentPositionDuration);
   return html;
+}
+
+function isSameOrigin(request) {
+  const { origin, host } = request.headers;
+  return typeof origin === 'string' && URL.canParse(origin) && new URL(origin).host === host;
 }
 
 function isJsonRequest(request) {
