@@ -20,8 +20,8 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch-path=src src/index.mjs",
-    "format": "oxfmt --check './src/**/*.{js,mjs,html,css}'",
-    "format:fix": "oxfmt './src/**/*.{js,mjs,html,css}'",
+    "format": "oxfmt --check",
+    "format:fix": "oxfmt",
     "start": "node src/index.mjs"
   },
   "dependencies": {
