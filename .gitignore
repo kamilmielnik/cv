@@ -1,6 +1,5 @@
-*.pdf
-*.tmp
 .cache/
+dist/
 node_modules/
 todo.txt
 tracking.json
