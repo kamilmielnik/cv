@@ -434,6 +434,7 @@ March 1, 2014 - July 22, 2015"
           body: JSON.stringify({
             language: navigator.language,
             platform: navigator.platform,
+            referrer: document.referrer || undefined,
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
             timezoneOffset: new Date().getTimezoneOffset(),
           }),
