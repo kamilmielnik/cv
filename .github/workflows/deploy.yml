@@ -18,14 +18,17 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2 # v1.2.5
+        env:
+          BRANCH: ${{ inputs.branch }}
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_KEY }}
+          envs: BRANCH
           script: |
             cd /projects/cv
-            git checkout ${{ inputs.branch }}
-            git pull origin ${{ inputs.branch }}
+            git checkout "$BRANCH"
+            git pull origin "$BRANCH"
             # Google geo-blocks Chrome for Testing downloads from the VPS's IPv6 address
             export NODE_OPTIONS=--dns-result-order=ipv4first
             npm install
