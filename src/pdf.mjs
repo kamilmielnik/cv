@@ -35,9 +35,21 @@ async function createPdf(filepath, url) {
 
   try {
     const page = await browser.newPage();
+    await ignoreTracking(page);
     await page.goto(url, { waitUntil: 'networkidle0' });
     await page.pdf({ format: 'a4', path: filepath });
   } finally {
     await browser.close();
   }
+}
+
+async function ignoreTracking(page) {
+  await page.setRequestInterception(true);
+  page.on('request', (request) => {
+    if (new URL(request.url()).pathname.startsWith('/track/')) {
+      request.abort();
+    } else {
+      request.continue();
+    }
+  });
 }
