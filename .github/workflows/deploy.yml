@@ -30,6 +30,7 @@ jobs:
             git pull origin "$BRANCH"
             # Google geo-blocks Chrome for Testing downloads from the VPS's IPv6 address
             export NODE_OPTIONS=--dns-result-order=ipv4first
-            npm install
+            PUPPETEER_SKIP_DOWNLOAD=true npm ci --omit=dev
+            npx puppeteer browsers clear
             npx puppeteer browsers install chrome
             sudo systemctl restart cv.service
