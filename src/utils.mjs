@@ -48,6 +48,6 @@ function monthDifference(timePeriod) {
   return difference;
 }
 
-export function minify(htmlOrCss) {
-  return String(minifyHtml.minify(Buffer.from(htmlOrCss), { keep_html_and_head_opening_tags: true }));
+export function minify(html) {
+  return String(minifyHtml.minify(Buffer.from(html), { keep_html_and_head_opening_tags: true, minify_css: true }));
 }

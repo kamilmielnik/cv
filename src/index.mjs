@@ -121,20 +121,23 @@ async function trackAction(request, response) {
 }
 
 function getIndexHtml() {
-  const indexHtml = fs.readFileSync(path.resolve(import.meta.dirname, 'index.html'), 'utf-8');
-  const css = fs.readFileSync(path.resolve(import.meta.dirname, 'style.css'), 'utf-8');
-  const minifiedIndexHtml = minify(indexHtml);
-  const minifiedCss = minify(css);
-  const minifiedHtml = minifiedIndexHtml.replace('<style></style>', `<style>${minifiedCss}</style>`);
-  return minifiedHtml;
+  const html = fs.readFileSync(path.join(import.meta.dirname, 'index.html'), 'utf-8');
+  const css = fs.readFileSync(path.join(import.meta.dirname, 'style.css'), 'utf-8');
+  return minify(replaceOnce(html, '<style></style>', `<style>${css}</style>`));
 }
 
 function renderIndexHtml() {
   const start = new Date(2023, 4, 15);
   const months = sumTimePeriods([{ start, end: null }]);
-  const currentPositionDuration = formatNumberOfMonths(months);
-  const html = indexHtml.replace('{{ currentPositionDuration }}', currentPositionDuration);
-  return html;
+  return replaceOnce(indexHtml, '{{ currentPositionDuration }}', formatNumberOfMonths(months));
+}
+
+function replaceOnce(text, search, replacement) {
+  if (!text.includes(search)) {
+    throw new Error(`"${search}" not found in index.html`);
+  }
+
+  return text.replace(search, replacement);
 }
 
 function createEtag(content) {
