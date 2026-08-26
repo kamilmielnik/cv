@@ -6,7 +6,7 @@ import path from 'node:path';
 import { pipeline } from 'node:stream/promises';
 import serveStatic from 'serve-static';
 
-import { createPdfIfNeeded } from './pdf.mjs';
+import { keepPdfFresh } from './pdf.mjs';
 import { getClientTrackingData, getServerTrackingData, trackEvent } from './tracking.mjs';
 import { formatNumberOfMonths, minify, sumTimePeriods } from './utils.mjs';
 
@@ -33,6 +33,7 @@ router.post('/track/:action', trackAction);
 
 server.listen(PORT, () => {
   console.log(`app listening on http://localhost:${PORT}/`);
+  keepPdfFresh(PDF_FILEPATH, PDF_URL);
 });
 
 function sendIndexHtml(_request, response) {
@@ -46,7 +47,12 @@ function sendIndexHtml(_request, response) {
 
 async function sendPdf(request, response) {
   try {
-    await createPdfIfNeeded(PDF_FILEPATH, PDF_URL);
+    if (!fs.existsSync(PDF_FILEPATH)) {
+      response.setHeader('Retry-After', '10');
+      sendStatus(response, 503);
+      return;
+    }
+
     response.setHeader('Content-Disposition', `inline; filename="${PDF_FILENAME}"`);
     response.setHeader('Content-Type', 'application/pdf');
     response.setHeader('Link', `<${SITE_URL}/>; rel="canonical"`);

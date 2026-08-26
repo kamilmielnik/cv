@@ -1,6 +1,7 @@
 *.db
 *.log
 *.pdf
+*.tmp
 .cache/
 node_modules/
 todo.txt
