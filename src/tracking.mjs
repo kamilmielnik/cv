@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const TRACKING_FILEPATH = path.resolve(import.meta.dirname, '..', 'tracking.jsonl');
 const MAX_FIELD_LENGTH = 64;
+const MAX_HEADER_LENGTH = 256;
 
 export function trackEvent(event) {
   return fs.appendFile(TRACKING_FILEPATH, `${JSON.stringify(event)}\n`);
@@ -10,11 +11,15 @@ export function trackEvent(event) {
 
 export function getServerTrackingData(request) {
   return {
-    referer: request.headers.referer,
+    referer: truncate(request.headers.referer),
     timestamp: Date.now(),
-    userAgent: request.headers['user-agent'],
-    xRealIp: request.headers['x-real-ip'],
+    userAgent: truncate(request.headers['user-agent']),
+    xRealIp: truncate(request.headers['x-real-ip']),
   };
+}
+
+function truncate(header) {
+  return header?.slice(0, MAX_HEADER_LENGTH);
 }
 
 export function getClientTrackingData(requestBody) {
