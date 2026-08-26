@@ -10,7 +10,6 @@ export function trackEvent(event) {
 
 export function getServerTrackingData(request) {
   return {
-    origin: request.headers.origin,
     referer: request.headers.referer,
     timestamp: Date.now(),
     userAgent: request.headers['user-agent'],

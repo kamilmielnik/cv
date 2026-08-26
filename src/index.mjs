@@ -125,6 +125,7 @@ async function trackAction(request, response) {
     }
 
     await trackEvent({ action, client, server: getServerTrackingData(request) });
+    response.statusCode = 204;
     response.end();
   } catch (error) {
     sendServerError(response, error);
