@@ -5,6 +5,7 @@ const TRACKING_FILEPATH = path.resolve(import.meta.dirname, '..', 'tracking.json
 const MAX_FIELD_LENGTH = 64;
 const MAX_HEADER_LENGTH = 256;
 const MAX_REFERRER_LENGTH = 512;
+const MAX_TIMEZONE_OFFSET_MINUTES = 14 * 60;
 
 export function trackEvent(event) {
   return fs.appendFile(TRACKING_FILEPATH, `${JSON.stringify(event)}\n`);
@@ -43,7 +44,7 @@ function isClientTrackingData(payload) {
     isOptionalString(payload.platform, MAX_FIELD_LENGTH) &&
     isOptionalString(payload.referrer, MAX_REFERRER_LENGTH) &&
     isOptionalString(payload.timezone, MAX_FIELD_LENGTH) &&
-    typeof payload.timezoneOffset === 'number'
+    isTimezoneOffset(payload.timezoneOffset)
   );
 }
 
@@ -57,4 +58,8 @@ function isString(value, maxLength) {
 
 function isOptionalString(value, maxLength) {
   return typeof value === 'undefined' || isString(value, maxLength);
+}
+
+function isTimezoneOffset(value) {
+  return Number.isInteger(value) && Math.abs(value) <= MAX_TIMEZONE_OFFSET_MINUTES;
 }
