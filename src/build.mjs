@@ -14,6 +14,8 @@ const HTML_TEMPLATE_PATH = path.join(import.meta.dirname, 'index.html');
 const CSS_TEMPLATE_PATH = path.join(import.meta.dirname, 'style.css');
 const TEMPLATE_PATHS = [HTML_TEMPLATE_PATH, CSS_TEMPLATE_PATH];
 const PDF_FILENAME = 'KamilMielnik.pdf';
+const HASHED_FILE_EXTENSIONS = new Set(['.woff2']);
+const HASH_LENGTH = 8;
 const CURRENT_POSITION_START = new Date(2023, 4, 15);
 const BROTLI_OPTIONS = { params: { [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY } };
 const GZIP_OPTIONS = { level: zlib.constants.Z_BEST_COMPRESSION };
@@ -29,17 +31,41 @@ export function keepSiteFresh(distDir, previewUrl) {
 
 async function buildSite(distDir, previewUrl) {
   await fs.mkdir(distDir, { recursive: true });
-  await copyPublicFiles(distDir);
+  const hashedFilenames = await getHashedFilenames();
   const lastModified = await getLastModified();
-  await writeTextFile(distDir, 'sitemap.xml', renderSitemapXml(lastModified));
-  await writeTextFile(distDir, 'index.html', await renderIndexHtml(lastModified));
+  const publicFilenames = await copyPublicFiles(distDir, hashedFilenames);
+  const sitemapFilenames = await writeTextFile(distDir, 'sitemap.xml', renderSitemapXml(lastModified));
+  const indexFilenames = await writeTextFile(
+    distDir,
+    'index.html',
+    await renderIndexHtml(lastModified, hashedFilenames),
+  );
   await createPdf(path.join(distDir, PDF_FILENAME), previewUrl);
+  await removeStaleFiles(distDir, new Set([...publicFilenames, ...sitemapFilenames, ...indexFilenames, PDF_FILENAME]));
 }
 
-async function copyPublicFiles(distDir) {
-  for (const filename of await fs.readdir(PUBLIC_DIR)) {
-    await writeFileAtomically(path.join(distDir, filename), await fs.readFile(path.join(PUBLIC_DIR, filename)));
-  }
+async function getHashedFilenames() {
+  const filenames = await fs.readdir(PUBLIC_DIR);
+  const hashable = filenames.filter((filename) => HASHED_FILE_EXTENSIONS.has(path.extname(filename)));
+  return new Map(await Promise.all(hashable.map(async (filename) => [filename, await hashFilename(filename)])));
+}
+
+async function hashFilename(filename) {
+  const content = await fs.readFile(path.join(PUBLIC_DIR, filename));
+  const hash = crypto.createHash('sha256').update(content).digest('hex').slice(0, HASH_LENGTH);
+  const extension = path.extname(filename);
+  return `${path.basename(filename, extension)}.${hash}${extension}`;
+}
+
+async function copyPublicFiles(distDir, hashedFilenames) {
+  const filenames = await fs.readdir(PUBLIC_DIR);
+  return Promise.all(
+    filenames.map(async (filename) => {
+      const distFilename = hashedFilenames.get(filename) ?? filename;
+      await writeFileAtomically(path.join(distDir, distFilename), await fs.readFile(path.join(PUBLIC_DIR, filename)));
+      return distFilename;
+    }),
+  );
 }
 
 async function getLastModified() {
@@ -57,11 +83,15 @@ function renderSitemapXml(lastModified) {
   ].join('');
 }
 
-async function renderIndexHtml(lastModified) {
+async function renderIndexHtml(lastModified, hashedFilenames) {
   const html = await fs.readFile(HTML_TEMPLATE_PATH, 'utf-8');
   const css = await fs.readFile(CSS_TEMPLATE_PATH, 'utf-8');
   const withCss = replaceOnce(html, '<style></style>', `<style>${css}</style>`);
-  const withDateModified = replaceOnce(withCss, '{{ dateModified }}', lastModified);
+  const withHashedUrls = [...hashedFilenames].reduce(
+    (text, [filename, hashedFilename]) => replaceAll(text, `/${filename}`, `/${hashedFilename}`),
+    withCss,
+  );
+  const withDateModified = replaceOnce(withHashedUrls, '{{ dateModified }}', lastModified);
   const withDuration = replaceOnce(withDateModified, '{{ currentPositionDuration }}', getCurrentPositionDuration());
   const minified = minify(withDuration);
   return replaceOnce(minified, '{{ contentSecurityPolicy }}', createContentSecurityPolicy(minified));
@@ -72,11 +102,19 @@ function getCurrentPositionDuration() {
 }
 
 function replaceOnce(text, search, replacement) {
+  assertIncludes(text, search);
+  return text.replace(search, replacement);
+}
+
+function replaceAll(text, search, replacement) {
+  assertIncludes(text, search);
+  return text.replaceAll(search, replacement);
+}
+
+function assertIncludes(text, search) {
   if (!text.includes(search)) {
     throw new Error(`"${search}" not found`);
   }
-
-  return text.replace(search, replacement);
 }
 
 function createContentSecurityPolicy(html) {
@@ -112,10 +150,19 @@ async function writeTextFile(distDir, filename, text) {
   await writeFileAtomically(`${filepath}.br`, await brotliCompress(buffer, BROTLI_OPTIONS));
   await writeFileAtomically(`${filepath}.gz`, await gzip(buffer, GZIP_OPTIONS));
   await writeFileAtomically(filepath, buffer);
+  return [`${filename}.br`, `${filename}.gz`, filename];
 }
 
 async function writeFileAtomically(filepath, data) {
   const temporaryFilepath = `${filepath}.tmp`;
   await fs.writeFile(temporaryFilepath, data);
   await fs.rename(temporaryFilepath, filepath);
+}
+
+async function removeStaleFiles(distDir, filenames) {
+  for (const filename of await fs.readdir(distDir)) {
+    if (!filenames.has(filename)) {
+      await fs.rm(path.join(distDir, filename));
+    }
+  }
 }
