@@ -39,7 +39,7 @@ async function buildSite(distDir, previewUrl) {
   const distFilenames = await copyPublicFiles(distDir);
   const sitemapFilenames = await writeTextFile(distDir, 'sitemap.xml', renderSitemapXml(lastModified));
   const indexFilenames = await writeTextFile(distDir, 'index.html', await renderIndexHtml(lastModified, distFilenames));
-  await createPdf(path.join(distDir, PDF_FILENAME), previewUrl);
+  await writeFileAtomically(path.join(distDir, PDF_FILENAME), await createPdf(previewUrl));
   await removeStaleFiles(
     distDir,
     new Set([...distFilenames.values(), ...sitemapFilenames, ...indexFilenames, PDF_FILENAME]),
