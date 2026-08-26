@@ -47,7 +47,7 @@ function sendIndexHtml(_request, response) {
 async function sendPdf(request, response) {
   try {
     await createPdfIfNeeded(PDF_FILEPATH, PDF_URL);
-    response.setHeader('Content-Disposition', `attachment; filename="${PDF_FILENAME}"`);
+    response.setHeader('Content-Disposition', `inline; filename="${PDF_FILENAME}"`);
     response.setHeader('Content-Type', 'application/pdf');
     response.setHeader('Link', `<${SITE_URL}/>; rel="canonical"`);
     if (request.method === 'HEAD') {
