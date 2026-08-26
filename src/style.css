@@ -321,7 +321,7 @@ a {
 }
 
 .experience-time {
-  flex: 0 0 96px;
+  flex: 0 0 88px;
 
   @media only screen and (max-width: 220mm) {
     flex: 0 0 auto;
