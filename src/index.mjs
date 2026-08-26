@@ -25,6 +25,7 @@ const MAX_TRACK_BODY_BYTES = 1024;
 const { router, server } = cero();
 const lastModified = getLastModified();
 const indexHtml = getIndexHtml(lastModified);
+const sitemapXml = renderSitemapXml(lastModified);
 
 router.use('/', serveStatic(PUBLIC_DIR, { maxAge: '1d', setHeaders: setStaticCacheControl }));
 
@@ -32,6 +33,8 @@ router.get('/', sendIndexHtml);
 router.head('/', sendIndexHtml);
 router.get('/pdf', sendPdf);
 router.head('/pdf', sendPdf);
+router.get('/sitemap.xml', sendSitemapXml);
+router.head('/sitemap.xml', sendSitemapXml);
 router.post('/track/:action', trackAction);
 
 server.listen(PORT, () => {
@@ -79,6 +82,12 @@ async function sendPdf(request, response) {
   } catch (error) {
     sendServerError(response, error);
   }
+}
+
+function sendSitemapXml(_request, response) {
+  response.setHeader('Cache-Control', 'public, max-age=86400');
+  response.setHeader('Content-Type', 'application/xml; charset=utf-8');
+  response.end(sitemapXml);
 }
 
 async function trackAction(request, response) {
@@ -138,6 +147,15 @@ function renderIndexHtml() {
   const start = new Date(2023, 4, 15);
   const months = sumTimePeriods([{ start, end: null }]);
   return replaceOnce(indexHtml, '{{ currentPositionDuration }}', formatNumberOfMonths(months));
+}
+
+function renderSitemapXml(lastModified) {
+  return [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    `<url><loc>${SITE_URL}/</loc><lastmod>${lastModified}</lastmod></url>`,
+    '</urlset>',
+  ].join('');
 }
 
 function replaceOnce(text, search, replacement) {
