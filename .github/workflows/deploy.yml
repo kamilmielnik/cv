@@ -33,6 +33,8 @@ jobs:
             export NODE_OPTIONS=--dns-result-order=ipv4first
             PUPPETEER_SKIP_DOWNLOAD=true npm ci --omit=dev
             npx puppeteer browsers install chrome
-            find .cache/puppeteer/chrome -mindepth 1 -maxdepth 1 ! -name "linux-$(node -p "require('puppeteer').PUPPETEER_REVISIONS.chrome")" -exec rm -rf {} +
+            CHROME_BUILD="$(node -p "require('puppeteer').PUPPETEER_REVISIONS.chrome")"
+            test -d ".cache/puppeteer/chrome/linux-$CHROME_BUILD"
+            find .cache/puppeteer/chrome -mindepth 1 -maxdepth 1 ! -name "linux-$CHROME_BUILD" -exec rm -rf {} +
             rm -rf .cache/puppeteer/chrome-headless-shell
             sudo systemctl restart cv.service
