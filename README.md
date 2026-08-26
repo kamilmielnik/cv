@@ -20,10 +20,3 @@
 npm install
 npm run dev
 ```
-
-## How it works
-
-- `/` serves `src/index.html` with `src/style.css` inlined and minified; the duration of the current position is computed per request.
-- `/pdf` serves `KamilMielnik.pdf`, rendered from `/` with Puppeteer at startup and once a day.
-- `/track/:action` appends visits and button clicks to `tracking.jsonl`.
-- The *Deploy* workflow pulls the chosen branch on the server and restarts `cv.service`.
