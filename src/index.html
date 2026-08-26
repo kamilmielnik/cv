@@ -360,33 +360,18 @@ March 1, 2014 - July 22, 2015"
         rel="noopener noreferrer"
         target="_blank"
         title="See this project on GitHub"
-        onclick="track('github')"
+        data-track="github"
       >
         <svg class="button-icon" aria-hidden="true"><use href="#github"></use></svg>
         GitHub
       </a>
 
-      <button
-        class="button print"
-        title="Print CV"
-        type="button"
-        onclick="
-          track('print');
-          window.print();
-        "
-      >
+      <button class="button print" title="Print CV" type="button" data-track="print">
         <svg class="button-icon" aria-hidden="true"><use href="#print"></use></svg>
         Print
       </button>
 
-      <a
-        class="button pdf"
-        href="/pdf"
-        rel="noopener noreferrer"
-        target="_blank"
-        title="Download PDF"
-        onclick="track('pdf')"
-      >
+      <a class="button pdf" href="/pdf" rel="noopener noreferrer" target="_blank" title="Download PDF" data-track="pdf">
         <svg class="button-icon" aria-hidden="true"><use href="#download"></use></svg>
         PDF
       </a>
@@ -427,9 +412,13 @@ March 1, 2014 - July 22, 2015"
     </svg>
 
     <script>
-      requestIdleCallback(() => {
-        track('visit');
-      });
+      for (const element of document.querySelectorAll('[data-track]')) {
+        element.addEventListener('click', () => track(element.dataset.track));
+      }
+
+      document.querySelector('.button.print').addEventListener('click', () => window.print());
+
+      (window.requestIdleCallback ?? setTimeout)(() => track('visit'));
 
       function track(action) {
         fetch(`/track/${action}`, {
@@ -438,12 +427,12 @@ March 1, 2014 - July 22, 2015"
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            language: navigator?.language,
-            platform: navigator?.platform,
+            language: navigator.language,
+            platform: navigator.platform,
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
             timezoneOffset: new Date().getTimezoneOffset(),
           }),
-        });
+        }).catch(() => {});
       }
     </script>
   </body>
