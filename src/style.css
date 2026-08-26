@@ -295,6 +295,7 @@ a {
 
 .experience-position {
   display: flex;
+  flex-direction: row-reverse;
   gap: var(--spacing--m);
 
   & + & {
@@ -302,7 +303,7 @@ a {
   }
 
   @media only screen and (max-width: 220mm) {
-    flex-direction: row-reverse;
+    flex-direction: row;
   }
 }
 
