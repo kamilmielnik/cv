@@ -160,7 +160,7 @@ function renderSitemapXml(lastModified) {
 
 function replaceOnce(text, search, replacement) {
   if (!text.includes(search)) {
-    throw new Error(`"${search}" not found in index.html`);
+    throw new Error(`"${search}" not found`);
   }
 
   return text.replace(search, replacement);
