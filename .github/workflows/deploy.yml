@@ -25,6 +25,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           envs: BRANCH
           script: |
+            set -euo pipefail
             cd /projects/cv
             git checkout "$BRANCH"
             git pull origin "$BRANCH"
