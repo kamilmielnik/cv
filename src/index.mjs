@@ -24,7 +24,7 @@ router.use('/', serveStatic(path.resolve(import.meta.dirname, 'public')));
 
 router.get('/', (_request, response) => {
   try {
-    response.setHeader('Content-Type', 'text/html');
+    response.setHeader('Content-Type', 'text/html; charset=utf-8');
     response.end(renderIndexHtml());
   } catch (error) {
     sendServerError(response, error);
