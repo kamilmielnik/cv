@@ -28,7 +28,6 @@
   "dependencies": {
     "@minify-html/node": "^0.18.1",
     "0http": "^5.1.0",
-    "compression": "^1.8.1",
     "puppeteer": "^25.9.0",
     "serve-static": "^2.2.1"
   },

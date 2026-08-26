@@ -1,5 +1,4 @@
 import cero from '0http';
-import compression from 'compression';
 import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
@@ -22,7 +21,6 @@ const MAX_TRACK_BODY_BYTES = 1024;
 const { router, server } = cero();
 const indexHtml = getIndexHtml();
 
-router.use('/', compression());
 router.use('/', serveStatic(path.resolve(import.meta.dirname, 'public')));
 
 router.get('/', sendIndexHtml);
