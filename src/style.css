@@ -276,8 +276,6 @@ a {
 }
 
 .experience-time-range {
-  display: flex;
-
   @media only screen and (max-width: 220mm) {
     &:before {
       content: '(';
