@@ -307,16 +307,7 @@ a {
 }
 
 .experience-time {
-  display: flex;
   flex: 0 0 96px;
-
-  &:after {
-    content: ')';
-  }
-
-  &:before {
-    content: '(';
-  }
 
   @media only screen and (max-width: 220mm) {
     flex: 0 0 auto;
@@ -342,10 +333,6 @@ a {
 .experience-extra {
   flex: 0 0 auto;
   text-align: right;
-
-  &:before {
-    content: '+ ';
-  }
 
   @media only screen and (max-width: 220mm) {
     margin-top: var(--spacing--s);
