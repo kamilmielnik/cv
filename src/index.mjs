@@ -28,8 +28,6 @@ const lastModified = getLastModified();
 const indexHtml = getIndexHtml(lastModified);
 const sitemapXml = renderSitemapXml(lastModified);
 
-router.use('/', serveStatic(PUBLIC_DIR, { maxAge: '1d', setHeaders: setStaticCacheControl }));
-
 router.get('/', sendIndexHtml);
 router.head('/', sendIndexHtml);
 router.get('/pdf', sendPdf);
@@ -37,6 +35,7 @@ router.head('/pdf', sendPdf);
 router.get('/sitemap.xml', sendSitemapXml);
 router.head('/sitemap.xml', sendSitemapXml);
 router.post('/track/:action', trackAction);
+router.use('/', serveStatic(PUBLIC_DIR, { maxAge: '1d', setHeaders: setStaticCacheControl }));
 
 server.listen(PORT, HOST, () => {
   console.log(`app listening on http://${HOST}:${PORT}/`);
