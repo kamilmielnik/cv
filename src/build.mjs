@@ -145,8 +145,8 @@ function assertFontsExist(text, hashedFilenames) {
 function createContentSecurityPolicy(html) {
   return [
     "default-src 'none'",
-    `script-src ${hashInlineElements(html, /<script>([^]*?)<\/script>/g)}`,
-    `style-src ${hashInlineElements(html, /<style>([^]*?)<\/style>/g)}`,
+    `script-src ${hashInlineElements(html, /<script\b[^>]*>([^]*?)<\/script>/g)}`,
+    `style-src ${hashInlineElements(html, /<style\b[^>]*>([^]*?)<\/style>/g)}`,
     "font-src 'self'",
     "img-src 'self'",
     "connect-src 'self'",
