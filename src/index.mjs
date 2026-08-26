@@ -228,8 +228,8 @@ function replaceOnce(text, search, replacement) {
 function createContentSecurityPolicy(html) {
   return [
     "default-src 'none'",
-    `script-src '${hashInlineElement(html, /<script>([^]*?)<\/script>/)}'`,
-    `style-src '${hashInlineElement(html, /<style>([^]*?)<\/style>/)}'`,
+    `script-src ${hashInlineElements(html, /<script>([^]*?)<\/script>/g)}`,
+    `style-src ${hashInlineElements(html, /<style>([^]*?)<\/style>/g)}`,
     "font-src 'self'",
     "img-src 'self'",
     "connect-src 'self'",
@@ -239,14 +239,18 @@ function createContentSecurityPolicy(html) {
   ].join('; ');
 }
 
-function hashInlineElement(html, pattern) {
-  const match = html.match(pattern);
+function hashInlineElements(html, pattern) {
+  const hashes = [...html.matchAll(pattern)].map(([, content]) => toContentSecurityPolicyHash(content));
 
-  if (match === null) {
+  if (hashes.length === 0) {
     throw new Error(`No inline element matched ${pattern}`);
   }
 
-  return `sha256-${crypto.createHash('sha256').update(match[1]).digest('base64')}`;
+  return hashes.join(' ');
+}
+
+function toContentSecurityPolicyHash(content) {
+  return `'sha256-${crypto.createHash('sha256').update(content).digest('base64')}'`;
 }
 
 function createEtag(content) {
