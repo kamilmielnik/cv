@@ -26,8 +26,10 @@ const MAX_TRACK_BODY_BYTES = 1024;
 const { router, server } = cero();
 const lastModified = getLastModified();
 const indexHtml = getIndexHtml(lastModified);
+const contentSecurityPolicy = createContentSecurityPolicy(indexHtml);
 const sitemapXml = renderSitemapXml(lastModified);
 
+router.use(setSecurityHeaders);
 router.use(rejectTrailingSlash);
 
 router.get('/', sendIndexHtml);
@@ -44,6 +46,13 @@ server.listen(PORT, HOST, () => {
   keepPdfFresh(PDF_FILEPATH, RENDER_URL);
 });
 
+function setSecurityHeaders(_request, response, next) {
+  response.setHeader('X-Content-Type-Options', 'nosniff');
+  response.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  response.setHeader('Permissions-Policy', 'camera=(), geolocation=(), microphone=()');
+  next();
+}
+
 function rejectTrailingSlash(request, response, next) {
   if (request.path.length > 1 && request.path.endsWith('/')) {
     sendStatus(response, 404);
@@ -58,6 +67,7 @@ function sendIndexHtml(request, response) {
     const html = renderIndexHtml();
     const etag = createEtag(html);
     response.setHeader('Cache-Control', 'no-cache');
+    response.setHeader('Content-Security-Policy', contentSecurityPolicy);
     response.setHeader('ETag', etag);
 
     if (request.headers['if-none-match'] === etag) {
@@ -213,6 +223,30 @@ function replaceOnce(text, search, replacement) {
   return text.replace(search, replacement);
 }
 
+function createContentSecurityPolicy(html) {
+  return [
+    "default-src 'none'",
+    `script-src '${hashInlineElement(html, /<script>([^]*?)<\/script>/)}'`,
+    `style-src '${hashInlineElement(html, /<style>([^]*?)<\/style>/)}'`,
+    "font-src 'self'",
+    "img-src 'self'",
+    "connect-src 'self'",
+    "base-uri 'none'",
+    "form-action 'none'",
+    "frame-ancestors 'none'",
+  ].join('; ');
+}
+
+function hashInlineElement(html, pattern) {
+  const match = html.match(pattern);
+
+  if (match === null) {
+    throw new Error(`No inline element matched ${pattern}`);
+  }
+
+  return `sha256-${crypto.createHash('sha256').update(match[1]).digest('base64')}`;
+}
+
 function createEtag(content) {
   return `"${crypto.createHash('sha1').update(content).digest('base64url')}"`;
 }
@@ -285,6 +319,7 @@ function isClientDisconnect(error) {
 }
 
 function sendStatus(response, statusCode) {
+  response.setHeader('Content-Type', 'text/plain; charset=utf-8');
   response.statusCode = statusCode;
   response.end(http.STATUS_CODES[statusCode]);
 }
