@@ -126,7 +126,7 @@ function sendServerError(response, error) {
 }
 
 function isClientDisconnect(error) {
-  return error.code === 'ECONNRESET' || error.code === 'ERR_STREAM_PREMATURE_CLOSE';
+  return error.code === 'ECONNRESET';
 }
 
 function sendStatus(response, statusCode) {
