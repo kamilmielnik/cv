@@ -18,6 +18,9 @@ const { router, server } = cero();
 router.post('/track/:action', trackAction);
 router.use('/', serveStatic(DIST_DIR));
 
+// puppeteer's SIGTERM handler closes Chrome but leaves the server running
+process.on('SIGTERM', () => process.exit());
+
 server.listen(PORT, HOST, () => {
   console.log(`app listening on http://${HOST}:${PORT}/`);
   keepSiteFresh(DIST_DIR, PREVIEW_URL);
