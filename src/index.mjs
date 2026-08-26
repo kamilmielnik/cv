@@ -18,7 +18,7 @@ const SITE_URL = 'https://kamilmielnik.com';
 const ROOT_DIR = path.resolve(import.meta.dirname, '..');
 const PDF_FILENAME = 'KamilMielnik.pdf';
 const PDF_FILEPATH = path.join(ROOT_DIR, PDF_FILENAME);
-const PDF_URL = `http://127.0.0.1:${PORT}`;
+const RENDER_URL = `http://127.0.0.1:${PORT}`;
 const VALID_TRACK_ACTIONS = new Set(['github', 'pdf', 'print', 'visit']);
 const MAX_TRACK_BODY_BYTES = 1024;
 
@@ -39,7 +39,7 @@ router.post('/track/:action', trackAction);
 
 server.listen(PORT, () => {
   console.log(`app listening on http://localhost:${PORT}/`);
-  keepPdfFresh(PDF_FILEPATH, PDF_URL);
+  keepPdfFresh(PDF_FILEPATH, RENDER_URL);
 });
 
 function sendIndexHtml(request, response) {
