@@ -12,6 +12,7 @@ import { formatNumberOfMonths, minify, sumTimePeriods } from './utils.mjs';
 
 const PORT = 3000;
 const PUBLIC_DIR = path.join(import.meta.dirname, 'public');
+const SOURCE_FILENAMES = ['index.html', 'style.css'];
 const IMMUTABLE_FILE_EXTENSIONS = new Set(['.woff2']);
 const SITE_URL = 'https://kamilmielnik.com';
 const ROOT_DIR = path.resolve(import.meta.dirname, '..');
@@ -22,7 +23,8 @@ const VALID_TRACK_ACTIONS = new Set(['github', 'pdf', 'print', 'visit']);
 const MAX_TRACK_BODY_BYTES = 1024;
 
 const { router, server } = cero();
-const indexHtml = getIndexHtml();
+const lastModified = getLastModified();
+const indexHtml = getIndexHtml(lastModified);
 
 router.use('/', serveStatic(PUBLIC_DIR, { maxAge: '1d', setHeaders: setStaticCacheControl }));
 
@@ -120,10 +122,16 @@ async function trackAction(request, response) {
   }
 }
 
-function getIndexHtml() {
+function getLastModified() {
+  const modifiedAt = SOURCE_FILENAMES.map((filename) => fs.statSync(path.join(import.meta.dirname, filename)).mtimeMs);
+  return new Date(Math.max(...modifiedAt)).toISOString().slice(0, 'YYYY-MM-DD'.length);
+}
+
+function getIndexHtml(lastModified) {
   const html = fs.readFileSync(path.join(import.meta.dirname, 'index.html'), 'utf-8');
   const css = fs.readFileSync(path.join(import.meta.dirname, 'style.css'), 'utf-8');
-  return minify(replaceOnce(html, '<style></style>', `<style>${css}</style>`));
+  const htmlWithCss = replaceOnce(html, '<style></style>', `<style>${css}</style>`);
+  return minify(replaceOnce(htmlWithCss, '{{ dateModified }}', lastModified));
 }
 
 function renderIndexHtml() {
