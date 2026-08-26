@@ -412,7 +412,7 @@ a {
 }
 
 .button.github {
-  justify-self: flex-start;
+  justify-self: start;
 }
 
 .button.print {
@@ -423,5 +423,5 @@ a {
 
 .button.print,
 .button.pdf {
-  justify-self: flex-end;
+  justify-self: end;
 }
