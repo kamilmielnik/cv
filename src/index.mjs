@@ -10,8 +10,9 @@ import { formatNumberOfMonths, minify, sumTimePeriods } from './utils.mjs';
 
 const PORT = 3000;
 const SITE_URL = 'https://kamilmielnik.com';
+const ROOT_DIR = path.resolve(import.meta.dirname, '..');
 const PDF_FILENAME = 'KamilMielnik.pdf';
-const PDF_FILEPATH = path.resolve(PDF_FILENAME);
+const PDF_FILEPATH = path.join(ROOT_DIR, PDF_FILENAME);
 const PDF_URL = `http://127.0.0.1:${PORT}`;
 const VALID_TRACK_ACTIONS = new Set(['github', 'pdf', 'print', 'visit']);
 
