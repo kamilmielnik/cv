@@ -18,6 +18,7 @@ const TEMPLATE_PATHS = [HTML_TEMPLATE_PATH, CSS_TEMPLATE_PATH];
 const PDF_FILENAME = 'KamilMielnik.pdf';
 const HASHED_FILE_EXTENSIONS = new Set(['.woff2']);
 const HASH_LENGTH = 8;
+const FONT_URL_PATTERN = /\/([\w.-]+\.woff2)/g;
 const CURRENT_POSITION_START = new Date(2023, 4, 15);
 const BROTLI_OPTIONS = { params: { [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY } };
 const GZIP_OPTIONS = { level: zlib.constants.Z_BEST_COMPRESSION };
@@ -104,6 +105,7 @@ async function renderIndexHtml(lastModified, hashedFilenames) {
     (text, [filename, hashedFilename]) => replaceAll(text, `/${filename}`, `/${hashedFilename}`),
     withCss,
   );
+  assertFontsExist(withHashedUrls, hashedFilenames);
   const withDateModified = replaceOnce(withHashedUrls, '{{ dateModified }}', lastModified);
   const withDuration = replaceOnce(withDateModified, '{{ currentPositionDuration }}', getCurrentPositionDuration());
   const minified = minify(withDuration);
@@ -127,6 +129,16 @@ function replaceAll(text, search, replacement) {
 function assertIncludes(text, search) {
   if (!text.includes(search)) {
     throw new Error(`"${search}" not found`);
+  }
+}
+
+function assertFontsExist(text, hashedFilenames) {
+  const distFilenames = new Set(hashedFilenames.values());
+
+  for (const [, filename] of text.matchAll(FONT_URL_PATTERN)) {
+    if (!distFilenames.has(filename)) {
+      throw new Error(`"${filename}" not found in ${PUBLIC_DIR}`);
+    }
   }
 }
 
