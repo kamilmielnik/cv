@@ -61,9 +61,12 @@ async function hashFilename(filename) {
 }
 
 async function getLastModified() {
-  const { stdout } = await execFileAsync('git', ['log', '-1', '--format=%cs', '--', ...TEMPLATE_PATHS], {
-    cwd: ROOT_DIR,
-  });
+  // cv.service runs git as root in a checkout owned by the deploy user
+  const { stdout } = await execFileAsync(
+    'git',
+    ['-c', `safe.directory=${ROOT_DIR}`, 'log', '-1', '--format=%cs', '--', ...TEMPLATE_PATHS],
+    { cwd: ROOT_DIR },
+  );
   const lastModified = stdout.trim();
 
   if (lastModified === '') {
