@@ -13,7 +13,9 @@ import { formatNumberOfMonths, minify, sumTimePeriods } from './utils.mjs';
 const HOST = '127.0.0.1';
 const PORT = 3000;
 const PUBLIC_DIR = path.join(import.meta.dirname, 'public');
-const SOURCE_FILENAMES = ['index.html', 'style.css'];
+const HTML_TEMPLATE_PATH = path.join(import.meta.dirname, 'index.html');
+const CSS_TEMPLATE_PATH = path.join(import.meta.dirname, 'style.css');
+const TEMPLATE_PATHS = [HTML_TEMPLATE_PATH, CSS_TEMPLATE_PATH];
 const IMMUTABLE_FILE_EXTENSIONS = new Set(['.woff2']);
 const SITE_URL = 'https://kamilmielnik.com';
 const ROOT_DIR = path.resolve(import.meta.dirname, '..');
@@ -189,13 +191,13 @@ async function trackAction(request, response) {
 }
 
 function getLastModified() {
-  const modifiedAt = SOURCE_FILENAMES.map((filename) => fs.statSync(path.join(import.meta.dirname, filename)).mtimeMs);
+  const modifiedAt = TEMPLATE_PATHS.map((filepath) => fs.statSync(filepath).mtimeMs);
   return new Date(Math.max(...modifiedAt)).toISOString().slice(0, 'YYYY-MM-DD'.length);
 }
 
 function getIndexHtml(lastModified) {
-  const html = fs.readFileSync(path.join(import.meta.dirname, 'index.html'), 'utf-8');
-  const css = fs.readFileSync(path.join(import.meta.dirname, 'style.css'), 'utf-8');
+  const html = fs.readFileSync(HTML_TEMPLATE_PATH, 'utf-8');
+  const css = fs.readFileSync(CSS_TEMPLATE_PATH, 'utf-8');
   const htmlWithCss = replaceOnce(html, '<style></style>', `<style>${css}</style>`);
   return minify(replaceOnce(htmlWithCss, '{{ dateModified }}', lastModified));
 }
