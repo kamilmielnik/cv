@@ -115,12 +115,12 @@ function getCurrentPositionDuration() {
 
 function replaceOnce(text, search, replacement) {
   assertIncludes(text, search);
-  return text.replace(search, replacement);
+  return text.replace(search, () => replacement);
 }
 
 function replaceAll(text, search, replacement) {
   assertIncludes(text, search);
-  return text.replaceAll(search, replacement);
+  return text.replaceAll(search, () => replacement);
 }
 
 function assertIncludes(text, search) {
