@@ -1,4 +1,5 @@
 import cero from '0http';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
@@ -10,6 +11,8 @@ import { getClientTrackingData, getServerTrackingData, trackEvent } from './trac
 import { formatNumberOfMonths, minify, sumTimePeriods } from './utils.mjs';
 
 const PORT = 3000;
+const PUBLIC_DIR = path.join(import.meta.dirname, 'public');
+const IMMUTABLE_FILE_EXTENSIONS = new Set(['.woff2']);
 const SITE_URL = 'https://kamilmielnik.com';
 const ROOT_DIR = path.resolve(import.meta.dirname, '..');
 const PDF_FILENAME = 'KamilMielnik.pdf';
@@ -21,7 +24,7 @@ const MAX_TRACK_BODY_BYTES = 1024;
 const { router, server } = cero();
 const indexHtml = getIndexHtml();
 
-router.use('/', serveStatic(path.resolve(import.meta.dirname, 'public')));
+router.use('/', serveStatic(PUBLIC_DIR, { maxAge: '1d', setHeaders: setStaticCacheControl }));
 
 router.get('/', sendIndexHtml);
 router.head('/', sendIndexHtml);
@@ -34,10 +37,21 @@ server.listen(PORT, () => {
   keepPdfFresh(PDF_FILEPATH, PDF_URL);
 });
 
-function sendIndexHtml(_request, response) {
+function sendIndexHtml(request, response) {
   try {
+    const html = renderIndexHtml();
+    const etag = createEtag(html);
+    response.setHeader('Cache-Control', 'no-cache');
+    response.setHeader('ETag', etag);
+
+    if (request.headers['if-none-match'] === etag) {
+      response.statusCode = 304;
+      response.end();
+      return;
+    }
+
     response.setHeader('Content-Type', 'text/html; charset=utf-8');
-    response.end(renderIndexHtml());
+    response.end(html);
   } catch (error) {
     sendServerError(response, error);
   }
@@ -121,6 +135,16 @@ function renderIndexHtml() {
   const currentPositionDuration = formatNumberOfMonths(months);
   const html = indexHtml.replace('{{ currentPositionDuration }}', currentPositionDuration);
   return html;
+}
+
+function createEtag(content) {
+  return `"${crypto.createHash('sha1').update(content).digest('base64url')}"`;
+}
+
+function setStaticCacheControl(response, filepath) {
+  if (IMMUTABLE_FILE_EXTENSIONS.has(path.extname(filepath))) {
+    response.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+  }
 }
 
 function isSameOrigin(request) {
