@@ -67,11 +67,14 @@ router.post('/track/:action', async (request, response) => {
       return;
     }
 
-    await trackEvent({
-      action,
-      client: getClientTrackingData(body ? JSON.parse(body) : {}),
-      server: getServerTrackingData(request),
-    });
+    const client = getClientTrackingData(parseJson(body));
+
+    if (client === null) {
+      sendStatus(response, 400);
+      return;
+    }
+
+    await trackEvent({ action, client, server: getServerTrackingData(request) });
     response.end();
   } catch (error) {
     sendServerError(response, error);
@@ -122,6 +125,14 @@ function readBody(request, maxBytes) {
     request.on('end', () => resolve(Buffer.concat(chunks).toString()));
     request.on('error', reject);
   });
+}
+
+function parseJson(text) {
+  try {
+    return JSON.parse(text);
+  } catch {
+    return undefined;
+  }
 }
 
 function sendServerError(response, error) {

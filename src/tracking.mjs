@@ -19,7 +19,7 @@ export function getServerTrackingData(request) {
 
 export function getClientTrackingData(requestBody) {
   if (!isClientTrackingData(requestBody)) {
-    throw new Error('Invalid request body');
+    return null;
   }
 
   return {
