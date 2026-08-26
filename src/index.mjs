@@ -10,6 +10,7 @@ import { keepPdfFresh } from './pdf.mjs';
 import { getClientTrackingData, getServerTrackingData, trackEvent } from './tracking.mjs';
 import { formatNumberOfMonths, minify, sumTimePeriods } from './utils.mjs';
 
+const HOST = '127.0.0.1';
 const PORT = 3000;
 const PUBLIC_DIR = path.join(import.meta.dirname, 'public');
 const SOURCE_FILENAMES = ['index.html', 'style.css'];
@@ -18,7 +19,7 @@ const SITE_URL = 'https://kamilmielnik.com';
 const ROOT_DIR = path.resolve(import.meta.dirname, '..');
 const PDF_FILENAME = 'KamilMielnik.pdf';
 const PDF_FILEPATH = path.join(ROOT_DIR, PDF_FILENAME);
-const RENDER_URL = `http://127.0.0.1:${PORT}`;
+const RENDER_URL = `http://${HOST}:${PORT}`;
 const VALID_TRACK_ACTIONS = new Set(['github', 'pdf', 'print', 'visit']);
 const MAX_TRACK_BODY_BYTES = 1024;
 
@@ -37,8 +38,8 @@ router.get('/sitemap.xml', sendSitemapXml);
 router.head('/sitemap.xml', sendSitemapXml);
 router.post('/track/:action', trackAction);
 
-server.listen(PORT, () => {
-  console.log(`app listening on http://localhost:${PORT}/`);
+server.listen(PORT, HOST, () => {
+  console.log(`app listening on http://${HOST}:${PORT}/`);
   keepPdfFresh(PDF_FILEPATH, RENDER_URL);
 });
 
