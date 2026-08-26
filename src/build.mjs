@@ -28,9 +28,12 @@ const execFileAsync = promisify(execFile);
 const gzip = promisify(zlib.gzip);
 
 export function keepSiteFresh(distDir, previewUrl) {
-  const build = () => buildSite(distDir, previewUrl).catch(console.error);
   build();
   setInterval(build, DAY);
+
+  function build() {
+    buildSite(distDir, previewUrl).catch(console.error);
+  }
 }
 
 async function buildSite(distDir, previewUrl) {
