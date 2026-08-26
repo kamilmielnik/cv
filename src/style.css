@@ -40,6 +40,8 @@
 
   --border-radius: 5px;
 
+  --icon-size: 18px;
+
   --color--background: #cccccc;
   --color--button: #ffffff;
   --color--button--active: #eeeeee;
@@ -214,11 +216,9 @@ a {
 }
 
 .contact-info-icon {
-  --size: 18px;
-
   flex: 0 0 auto;
-  width: var(--size);
-  height: var(--size);
+  width: var(--icon-size);
+  height: var(--icon-size);
   color: var(--color--icon);
 }
 
@@ -388,10 +388,8 @@ a {
 }
 
 .button-icon {
-  --size: 18px;
-
-  width: var(--size);
-  height: var(--size);
+  width: var(--icon-size);
+  height: var(--icon-size);
   color: var(--color--icon);
 }
 
