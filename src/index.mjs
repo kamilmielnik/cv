@@ -1,6 +1,7 @@
 import cero from '0http';
 import compression from 'compression';
 import fs from 'node:fs';
+import http from 'node:http';
 import path from 'node:path';
 import serveStatic from 'serve-static';
 
@@ -15,6 +16,7 @@ const PDF_FILENAME = 'KamilMielnik.pdf';
 const PDF_FILEPATH = path.join(ROOT_DIR, PDF_FILENAME);
 const PDF_URL = `http://127.0.0.1:${PORT}`;
 const VALID_TRACK_ACTIONS = new Set(['github', 'pdf', 'print', 'visit']);
+const MAX_TRACK_BODY_BYTES = 1024;
 
 const { router, server } = cero();
 const indexHtml = getIndexHtml();
@@ -43,34 +45,34 @@ router.get('/pdf', async (_request, response) => {
   }
 });
 
-router.post('/track/:action', (request, response) => {
+router.post('/track/:action', async (request, response) => {
   try {
     const { action } = request.params;
 
     if (!VALID_TRACK_ACTIONS.has(action)) {
-      response.statusCode = 404;
-      response.end('Not Found');
+      sendStatus(response, 404);
       return;
     }
 
-    let body = '';
+    if (!isJsonRequest(request)) {
+      sendStatus(response, 415);
+      return;
+    }
 
-    request.on('data', (chunk) => {
-      body += chunk;
-    });
+    const body = await readBody(request, MAX_TRACK_BODY_BYTES);
 
-    request.on('end', async () => {
-      try {
-        await trackEvent({
-          action,
-          client: getClientTrackingData(body ? JSON.parse(body) : {}),
-          server: getServerTrackingData(request),
-        });
-        response.end();
-      } catch (error) {
-        sendServerError(response, error);
-      }
+    if (body === null) {
+      response.setHeader('Connection', 'close');
+      sendStatus(response, 413);
+      return;
+    }
+
+    await trackEvent({
+      action,
+      client: getClientTrackingData(body ? JSON.parse(body) : {}),
+      server: getServerTrackingData(request),
     });
+    response.end();
   } catch (error) {
     sendServerError(response, error);
   }
@@ -97,8 +99,37 @@ function renderIndexHtml() {
   return html;
 }
 
+function isJsonRequest(request) {
+  return Boolean(request.headers['content-type']?.startsWith('application/json'));
+}
+
+function readBody(request, maxBytes) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    let bytes = 0;
+
+    request.on('data', (chunk) => {
+      bytes += chunk.length;
+
+      if (bytes > maxBytes) {
+        request.pause();
+        resolve(null);
+        return;
+      }
+
+      chunks.push(chunk);
+    });
+    request.on('end', () => resolve(Buffer.concat(chunks).toString()));
+    request.on('error', reject);
+  });
+}
+
 function sendServerError(response, error) {
   console.error(error);
-  response.statusCode = 500;
-  response.end('Server error');
+  sendStatus(response, 500);
+}
+
+function sendStatus(response, statusCode) {
+  response.statusCode = statusCode;
+  response.end(http.STATUS_CODES[statusCode]);
 }
