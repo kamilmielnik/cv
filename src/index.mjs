@@ -13,6 +13,7 @@ const SITE_URL = 'https://kamilmielnik.com';
 const PDF_FILENAME = 'KamilMielnik.pdf';
 const PDF_FILEPATH = path.resolve(PDF_FILENAME);
 const PDF_URL = `http://127.0.0.1:${PORT}`;
+const VALID_TRACK_ACTIONS = new Set(['github', 'pdf', 'print', 'visit']);
 
 const { router, server } = cero();
 const indexHtml = getIndexHtml();
@@ -40,8 +41,6 @@ router.get('/pdf', async (_request, response) => {
     sendServerError(response, error);
   }
 });
-
-const VALID_TRACK_ACTIONS = new Set(['github', 'pdf', 'print', 'visit']);
 
 router.post('/track/:action', (request, response) => {
   try {
