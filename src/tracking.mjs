@@ -1,10 +1,11 @@
+import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { JSONFilePreset } from 'lowdb/node';
+const TRACKING_FILEPATH = path.resolve(import.meta.dirname, '..', 'tracking.jsonl');
 
-const TRACKING_FILEPATH = path.resolve(import.meta.dirname, '..', 'tracking.json');
-
-export const trackingDb = await JSONFilePreset(TRACKING_FILEPATH, { track: [] });
+export function trackEvent(event) {
+  return fs.appendFile(TRACKING_FILEPATH, `${JSON.stringify(event)}\n`);
+}
 
 export function getServerTrackingData(request) {
   return {

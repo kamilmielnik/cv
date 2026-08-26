@@ -5,7 +5,7 @@ import path from 'node:path';
 import serveStatic from 'serve-static';
 
 import { createPdfIfNeeded } from './pdf.mjs';
-import { getClientTrackingData, getServerTrackingData, trackingDb } from './tracking.mjs';
+import { getClientTrackingData, getServerTrackingData, trackEvent } from './tracking.mjs';
 import { formatNumberOfMonths, minify, sumTimePeriods } from './utils.mjs';
 
 const PORT = 3000;
@@ -61,12 +61,11 @@ router.post('/track/:action', (request, response) => {
 
     request.on('end', async () => {
       try {
-        trackingDb.data.track.push({
+        await trackEvent({
           action,
           client: getClientTrackingData(body ? JSON.parse(body) : {}),
           server: getServerTrackingData(request),
         });
-        await trackingDb.write();
         response.end();
       } catch (error) {
         sendServerError(response, error);
