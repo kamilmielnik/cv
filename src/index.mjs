@@ -198,6 +198,10 @@ function isJsonRequest(request) {
 }
 
 function readBody(request, maxBytes) {
+  if (Number(request.headers['content-length']) > maxBytes) {
+    return Promise.resolve(null);
+  }
+
   return new Promise((resolve, reject) => {
     const chunks = [];
     let bytes = 0;
@@ -227,6 +231,10 @@ function parseJson(text) {
 }
 
 function sendServerError(response, error) {
+  if (isClientDisconnect(error)) {
+    return;
+  }
+
   console.error(error);
 
   if (response.headersSent) {
@@ -235,6 +243,10 @@ function sendServerError(response, error) {
   }
 
   sendStatus(response, 500);
+}
+
+function isClientDisconnect(error) {
+  return error.code === 'ECONNRESET' || error.code === 'ERR_STREAM_PREMATURE_CLOSE';
 }
 
 function sendStatus(response, statusCode) {
