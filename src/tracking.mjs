@@ -52,12 +52,12 @@ function isObject(value) {
   return typeof value === 'object' && value !== null;
 }
 
-function isString(value, maxLength) {
-  return typeof value === 'string' && value.length <= maxLength;
-}
-
 function isOptionalString(value, maxLength) {
   return typeof value === 'undefined' || isString(value, maxLength);
+}
+
+function isString(value, maxLength) {
+  return typeof value === 'string' && value.length <= maxLength;
 }
 
 function isTimezoneOffset(value) {
