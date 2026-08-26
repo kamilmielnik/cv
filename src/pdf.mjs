@@ -15,7 +15,7 @@ async function createPdf(filepath, url) {
 
   try {
     const page = await browser.newPage();
-    await ignoreTracking(page);
+    await page.setJavaScriptEnabled(false);
     await page.goto(url, { waitUntil: 'networkidle0' });
     await page.pdf({ format: 'a4', path: temporaryFilepath });
   } finally {
@@ -23,15 +23,4 @@ async function createPdf(filepath, url) {
   }
 
   await fs.rename(temporaryFilepath, filepath);
-}
-
-async function ignoreTracking(page) {
-  await page.setRequestInterception(true);
-  page.on('request', (request) => {
-    if (new URL(request.url()).pathname.startsWith('/track/')) {
-      request.abort();
-    } else {
-      request.continue();
-    }
-  });
 }
