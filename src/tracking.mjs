@@ -13,7 +13,6 @@ export function getServerTrackingData(request) {
     referer: request.headers.referer,
     timestamp: Date.now(),
     userAgent: request.headers['user-agent'],
-    xForwardedFor: request.headers['x-forwarded-for'],
     xRealIp: request.headers['x-real-ip'],
   };
 }
