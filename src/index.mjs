@@ -59,14 +59,14 @@ router.post('/track/:action', (request, response) => {
       body += chunk;
     });
 
-    request.on('end', () => {
+    request.on('end', async () => {
       try {
         trackingDb.data.track.push({
           action,
           client: getClientTrackingData(body ? JSON.parse(body) : {}),
           server: getServerTrackingData(request),
         });
-        trackingDb.write();
+        await trackingDb.write();
         response.end();
       } catch (error) {
         sendServerError(response, error);
