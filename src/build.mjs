@@ -96,26 +96,21 @@ function renderSitemapXml(lastModified) {
 async function renderIndexHtml(lastModified, distFilenames) {
   const html = await fs.readFile(HTML_TEMPLATE_PATH, 'utf-8');
   const css = await fs.readFile(CSS_TEMPLATE_PATH, 'utf-8');
-  const withCss = replaceOnce(html, '<style></style>', `<style>${css}</style>`);
+  const withCss = replaceAll(html, '<style></style>', `<style>${css}</style>`);
   const renamedFiles = [...distFilenames].filter(([filename, distFilename]) => filename !== distFilename);
   const withHashedUrls = renamedFiles.reduce(
     (text, [filename, distFilename]) => replaceAll(text, `/${filename}`, `/${distFilename}`),
     withCss,
   );
   assertFontsExist(withHashedUrls, distFilenames);
-  const withDateModified = replaceOnce(withHashedUrls, '{{ dateModified }}', lastModified);
-  const withDuration = replaceOnce(withDateModified, '{{ currentPositionDuration }}', getCurrentPositionDuration());
+  const withDateModified = replaceAll(withHashedUrls, '{{ dateModified }}', lastModified);
+  const withDuration = replaceAll(withDateModified, '{{ currentPositionDuration }}', getCurrentPositionDuration());
   const minified = minify(withDuration);
-  return replaceOnce(minified, '{{ contentSecurityPolicy }}', createContentSecurityPolicy(minified));
+  return replaceAll(minified, '{{ contentSecurityPolicy }}', createContentSecurityPolicy(minified));
 }
 
 function getCurrentPositionDuration() {
   return formatNumberOfMonths(sumTimePeriods([{ start: CURRENT_POSITION_START, end: null }]));
-}
-
-function replaceOnce(text, search, replacement) {
-  assertIncludes(text, search);
-  return text.replace(search, () => replacement);
 }
 
 function replaceAll(text, search, replacement) {
