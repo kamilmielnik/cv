@@ -24,28 +24,43 @@ const indexHtml = getIndexHtml();
 router.use('/', compression());
 router.use('/', serveStatic(path.resolve(import.meta.dirname, 'public')));
 
-router.get('/', (_request, response) => {
+router.get('/', sendIndexHtml);
+router.head('/', sendIndexHtml);
+router.get('/pdf', sendPdf);
+router.head('/pdf', sendPdf);
+router.post('/track/:action', trackAction);
+
+server.listen(PORT, () => {
+  console.log(`app listening on http://localhost:${PORT}/`);
+});
+
+function sendIndexHtml(_request, response) {
   try {
     response.setHeader('Content-Type', 'text/html; charset=utf-8');
     response.end(renderIndexHtml());
   } catch (error) {
     sendServerError(response, error);
   }
-});
+}
 
-router.get('/pdf', async (_request, response) => {
+async function sendPdf(request, response) {
   try {
     await createPdfIfNeeded(PDF_FILEPATH, PDF_URL);
     response.setHeader('Content-Disposition', `attachment; filename="${PDF_FILENAME}"`);
     response.setHeader('Content-Type', 'application/pdf');
     response.setHeader('Link', `<${SITE_URL}/>; rel="canonical"`);
+    if (request.method === 'HEAD') {
+      response.end();
+      return;
+    }
+
     fs.createReadStream(PDF_FILEPATH).pipe(response);
   } catch (error) {
     sendServerError(response, error);
   }
-});
+}
 
-router.post('/track/:action', async (request, response) => {
+async function trackAction(request, response) {
   try {
     const { action } = request.params;
 
@@ -84,11 +99,7 @@ router.post('/track/:action', async (request, response) => {
   } catch (error) {
     sendServerError(response, error);
   }
-});
-
-server.listen(PORT, () => {
-  console.log(`app listening on http://localhost:${PORT}/`);
-});
+}
 
 function getIndexHtml() {
   const indexHtml = fs.readFileSync(path.resolve(import.meta.dirname, 'index.html'), 'utf-8');
