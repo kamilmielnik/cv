@@ -3,6 +3,7 @@ import compression from 'compression';
 import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
+import { pipeline } from 'node:stream/promises';
 import serveStatic from 'serve-static';
 
 import { createPdfIfNeeded } from './pdf.mjs';
@@ -54,7 +55,7 @@ async function sendPdf(request, response) {
       return;
     }
 
-    fs.createReadStream(PDF_FILEPATH).pipe(response);
+    await pipeline(fs.createReadStream(PDF_FILEPATH), response);
   } catch (error) {
     sendServerError(response, error);
   }
@@ -158,6 +159,12 @@ function parseJson(text) {
 
 function sendServerError(response, error) {
   console.error(error);
+
+  if (response.headersSent) {
+    response.destroy();
+    return;
+  }
+
   sendStatus(response, 500);
 }
 
