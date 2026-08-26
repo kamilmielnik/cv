@@ -35,30 +35,15 @@ export function keepSiteFresh(distDir, previewUrl) {
 
 async function buildSite(distDir, previewUrl) {
   await fs.mkdir(distDir, { recursive: true });
-  const hashedFilenames = await getHashedFilenames();
   const lastModified = await getLastModified();
-  const publicFilenames = await copyPublicFiles(distDir, hashedFilenames);
+  const distFilenames = await copyPublicFiles(distDir);
   const sitemapFilenames = await writeTextFile(distDir, 'sitemap.xml', renderSitemapXml(lastModified));
-  const indexFilenames = await writeTextFile(
-    distDir,
-    'index.html',
-    await renderIndexHtml(lastModified, hashedFilenames),
-  );
+  const indexFilenames = await writeTextFile(distDir, 'index.html', await renderIndexHtml(lastModified, distFilenames));
   await createPdf(path.join(distDir, PDF_FILENAME), previewUrl);
-  await removeStaleFiles(distDir, new Set([...publicFilenames, ...sitemapFilenames, ...indexFilenames, PDF_FILENAME]));
-}
-
-async function getHashedFilenames() {
-  const filenames = await fs.readdir(PUBLIC_DIR);
-  const hashable = filenames.filter((filename) => HASHED_FILE_EXTENSIONS.has(path.extname(filename)));
-  return new Map(await Promise.all(hashable.map(async (filename) => [filename, await hashFilename(filename)])));
-}
-
-async function hashFilename(filename) {
-  const content = await fs.readFile(path.join(PUBLIC_DIR, filename));
-  const hash = crypto.createHash('sha256').update(content).digest('hex').slice(0, HASH_LENGTH);
-  const extension = path.extname(filename);
-  return `${path.basename(filename, extension)}.${hash}${extension}`;
+  await removeStaleFiles(
+    distDir,
+    new Set([...distFilenames.values(), ...sitemapFilenames, ...indexFilenames, PDF_FILENAME]),
+  );
 }
 
 async function getLastModified() {
@@ -77,15 +62,26 @@ async function getLastModified() {
   return lastModified;
 }
 
-async function copyPublicFiles(distDir, hashedFilenames) {
+async function copyPublicFiles(distDir) {
   const filenames = await fs.readdir(PUBLIC_DIR);
-  return Promise.all(
-    filenames.map(async (filename) => {
-      const distFilename = hashedFilenames.get(filename) ?? filename;
-      await writeFileAtomically(path.join(distDir, distFilename), await fs.readFile(path.join(PUBLIC_DIR, filename)));
-      return distFilename;
-    }),
+  return new Map(
+    await Promise.all(
+      filenames.map(async (filename) => {
+        const content = await fs.readFile(path.join(PUBLIC_DIR, filename));
+        const distFilename = HASHED_FILE_EXTENSIONS.has(path.extname(filename))
+          ? hashFilename(filename, content)
+          : filename;
+        await writeFileAtomically(path.join(distDir, distFilename), content);
+        return [filename, distFilename];
+      }),
+    ),
   );
+}
+
+function hashFilename(filename, content) {
+  const hash = crypto.createHash('sha256').update(content).digest('hex').slice(0, HASH_LENGTH);
+  const extension = path.extname(filename);
+  return `${path.basename(filename, extension)}.${hash}${extension}`;
 }
 
 function renderSitemapXml(lastModified) {
@@ -97,15 +93,16 @@ function renderSitemapXml(lastModified) {
   ].join('');
 }
 
-async function renderIndexHtml(lastModified, hashedFilenames) {
+async function renderIndexHtml(lastModified, distFilenames) {
   const html = await fs.readFile(HTML_TEMPLATE_PATH, 'utf-8');
   const css = await fs.readFile(CSS_TEMPLATE_PATH, 'utf-8');
   const withCss = replaceOnce(html, '<style></style>', `<style>${css}</style>`);
-  const withHashedUrls = [...hashedFilenames].reduce(
-    (text, [filename, hashedFilename]) => replaceAll(text, `/${filename}`, `/${hashedFilename}`),
+  const renamedFiles = [...distFilenames].filter(([filename, distFilename]) => filename !== distFilename);
+  const withHashedUrls = renamedFiles.reduce(
+    (text, [filename, distFilename]) => replaceAll(text, `/${filename}`, `/${distFilename}`),
     withCss,
   );
-  assertFontsExist(withHashedUrls, hashedFilenames);
+  assertFontsExist(withHashedUrls, distFilenames);
   const withDateModified = replaceOnce(withHashedUrls, '{{ dateModified }}', lastModified);
   const withDuration = replaceOnce(withDateModified, '{{ currentPositionDuration }}', getCurrentPositionDuration());
   const minified = minify(withDuration);
@@ -132,11 +129,11 @@ function assertIncludes(text, search) {
   }
 }
 
-function assertFontsExist(text, hashedFilenames) {
-  const distFilenames = new Set(hashedFilenames.values());
+function assertFontsExist(text, distFilenames) {
+  const available = new Set(distFilenames.values());
 
   for (const [, filename] of text.matchAll(FONT_URL_PATTERN)) {
-    if (!distFilenames.has(filename)) {
+    if (!available.has(filename)) {
       throw new Error(`"${filename}" not found in ${PUBLIC_DIR}`);
     }
   }
