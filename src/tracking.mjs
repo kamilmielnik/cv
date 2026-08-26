@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const TRACKING_FILEPATH = path.resolve(import.meta.dirname, '..', 'tracking.jsonl');
+const MAX_FIELD_LENGTH = 64;
 
 export function trackEvent(event) {
   return fs.appendFile(TRACKING_FILEPATH, `${JSON.stringify(event)}\n`);
@@ -31,45 +32,23 @@ export function getClientTrackingData(requestBody) {
 }
 
 function isClientTrackingData(payload) {
-  const validators = [
-    () => isPayloadValid(payload),
-    () => isLanguageValid(payload.language),
-    () => isPlatformValid(payload.platform),
-    () => isTimezoneValid(payload.timezone),
-    () => isTimezoneOffsetValid(payload.timezoneOffset),
-  ];
-
-  return validators.every((validator) => validator());
+  return (
+    isObject(payload) &&
+    isShortString(payload.language) &&
+    isOptionalShortString(payload.platform) &&
+    isOptionalShortString(payload.timezone) &&
+    typeof payload.timezoneOffset === 'number'
+  );
 }
 
-function isPayloadValid(payload) {
-  if (payload === null) {
-    return false;
-  }
-
-  return typeof payload === 'object';
+function isObject(value) {
+  return typeof value === 'object' && value !== null;
 }
 
-function isLanguageValid(language) {
-  return typeof language === 'string' && language.length < 64;
+function isShortString(value) {
+  return typeof value === 'string' && value.length < MAX_FIELD_LENGTH;
 }
 
-function isPlatformValid(platform) {
-  if (typeof platform === 'undefined') {
-    return true;
-  }
-
-  return typeof platform === 'string' && platform.length < 64;
-}
-
-function isTimezoneValid(timezone) {
-  if (typeof timezone === 'undefined') {
-    return true;
-  }
-
-  return typeof timezone === 'string' && timezone.length < 64;
-}
-
-function isTimezoneOffsetValid(timezoneOffset) {
-  return typeof timezoneOffset === 'number';
+function isOptionalShortString(value) {
+  return typeof value === 'undefined' || isShortString(value);
 }
