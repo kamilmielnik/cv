@@ -70,7 +70,7 @@
 }
 
 body {
-  margin: 0 auto;
+  margin: 0;
   padding-block: var(--spacing--xxxl);
   padding-inline: 0;
   background-color: var(--color--background);
@@ -99,7 +99,6 @@ h3,
 h4,
 h5 {
   margin: 0;
-  margin-block: 0;
 }
 
 hr {
@@ -258,7 +257,6 @@ a {
 
   @media only screen and (max-width: 220mm) {
     position: static;
-    margin-right: 0;
     margin-bottom: var(--spacing--l);
   }
 }
@@ -323,7 +321,6 @@ a {
 
   @media only screen and (max-width: 220mm) {
     flex: 0 0 auto;
-    margin-right: 0;
   }
 }
 
@@ -352,7 +349,6 @@ a {
   }
 
   @media only screen and (max-width: 220mm) {
-    margin-left: 0;
     margin-top: var(--spacing--s);
   }
 }
@@ -361,7 +357,6 @@ a {
   display: grid;
   grid-template-columns: 1fr auto auto;
   gap: var(--spacing--xxl);
-  margin-inline: auto;
   width: var(--a4--width);
   margin: var(--spacing--xxxl) auto 0;
 
