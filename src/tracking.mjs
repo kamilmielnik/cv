@@ -45,7 +45,7 @@ function isObject(value) {
 }
 
 function isShortString(value) {
-  return typeof value === 'string' && value.length < MAX_FIELD_LENGTH;
+  return typeof value === 'string' && value.length <= MAX_FIELD_LENGTH;
 }
 
 function isOptionalShortString(value) {
