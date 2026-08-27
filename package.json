@@ -1,39 +1,39 @@
 {
   "name": "cv",
   "version": "1.13.2",
+  "private": true,
   "description": "Kamil Mielnik's Curriculum Vitae",
-  "type": "module",
-  "engines": {
-    "node": ">=24"
+  "homepage": "https://kamilmielnik.com",
+  "bugs": {
+    "url": "https://github.com/kamilmielnik/cv/issues"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kamilmielnik/cv.git"
-  },
+  "license": "CC BY-NC-ND 4.0",
   "author": {
     "name": "Kamil Mielnik",
     "email": "kamil@kamilmielnik.com",
     "url": "https://kamilmielnik.com"
   },
-  "license": "CC BY-NC-ND 4.0",
-  "bugs": {
-    "url": "https://github.com/kamilmielnik/cv/issues"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamilmielnik/cv.git"
   },
-  "homepage": "https://kamilmielnik.com",
+  "type": "module",
   "scripts": {
-    "format": "oxfmt --check './src/**/*.{js,mjs,html,css}'",
-    "format:fix": "oxfmt './src/**/*.{js,mjs,html,css}'",
-    "start": "NODE_ENV=production node src/index.mjs"
+    "dev": "node --watch-path=src src/index.mjs",
+    "format": "oxfmt --check",
+    "format:fix": "oxfmt",
+    "start": "node src/index.mjs"
   },
   "dependencies": {
     "0http": "^5.1.0",
     "@minify-html/node": "^0.18.1",
-    "compression": "^1.8.1",
-    "lowdb": "^7.0.1",
-    "serve-static": "^2.2.1",
-    "puppeteer": "^25.9.0"
+    "puppeteer": "^25.9.0",
+    "serve-static": "^2.2.1"
   },
   "devDependencies": {
     "oxfmt": "^0.65.0"
+  },
+  "engines": {
+    "node": ">=24"
   }
 }

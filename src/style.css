@@ -9,19 +9,25 @@
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
+  font-weight: 300;
   font-display: swap;
-  src: url(/open-sans.woff2) format('woff2');
+  src: url(/open-sans-300.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/open-sans-400.woff2) format('woff2');
 }
 
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
-  font-stretch: 100%;
   font-display: swap;
-  src: url(/open-sans.woff2) format('woff2');
+  src: url(/open-sans-700.woff2) format('woff2');
 }
 
 :root {
@@ -50,6 +56,8 @@
 
   --border-radius: 5px;
 
+  --icon-size: 18px;
+
   --color--background: #cccccc;
   --color--button: #ffffff;
   --color--button--active: #eeeeee;
@@ -59,9 +67,6 @@
   --color--shadow: #999999;
   --color--shadow--active: #666666;
   --color--text: #000000;
-
-  --transition: all var(--transition--duration) var(--transition--easing);
-  --transition--easing: cubic-bezier(0.61, 1, 0.88, 1); /* easeOutSine */
 
   --box-shadow: 0px 0px 5px 2px var(--color--shadow);
   --box-shadow--active: 0px 0px 5px 2px var(--color--shadow--active);
@@ -79,9 +84,8 @@
 }
 
 body {
-  margin: 0 auto;
+  margin: 0;
   padding-block: var(--spacing--xxxl);
-  padding-inline: 0;
   background-color: var(--color--background);
   color: var(--color--text);
   font-family: var(--font-family--body);
@@ -105,10 +109,8 @@ address {
 h1,
 h2,
 h3,
-h4,
-h5 {
+h4 {
   margin: 0;
-  margin-block: 0;
 }
 
 hr {
@@ -127,7 +129,6 @@ button {
     content: ' ';
     position: absolute;
     inset: calc(-1 * var(--spacing--xs));
-    transition: var(--transition);
     border-radius: var(--border-radius);
     box-shadow: 0 0 0 3px transparent;
     pointer-events: none;
@@ -226,11 +227,9 @@ a {
 }
 
 .contact-info-icon {
-  --size: 18px;
-
   flex: 0 0 auto;
-  width: var(--size);
-  height: var(--size);
+  width: var(--icon-size);
+  height: var(--icon-size);
   color: var(--color--icon);
 }
 
@@ -267,7 +266,6 @@ a {
 
   @media only screen and (max-width: 220mm) {
     position: static;
-    margin-right: 0;
     margin-bottom: var(--spacing--l);
   }
 }
@@ -287,17 +285,11 @@ a {
   }
 }
 
-.experience-time-range {
-  display: flex;
+.narrow-only {
+  display: none;
 
   @media only screen and (max-width: 220mm) {
-    &:before {
-      content: '(';
-    }
-
-    &:after {
-      content: ')';
-    }
+    display: inline;
   }
 }
 
@@ -307,6 +299,7 @@ a {
 
 .experience-position {
   display: flex;
+  flex-direction: row-reverse;
   gap: var(--spacing--m);
 
   & + & {
@@ -314,25 +307,15 @@ a {
   }
 
   @media only screen and (max-width: 220mm) {
-    flex-direction: row-reverse;
+    flex-direction: row;
   }
 }
 
 .experience-time {
-  display: flex;
   flex: 0 0 88px;
-
-  &:after {
-    content: ')';
-  }
-
-  &:before {
-    content: '(';
-  }
 
   @media only screen and (max-width: 220mm) {
     flex: 0 0 auto;
-    margin-right: 0;
   }
 }
 
@@ -356,12 +339,7 @@ a {
   flex: 0 0 auto;
   text-align: right;
 
-  &:before {
-    content: '+ ';
-  }
-
   @media only screen and (max-width: 220mm) {
-    margin-left: 0;
     margin-top: var(--spacing--s);
   }
 }
@@ -370,7 +348,6 @@ a {
   display: grid;
   grid-template-columns: 1fr auto auto;
   gap: var(--spacing--xxl);
-  margin-inline: auto;
   width: var(--a4--width);
   margin: var(--spacing--xxxl) auto 0;
 
@@ -399,7 +376,6 @@ a {
   font-size: var(--font-size--l);
   color: inherit;
   box-shadow: var(--box-shadow);
-  transition: var(--transition);
   cursor: pointer;
 
   &:active {
@@ -418,15 +394,13 @@ a {
 }
 
 .button-icon {
-  --size: 18px;
-
-  width: var(--size);
-  height: var(--size);
+  width: var(--icon-size);
+  height: var(--icon-size);
   color: var(--color--icon);
 }
 
 .button.github {
-  justify-self: flex-start;
+  justify-self: start;
 }
 
 .button.print {
@@ -437,5 +411,11 @@ a {
 
 .button.print,
 .button.pdf {
-  justify-self: flex-end;
+  justify-self: end;
+}
+
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
 }

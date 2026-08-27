@@ -6,16 +6,18 @@ on:
   pull_request:
     branches: [master]
 
+permissions:
+  contents: read
+
 jobs:
   oxfmt:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6
-    - name: Setup Bun
-      uses: oven-sh/setup-bun@v2
-      with:
-        bun-version: 1.3.x
-    - run: bun install --frozen-lockfile
-    - run: bun run format
-      env:
-        CI: true
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: 24
+      - run: npm ci
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: true
+      - run: npm run format

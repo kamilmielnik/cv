@@ -9,22 +9,48 @@ on:
         required: true
         default: 'master'
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: appleboy/ssh-action@master
+      - uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2 # v1.2.5
+        env:
+          BRANCH: ${{ inputs.branch }}
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_KEY }}
+          envs: BRANCH
           script: |
+            set -euo pipefail
             cd /projects/cv
-            git checkout ${{ inputs.branch }}
-            git pull origin ${{ inputs.branch }}
+            git fetch origin "$BRANCH"
+            git checkout -B "$BRANCH" FETCH_HEAD
             # Google geo-blocks Chrome for Testing downloads from the VPS's IPv6 address
             export NODE_OPTIONS=--dns-result-order=ipv4first
-            npm install
+            PUPPETEER_SKIP_DOWNLOAD=true npm ci --omit=dev
             npx puppeteer browsers install chrome
+            CHROME_BUILD="$(node -p "require('puppeteer').PUPPETEER_REVISIONS.chrome")"
+            test -d ".cache/puppeteer/chrome/linux-$CHROME_BUILD"
+            find .cache/puppeteer/chrome -mindepth 1 -maxdepth 1 ! -name "linux-$CHROME_BUILD" -exec rm -rf {} +
+            rm -rf .cache/puppeteer/chrome-headless-shell
+            SITE=kamilmielnik.com
+            PDF=dist/KamilMielnik.pdf
+            pdf_built_at() { stat -c %Y "$PDF" 2>/dev/null || echo 0; }
+            BUILT_AT="$(pdf_built_at)"
             sudo systemctl restart cv.service
+            for attempt in $(seq 30); do
+              sleep 2
+              if [ "$(pdf_built_at)" != "$BUILT_AT" ]; then
+                curl -fsS --resolve "$SITE:443:127.0.0.1" -o /dev/null "https://$SITE/"
+                curl -fsS --resolve "$SITE:443:127.0.0.1" -o /dev/null "https://$SITE/KamilMielnik.pdf"
+                echo "site rebuilt and serving after $((attempt * 2))s"
+                exit 0
+              fi
+            done
+            echo 'cv.service did not rebuild the site within 60s' >&2
+            sudo -n tail -n 50 /var/log/cv/log.log >&2 || true
+            exit 1

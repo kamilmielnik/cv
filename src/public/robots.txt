@@ -1,4 +1,4 @@
 User-agent: *
-Disallow:
+Disallow: /track
 
 Sitemap: https://kamilmielnik.com/sitemap.xml
