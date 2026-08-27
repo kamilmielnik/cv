@@ -1,4 +1,5 @@
 .cache/
+.tmp/
 dist/
 node_modules/
 todo.txt

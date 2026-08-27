@@ -11,6 +11,7 @@ import { formatNumberOfMonths, minify, sumTimePeriods } from './utils.mjs';
 const DAY = 24 * 60 * 60 * 1000;
 const SITE_URL = 'https://kamilmielnik.com';
 const ROOT_DIR = path.resolve(import.meta.dirname, '..');
+const TEMPORARY_DIR = path.join(ROOT_DIR, '.tmp');
 const PUBLIC_DIR = path.join(import.meta.dirname, 'public');
 const HTML_TEMPLATE_PATH = path.join(import.meta.dirname, 'index.html');
 const CSS_TEMPLATE_PATH = path.join(import.meta.dirname, 'style.css');
@@ -38,6 +39,7 @@ export async function keepSiteFresh(distDir, previewUrl) {
 
 async function buildSite(distDir, previewUrl) {
   await fs.mkdir(distDir, { recursive: true });
+  await fs.mkdir(TEMPORARY_DIR, { recursive: true });
   const lastModified = await getLastModified();
   const distFilenames = await copyPublicFiles(distDir);
   const sitemapFilenames = await writeTextFile(distDir, 'sitemap.xml', renderSitemapXml(lastModified));
@@ -174,7 +176,7 @@ async function writeTextFile(distDir, filename, text) {
 }
 
 async function writeFileAtomically(filepath, data) {
-  const temporaryFilepath = `${filepath}.tmp`;
+  const temporaryFilepath = path.join(TEMPORARY_DIR, path.basename(filepath));
   await fs.writeFile(temporaryFilepath, data);
   await fs.rename(temporaryFilepath, filepath);
 }
