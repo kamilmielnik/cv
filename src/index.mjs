@@ -7,7 +7,7 @@ import { keepSiteFresh } from './build.mjs';
 import { getClientTrackingData, getServerTrackingData, trackEvent } from './tracking.mjs';
 
 const HOST = '127.0.0.1';
-const PORT = Number(process.env.PORT ?? 3000);
+const PORT = parsePort(process.env.PORT ?? 3000);
 const DIST_DIR = path.resolve(import.meta.dirname, '..', 'dist');
 const PREVIEW_URL = `http://${HOST}:${PORT}`;
 const VALID_TRACK_ACTIONS = new Set(['github', 'pdf', 'print', 'visit']);
@@ -25,6 +25,16 @@ server.listen(PORT, HOST, () => {
   console.log(`app listening on http://${HOST}:${PORT}/`);
   keepSiteFresh(DIST_DIR, PREVIEW_URL).catch(exitWithError);
 });
+
+function parsePort(value) {
+  const port = Number(value);
+
+  if (!Number.isInteger(port) || port < 1 || port > 65535) {
+    throw new Error(`Invalid PORT: "${value}"`);
+  }
+
+  return port;
+}
 
 async function trackAction(request, response) {
   try {
