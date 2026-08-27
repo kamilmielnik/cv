@@ -27,11 +27,11 @@ const brotliCompress = promisify(zlib.brotliCompress);
 const execFileAsync = promisify(execFile);
 const gzip = promisify(zlib.gzip);
 
-export function keepSiteFresh(distDir, previewUrl) {
-  build();
-  setInterval(build, DAY);
+export async function keepSiteFresh(distDir, previewUrl) {
+  await buildSite(distDir, previewUrl);
+  setInterval(rebuild, DAY);
 
-  function build() {
+  function rebuild() {
     buildSite(distDir, previewUrl).catch(console.error);
   }
 }

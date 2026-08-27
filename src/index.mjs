@@ -23,7 +23,7 @@ process.on('SIGTERM', () => process.exit());
 
 server.listen(PORT, HOST, () => {
   console.log(`app listening on http://${HOST}:${PORT}/`);
-  keepSiteFresh(DIST_DIR, PREVIEW_URL);
+  keepSiteFresh(DIST_DIR, PREVIEW_URL).catch(exitWithError);
 });
 
 async function trackAction(request, response) {
@@ -133,4 +133,9 @@ function sendStatus(response, statusCode) {
   response.setHeader('Content-Type', 'text/plain; charset=utf-8');
   response.statusCode = statusCode;
   response.end(http.STATUS_CODES[statusCode]);
+}
+
+function exitWithError(error) {
+  console.error(error);
+  process.exit(1);
 }
