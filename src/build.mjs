@@ -52,19 +52,31 @@ async function buildSite(distDir, previewUrl) {
 }
 
 async function getLastModified() {
+  const templateChange = await getLastTemplateChange();
+  const durationChange = getLastDurationChange();
+  return templateChange > durationChange ? templateChange : durationChange;
+}
+
+async function getLastTemplateChange() {
   // cv.service runs git as root in a checkout owned by the deploy user
   const { stdout } = await execFileAsync(
     'git',
     ['-c', `safe.directory=${ROOT_DIR}`, 'log', '-1', '--format=%cs', '--', ...TEMPLATE_PATHS],
     { cwd: ROOT_DIR },
   );
-  const lastModified = stdout.trim();
+  const lastChange = stdout.trim();
 
-  if (lastModified === '') {
+  if (lastChange === '') {
     throw new Error('No commit touches the templates');
   }
 
-  return lastModified;
+  return lastChange;
+}
+
+// the duration counts whole months, so it last changed when this month began
+function getLastDurationChange() {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`;
 }
 
 async function copyPublicFiles(distDir) {
