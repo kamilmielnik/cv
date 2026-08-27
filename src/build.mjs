@@ -7,6 +7,9 @@ import { promisify } from 'node:util';
 import zlib from 'node:zlib';
 import puppeteer from 'puppeteer';
 
+import htmlTemplate from './index.html' with { type: 'text' };
+import cssTemplate from './style.css' with { type: 'text' };
+
 const DAY = 24 * 60 * 60 * 1000;
 const SITE_URL = 'https://kamilmielnik.com';
 const ROOT_DIR = path.resolve(import.meta.dirname, '..');
@@ -44,7 +47,7 @@ async function buildSite(distDir, previewUrl) {
   const lastModified = await getLastModified();
   const distFilenames = await copyPublicFiles(distDir);
   const sitemapFilenames = await writeTextFile(distDir, 'sitemap.xml', renderSitemapXml(lastModified));
-  const indexFilenames = await writeTextFile(distDir, 'index.html', await renderIndexHtml(lastModified, distFilenames));
+  const indexFilenames = await writeTextFile(distDir, 'index.html', renderIndexHtml(lastModified, distFilenames));
   await writeFileAtomically(path.join(distDir, PDF_FILENAME), await createPdf(previewUrl));
   await removeStaleFiles(
     distDir,
@@ -111,10 +114,8 @@ function renderSitemapXml(lastModified) {
   ].join('');
 }
 
-async function renderIndexHtml(lastModified, distFilenames) {
-  const html = await fs.readFile(HTML_TEMPLATE_PATH, 'utf-8');
-  const css = await fs.readFile(CSS_TEMPLATE_PATH, 'utf-8');
-  const withCss = replaceAll(html, '<style></style>', `<style>${css}</style>`);
+function renderIndexHtml(lastModified, distFilenames) {
+  const withCss = replaceAll(htmlTemplate, '<style></style>', `<style>${cssTemplate}</style>`);
   const renamedFiles = [...distFilenames].filter(([filename, distFilename]) => filename !== distFilename);
   const withHashedUrls = renamedFiles.reduce(
     (text, [filename, distFilename]) => replaceAll(text, `/${filename}`, `/${distFilename}`),
