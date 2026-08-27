@@ -1,12 +1,11 @@
+import minifyHtml from '@minify-html/node';
 import { execFile } from 'node:child_process';
 import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { promisify } from 'node:util';
 import zlib from 'node:zlib';
-
-import { createPdf } from './pdf.mjs';
-import { formatNumberOfMonths, minify, sumTimePeriods } from './utils.mjs';
+import puppeteer from 'puppeteer';
 
 const DAY = 24 * 60 * 60 * 1000;
 const SITE_URL = 'https://kamilmielnik.com';
@@ -21,6 +20,8 @@ const HASHED_FILE_EXTENSIONS = new Set(['.woff2']);
 const HASH_LENGTH = 8;
 const FONT_URL_PATTERN = /\/([\w.-]+\.woff2)/g;
 const CURRENT_POSITION_START = new Date(2023, 4, 15);
+const NUMBER_OF_MONTHS_IN_YEAR = 12;
+const NUMBER_OF_MONTHS_IN_HALF_YEAR = 6;
 const BROTLI_OPTIONS = { params: { [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY } };
 const GZIP_OPTIONS = { level: zlib.constants.Z_BEST_COMPRESSION };
 
@@ -130,6 +131,51 @@ function getCurrentPositionDuration() {
   return formatNumberOfMonths(sumTimePeriods([{ start: CURRENT_POSITION_START, end: null }]));
 }
 
+function formatNumberOfMonths(numberOfMonths) {
+  const years = Math.floor(numberOfMonths / NUMBER_OF_MONTHS_IN_YEAR);
+  const months = numberOfMonths - years * NUMBER_OF_MONTHS_IN_YEAR;
+
+  if (years === 0 && months === NUMBER_OF_MONTHS_IN_HALF_YEAR) {
+    return '0.5 yr';
+  }
+
+  if (years === 0) {
+    return `${months} ${pluralizeMonths(months)}`;
+  }
+
+  if (months === 0) {
+    return `${years} ${pluralizeYears(years)}`;
+  }
+
+  if (months === NUMBER_OF_MONTHS_IN_HALF_YEAR) {
+    return `${years}.5 ${pluralizeYears(years)}`;
+  }
+
+  return `${years} ${pluralizeYears(years)} ${months} ${pluralizeMonths(months)}`;
+}
+
+function pluralizeMonths(months) {
+  return `mo${months === 1 ? '' : 's'}`;
+}
+
+function pluralizeYears(years) {
+  return `yr${years === 1 ? '' : 's'}`;
+}
+
+function sumTimePeriods(timePeriods) {
+  return timePeriods.reduce((numberOfMonths, timePeriod) => numberOfMonths + monthDifference(timePeriod), 0);
+}
+
+function monthDifference(timePeriod) {
+  const endDate = timePeriod.end || new Date();
+  const endYear = endDate.getFullYear();
+  const startYear = timePeriod.start.getFullYear();
+  const fullYearsDifference = NUMBER_OF_MONTHS_IN_YEAR * (endYear - startYear);
+  const monthsDifference = endDate.getMonth() - timePeriod.start.getMonth() + 1;
+  const difference = fullYearsDifference + monthsDifference;
+  return difference;
+}
+
 function replaceAll(text, search, replacement) {
   assertIncludes(text, search);
   return text.replaceAll(search, () => replacement);
@@ -149,6 +195,10 @@ function assertFontsExist(text, distFilenames) {
       throw new Error(`"${filename}" not found in ${PUBLIC_DIR}`);
     }
   }
+}
+
+function minify(html) {
+  return String(minifyHtml.minify(Buffer.from(html), { keep_html_and_head_opening_tags: true, minify_css: true }));
 }
 
 function createContentSecurityPolicy(html) {
@@ -176,6 +226,19 @@ function hashInlineElements(html, pattern) {
 
 function toContentSecurityPolicyHash(content) {
   return `'sha256-${crypto.createHash('sha256').update(content).digest('base64')}'`;
+}
+
+async function createPdf(url) {
+  const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+
+  try {
+    const page = await browser.newPage();
+    await page.setJavaScriptEnabled(false);
+    await page.goto(url, { waitUntil: 'networkidle0' });
+    return await page.pdf({ format: 'a4' });
+  } finally {
+    await browser.close();
+  }
 }
 
 async function writeTextFile(distDir, filename, text) {
