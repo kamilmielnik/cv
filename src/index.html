@@ -436,6 +436,7 @@ March 1, 2014 - July 22, 2015"
       function track(action) {
         fetch(`/track/${action}`, {
           method: 'POST',
+          keepalive: true,
           priority: 'low',
           headers: {
             'Content-Type': 'application/json',
