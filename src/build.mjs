@@ -191,7 +191,7 @@ function replaceAll(text, search, replacement) {
 
 function assertIncludes(text, search) {
   if (!text.includes(search)) {
-    throw new Error(`"${search}" not found`);
+    throw new Error(`Template does not contain "${search}"`);
   }
 }
 
