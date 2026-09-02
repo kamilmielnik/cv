@@ -123,7 +123,11 @@ function renderIndexHtml(lastModified, distFilenames) {
   const withDateModified = replaceAll(withHashedUrls, '{{ dateModified }}', lastModified);
   const withDuration = replaceAll(withDateModified, '{{ currentPositionDuration }}', getCurrentPositionDuration());
   const minified = minify(withDuration);
-  return replaceAll(minified, '{{ contentSecurityPolicy }}', createContentSecurityPolicy(minified));
+  return replaceAll(
+    minified,
+    'content="{{ contentSecurityPolicy }}"',
+    `content="${createContentSecurityPolicy(minified)}"`,
+  );
 }
 
 function getCurrentPositionDuration() {
