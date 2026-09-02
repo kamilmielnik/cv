@@ -70,8 +70,8 @@
   --color--shadow--active: #666666;
   --color--text: #000000;
 
-  --box-shadow: 0px 0px 5px 2px var(--color--shadow);
-  --box-shadow--active: 0px 0px 5px 2px var(--color--shadow--active);
+  --box-shadow: 0 0 5px 2px var(--color--shadow);
+  --box-shadow--active: 0 0 5px 2px var(--color--shadow--active);
 }
 
 *,
