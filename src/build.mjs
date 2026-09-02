@@ -30,7 +30,6 @@ const execFileAsync = promisify(execFile);
 const gzip = promisify(zlib.gzip);
 
 export async function keepSiteFresh(distDir, previewUrl) {
-  // a deploy waits for a freshly rendered PDF and may have upgraded Chrome, so startup never reuses one
   await buildSite(distDir, previewUrl, { reusePdf: false });
   setInterval(rebuild, DAY);
 
@@ -226,7 +225,6 @@ function toContentSecurityPolicyHash(content) {
   return `'sha256-${crypto.createHash('sha256').update(content).digest('base64')}'`;
 }
 
-// syncFile leaves an unchanged index.html's mtime alone, so a PDF rendered after it is still current
 async function isPdfCurrent(distDir) {
   const indexModifiedAt = await getModifiedAt(path.join(distDir, 'index.html'));
   const pdfModifiedAt = await getModifiedAt(path.join(distDir, PDF_FILENAME));
