@@ -31,22 +31,27 @@ const execFileAsync = promisify(execFile);
 const gzip = promisify(zlib.gzip);
 
 export async function keepSiteFresh(distDir, previewUrl) {
-  await buildSite(distDir, previewUrl);
+  // a deploy waits for a freshly rendered PDF and may have upgraded Chrome, so startup never reuses one
+  await buildSite(distDir, previewUrl, { reusePdf: false });
   setInterval(rebuild, DAY);
 
   function rebuild() {
-    buildSite(distDir, previewUrl).catch(console.error);
+    buildSite(distDir, previewUrl, { reusePdf: true }).catch(console.error);
   }
 }
 
-async function buildSite(distDir, previewUrl) {
+async function buildSite(distDir, previewUrl, { reusePdf }) {
   await fs.mkdir(distDir, { recursive: true });
   await fs.mkdir(TEMPORARY_DIR, { recursive: true });
   const lastModified = await getLastModified();
   const distFilenames = await copyPublicFiles(distDir);
-  const sitemapFilenames = await writeTextFile(distDir, 'sitemap.xml', renderSitemapXml(lastModified));
-  const indexFilenames = await writeTextFile(distDir, 'index.html', renderIndexHtml(lastModified, distFilenames));
-  await writeFileAtomically(path.join(distDir, PDF_FILENAME), await createPdf(previewUrl));
+  const sitemapFilenames = await syncTextFile(distDir, 'sitemap.xml', renderSitemapXml(lastModified));
+  const indexFilenames = await syncTextFile(distDir, 'index.html', renderIndexHtml(lastModified, distFilenames));
+
+  if (!reusePdf || !(await isPdfCurrent(distDir))) {
+    await syncFile(path.join(distDir, PDF_FILENAME), await createPdf(previewUrl));
+  }
+
   await removeStaleFiles(
     distDir,
     new Set([...distFilenames.values(), ...sitemapFilenames, ...indexFilenames, PDF_FILENAME]),
@@ -90,7 +95,7 @@ async function copyPublicFiles(distDir) {
         const distFilename = HASHED_FILE_EXTENSIONS.has(path.extname(filename))
           ? hashFilename(filename, content)
           : filename;
-        await writeFileAtomically(path.join(distDir, distFilename), content);
+        await syncFile(path.join(distDir, distFilename), content);
         return [filename, distFilename];
       }),
     ),
@@ -231,6 +236,25 @@ function toContentSecurityPolicyHash(content) {
   return `'sha256-${crypto.createHash('sha256').update(content).digest('base64')}'`;
 }
 
+// syncFile leaves an unchanged index.html's mtime alone, so a PDF rendered after it is still current
+async function isPdfCurrent(distDir) {
+  const indexModifiedAt = await getModifiedAt(path.join(distDir, 'index.html'));
+  const pdfModifiedAt = await getModifiedAt(path.join(distDir, PDF_FILENAME));
+  return pdfModifiedAt !== null && pdfModifiedAt >= indexModifiedAt;
+}
+
+async function getModifiedAt(filepath) {
+  try {
+    return (await fs.stat(filepath)).mtimeMs;
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      return null;
+    }
+
+    throw error;
+  }
+}
+
 async function createPdf(url) {
   const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
 
@@ -244,19 +268,35 @@ async function createPdf(url) {
   }
 }
 
-async function writeTextFile(distDir, filename, text) {
+async function syncTextFile(distDir, filename, text) {
   const filepath = path.join(distDir, filename);
   const buffer = Buffer.from(text);
-  await writeFileAtomically(`${filepath}.br`, await brotliCompress(buffer, BROTLI_OPTIONS));
-  await writeFileAtomically(`${filepath}.gz`, await gzip(buffer, GZIP_OPTIONS));
-  await writeFileAtomically(filepath, buffer);
+  await syncFile(`${filepath}.br`, await brotliCompress(buffer, BROTLI_OPTIONS));
+  await syncFile(`${filepath}.gz`, await gzip(buffer, GZIP_OPTIONS));
+  await syncFile(filepath, buffer);
   return [`${filename}.br`, `${filename}.gz`, filename];
 }
 
-async function writeFileAtomically(filepath, data) {
+async function syncFile(filepath, data) {
+  if (await hasContent(filepath, data)) {
+    return;
+  }
+
   const temporaryFilepath = path.join(TEMPORARY_DIR, path.basename(filepath));
   await fs.writeFile(temporaryFilepath, data);
   await fs.rename(temporaryFilepath, filepath);
+}
+
+async function hasContent(filepath, data) {
+  try {
+    return (await fs.readFile(filepath)).equals(data);
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      return false;
+    }
+
+    throw error;
+  }
 }
 
 async function removeStaleFiles(distDir, filenames) {
