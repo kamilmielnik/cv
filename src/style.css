@@ -31,6 +31,8 @@
 }
 
 :root {
+  color-scheme: only light;
+
   --a4--width: 210mm;
   --a4--height: 297mm;
   --a4--padding: 20mm;
