@@ -12,7 +12,7 @@ const PREVIEW_URL = `http://${HOST}:${PORT}`;
 
 const { router, server } = cero();
 
-router.post('/track/:action', trackAction);
+router.post(/^\/track\/(?<action>\w+)$/, trackAction);
 router.use('/', serveStatic(DIST_DIR));
 
 // puppeteer's SIGTERM listener overrides the default exit, leaving the process running

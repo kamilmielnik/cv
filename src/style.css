@@ -31,6 +31,8 @@
 }
 
 :root {
+  color-scheme: only light;
+
   --a4--width: 210mm;
   --a4--height: 297mm;
   --a4--padding: 20mm;
@@ -68,8 +70,8 @@
   --color--shadow--active: #666666;
   --color--text: #000000;
 
-  --box-shadow: 0px 0px 5px 2px var(--color--shadow);
-  --box-shadow--active: 0px 0px 5px 2px var(--color--shadow--active);
+  --box-shadow: 0 0 5px 2px var(--color--shadow);
+  --box-shadow--active: 0 0 5px 2px var(--color--shadow--active);
 }
 
 *,
@@ -97,7 +99,7 @@ body {
     background: white;
   }
 
-  @media only screen and (max-width: 220mm) {
+  @media screen and (max-width: 220mm) {
     padding-block-start: 0;
   }
 }
@@ -166,7 +168,7 @@ a {
     border-radius: 0;
   }
 
-  @media only screen and (max-width: 220mm) {
+  @media screen and (max-width: 220mm) {
     width: 100%;
     height: auto;
     margin: 0;
@@ -184,7 +186,7 @@ a {
   margin-bottom: var(--spacing--l);
   margin-inline: -4px;
   font-family: var(--font-family--heading);
-  font-size: var(--font-size--xxl);
+  font-size: min(var(--font-size--xxl), 14.5vw);
   font-weight: 300;
   line-height: 1;
 }
@@ -198,7 +200,7 @@ a {
 
 .name,
 .job-title {
-  @media only screen and (max-width: 220mm) {
+  @media screen and (max-width: 220mm) {
     text-align: center;
   }
 }
@@ -212,7 +214,7 @@ a {
   gap: var(--spacing--l);
   margin-top: var(--spacing--s);
 
-  @media only screen and (max-width: 220mm) {
+  @media screen and (max-width: 220mm) {
     position: static;
     margin-top: 0;
     margin-bottom: var(--spacing--xxxl);
@@ -254,7 +256,7 @@ a {
     margin-top: var(--spacing--xxl);
   }
 
-  @media only screen and (max-width: 220mm) {
+  @media screen and (max-width: 220mm) {
     display: block;
   }
 }
@@ -264,7 +266,7 @@ a {
   top: calc(var(--font-size--m) - var(--font-size--l));
   flex: 0 0 125px;
 
-  @media only screen and (max-width: 220mm) {
+  @media screen and (max-width: 220mm) {
     position: static;
     margin-bottom: var(--spacing--l);
   }
@@ -278,7 +280,7 @@ a {
 .experience-details {
   font-size: var(--font-size--s);
 
-  @media only screen and (max-width: 220mm) {
+  @media screen and (max-width: 220mm) {
     display: flex;
     justify-content: space-between;
     gap: var(--spacing--m);
@@ -288,7 +290,7 @@ a {
 .narrow-only {
   display: none;
 
-  @media only screen and (max-width: 220mm) {
+  @media screen and (max-width: 220mm) {
     display: inline;
   }
 }
@@ -306,7 +308,7 @@ a {
     margin-top: var(--spacing--s);
   }
 
-  @media only screen and (max-width: 220mm) {
+  @media screen and (max-width: 220mm) {
     flex-direction: row;
   }
 }
@@ -314,7 +316,7 @@ a {
 .experience-time {
   flex: 0 0 88px;
 
-  @media only screen and (max-width: 220mm) {
+  @media screen and (max-width: 220mm) {
     flex: 0 0 auto;
   }
 }
@@ -330,7 +332,7 @@ a {
   justify-content: space-between;
   gap: var(--spacing--xl);
 
-  @media only screen and (max-width: 220mm) {
+  @media screen and (max-width: 220mm) {
     display: block;
   }
 }
@@ -339,7 +341,7 @@ a {
   flex: 0 0 auto;
   text-align: right;
 
-  @media only screen and (max-width: 220mm) {
+  @media screen and (max-width: 220mm) {
     margin-top: var(--spacing--s);
   }
 }
@@ -355,7 +357,7 @@ a {
     display: none;
   }
 
-  @media only screen and (max-width: 220mm) {
+  @media screen and (max-width: 220mm) {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -404,14 +406,9 @@ a {
 }
 
 .button.print {
-  @media only screen and (max-width: 220mm) {
+  @media screen and (max-width: 220mm) {
     display: none;
   }
-}
-
-.button.print,
-.button.pdf {
-  justify-self: end;
 }
 
 .sprite {

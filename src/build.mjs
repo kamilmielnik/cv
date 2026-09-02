@@ -14,10 +14,8 @@ const DAY = 24 * 60 * 60 * 1000;
 const SITE_URL = 'https://kamilmielnik.com';
 const ROOT_DIR = path.resolve(import.meta.dirname, '..');
 const TEMPORARY_DIR = path.join(ROOT_DIR, '.tmp');
-const PUBLIC_DIR = path.join(import.meta.dirname, 'public');
-const HTML_TEMPLATE_PATH = path.join(import.meta.dirname, 'index.html');
-const CSS_TEMPLATE_PATH = path.join(import.meta.dirname, 'style.css');
-const TEMPLATE_PATHS = [HTML_TEMPLATE_PATH, CSS_TEMPLATE_PATH];
+const SOURCE_DIR = import.meta.dirname;
+const PUBLIC_DIR = path.join(SOURCE_DIR, 'public');
 const PDF_FILENAME = 'KamilMielnik.pdf';
 const HASHED_FILE_EXTENSIONS = new Set(['.woff2']);
 const HASH_LENGTH = 8;
@@ -33,22 +31,26 @@ const execFileAsync = promisify(execFile);
 const gzip = promisify(zlib.gzip);
 
 export async function keepSiteFresh(distDir, previewUrl) {
-  await buildSite(distDir, previewUrl);
+  await buildSite(distDir, previewUrl, { reusePdf: false });
   setInterval(rebuild, DAY);
 
   function rebuild() {
-    buildSite(distDir, previewUrl).catch(console.error);
+    buildSite(distDir, previewUrl, { reusePdf: true }).catch(console.error);
   }
 }
 
-async function buildSite(distDir, previewUrl) {
+async function buildSite(distDir, previewUrl, { reusePdf }) {
   await fs.mkdir(distDir, { recursive: true });
   await fs.mkdir(TEMPORARY_DIR, { recursive: true });
   const lastModified = await getLastModified();
   const distFilenames = await copyPublicFiles(distDir);
-  const sitemapFilenames = await writeTextFile(distDir, 'sitemap.xml', renderSitemapXml(lastModified));
-  const indexFilenames = await writeTextFile(distDir, 'index.html', renderIndexHtml(lastModified, distFilenames));
-  await writeFileAtomically(path.join(distDir, PDF_FILENAME), await createPdf(previewUrl));
+  const sitemapFilenames = await syncTextFile(distDir, 'sitemap.xml', renderSitemapXml(lastModified));
+  const indexFilenames = await syncTextFile(distDir, 'index.html', renderIndexHtml(lastModified, distFilenames));
+
+  if (!reusePdf || !(await isPdfCurrent(distDir))) {
+    await syncFile(path.join(distDir, PDF_FILENAME), await createPdf(previewUrl));
+  }
+
   await removeStaleFiles(
     distDir,
     new Set([...distFilenames.values(), ...sitemapFilenames, ...indexFilenames, PDF_FILENAME]),
@@ -56,22 +58,22 @@ async function buildSite(distDir, previewUrl) {
 }
 
 async function getLastModified() {
-  const templateChange = await getLastTemplateChange();
+  const sourceChange = await getLastSourceChange();
   const durationChange = getLastDurationChange();
-  return templateChange > durationChange ? templateChange : durationChange;
+  return sourceChange > durationChange ? sourceChange : durationChange;
 }
 
-async function getLastTemplateChange() {
+async function getLastSourceChange() {
   // cv.service runs git as root in a checkout owned by the deploy user
   const { stdout } = await execFileAsync(
     'git',
-    ['-c', `safe.directory=${ROOT_DIR}`, 'log', '-1', '--format=%cs', '--', ...TEMPLATE_PATHS],
+    ['-c', `safe.directory=${ROOT_DIR}`, 'log', '-1', '--format=%cs', '--', SOURCE_DIR],
     { cwd: ROOT_DIR },
   );
   const lastChange = stdout.trim();
 
   if (lastChange === '') {
-    throw new Error('No commit touches the templates');
+    throw new Error(`No commit touches ${SOURCE_DIR}`);
   }
 
   return lastChange;
@@ -84,7 +86,7 @@ function getLastDurationChange() {
 }
 
 async function copyPublicFiles(distDir) {
-  const filenames = await fs.readdir(PUBLIC_DIR);
+  const filenames = (await fs.readdir(PUBLIC_DIR)).filter((filename) => !filename.startsWith('.'));
   return new Map(
     await Promise.all(
       filenames.map(async (filename) => {
@@ -92,7 +94,7 @@ async function copyPublicFiles(distDir) {
         const distFilename = HASHED_FILE_EXTENSIONS.has(path.extname(filename))
           ? hashFilename(filename, content)
           : filename;
-        await writeFileAtomically(path.join(distDir, distFilename), content);
+        await syncFile(path.join(distDir, distFilename), content);
         return [filename, distFilename];
       }),
     ),
@@ -125,7 +127,11 @@ function renderIndexHtml(lastModified, distFilenames) {
   const withDateModified = replaceAll(withHashedUrls, '{{ dateModified }}', lastModified);
   const withDuration = replaceAll(withDateModified, '{{ currentPositionDuration }}', getCurrentPositionDuration());
   const minified = minify(withDuration);
-  return replaceAll(minified, '{{ contentSecurityPolicy }}', createContentSecurityPolicy(minified));
+  return replaceAll(
+    minified,
+    'content="{{ contentSecurityPolicy }}"',
+    `content="${createContentSecurityPolicy(minified)}"`,
+  );
 }
 
 function getCurrentPositionDuration() {
@@ -184,7 +190,7 @@ function replaceAll(text, search, replacement) {
 
 function assertIncludes(text, search) {
   if (!text.includes(search)) {
-    throw new Error(`"${search}" not found`);
+    throw new Error(`Template does not contain "${search}"`);
   }
 }
 
@@ -229,6 +235,24 @@ function toContentSecurityPolicyHash(content) {
   return `'sha256-${crypto.createHash('sha256').update(content).digest('base64')}'`;
 }
 
+async function isPdfCurrent(distDir) {
+  const indexModifiedAt = await getModifiedAt(path.join(distDir, 'index.html'));
+  const pdfModifiedAt = await getModifiedAt(path.join(distDir, PDF_FILENAME));
+  return pdfModifiedAt !== null && pdfModifiedAt >= indexModifiedAt;
+}
+
+async function getModifiedAt(filepath) {
+  try {
+    return (await fs.stat(filepath)).mtimeMs;
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      return null;
+    }
+
+    throw error;
+  }
+}
+
 async function createPdf(url) {
   const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
 
@@ -236,25 +260,41 @@ async function createPdf(url) {
     const page = await browser.newPage();
     await page.setJavaScriptEnabled(false);
     await page.goto(url, { waitUntil: 'networkidle0' });
-    return await page.pdf({ format: 'a4' });
+    return await page.pdf({ preferCSSPageSize: true });
   } finally {
     await browser.close();
   }
 }
 
-async function writeTextFile(distDir, filename, text) {
+async function syncTextFile(distDir, filename, text) {
   const filepath = path.join(distDir, filename);
   const buffer = Buffer.from(text);
-  await writeFileAtomically(`${filepath}.br`, await brotliCompress(buffer, BROTLI_OPTIONS));
-  await writeFileAtomically(`${filepath}.gz`, await gzip(buffer, GZIP_OPTIONS));
-  await writeFileAtomically(filepath, buffer);
+  await syncFile(`${filepath}.br`, await brotliCompress(buffer, BROTLI_OPTIONS));
+  await syncFile(`${filepath}.gz`, await gzip(buffer, GZIP_OPTIONS));
+  await syncFile(filepath, buffer);
   return [`${filename}.br`, `${filename}.gz`, filename];
 }
 
-async function writeFileAtomically(filepath, data) {
+async function syncFile(filepath, data) {
+  if (await hasContent(filepath, data)) {
+    return;
+  }
+
   const temporaryFilepath = path.join(TEMPORARY_DIR, path.basename(filepath));
   await fs.writeFile(temporaryFilepath, data);
   await fs.rename(temporaryFilepath, filepath);
+}
+
+async function hasContent(filepath, data) {
+  try {
+    return (await fs.readFile(filepath)).equals(data);
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      return false;
+    }
+
+    throw error;
+  }
 }
 
 async function removeStaleFiles(distDir, filenames) {
