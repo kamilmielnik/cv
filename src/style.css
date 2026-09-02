@@ -407,11 +407,6 @@ a {
   }
 }
 
-.button.print,
-.button.pdf {
-  justify-self: end;
-}
-
 .sprite {
   position: absolute;
   width: 0;
