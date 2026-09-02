@@ -14,10 +14,8 @@ const DAY = 24 * 60 * 60 * 1000;
 const SITE_URL = 'https://kamilmielnik.com';
 const ROOT_DIR = path.resolve(import.meta.dirname, '..');
 const TEMPORARY_DIR = path.join(ROOT_DIR, '.tmp');
-const PUBLIC_DIR = path.join(import.meta.dirname, 'public');
-const HTML_TEMPLATE_PATH = path.join(import.meta.dirname, 'index.html');
-const CSS_TEMPLATE_PATH = path.join(import.meta.dirname, 'style.css');
-const TEMPLATE_PATHS = [HTML_TEMPLATE_PATH, CSS_TEMPLATE_PATH];
+const SOURCE_DIR = import.meta.dirname;
+const PUBLIC_DIR = path.join(SOURCE_DIR, 'public');
 const PDF_FILENAME = 'KamilMielnik.pdf';
 const HASHED_FILE_EXTENSIONS = new Set(['.woff2']);
 const HASH_LENGTH = 8;
@@ -56,22 +54,22 @@ async function buildSite(distDir, previewUrl) {
 }
 
 async function getLastModified() {
-  const templateChange = await getLastTemplateChange();
+  const sourceChange = await getLastSourceChange();
   const durationChange = getLastDurationChange();
-  return templateChange > durationChange ? templateChange : durationChange;
+  return sourceChange > durationChange ? sourceChange : durationChange;
 }
 
-async function getLastTemplateChange() {
+async function getLastSourceChange() {
   // cv.service runs git as root in a checkout owned by the deploy user
   const { stdout } = await execFileAsync(
     'git',
-    ['-c', `safe.directory=${ROOT_DIR}`, 'log', '-1', '--format=%cs', '--', ...TEMPLATE_PATHS],
+    ['-c', `safe.directory=${ROOT_DIR}`, 'log', '-1', '--format=%cs', '--', SOURCE_DIR],
     { cwd: ROOT_DIR },
   );
   const lastChange = stdout.trim();
 
   if (lastChange === '') {
-    throw new Error('No commit touches the templates');
+    throw new Error(`No commit touches ${SOURCE_DIR}`);
   }
 
   return lastChange;
