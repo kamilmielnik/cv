@@ -16,9 +16,10 @@ const ROOT_DIR = path.resolve(import.meta.dirname, '..');
 const TEMPORARY_DIR = path.join(ROOT_DIR, '.tmp');
 const SOURCE_DIR = import.meta.dirname;
 const PUBLIC_DIR = path.join(SOURCE_DIR, 'public');
-const FONTS_DIR = path.join(SOURCE_DIR, 'fonts');
 const PDF_FILENAME = 'KamilMielnik.pdf';
-const FILE_URL_PATTERN = /url\(\/[^)]*\)/;
+const HASHED_FILE_EXTENSIONS = new Set(['.woff2']);
+const HASH_LENGTH = 8;
+const FONT_URL_PATTERN = /\/([\w.-]+\.woff2)/g;
 const CURRENT_POSITION_START = new Date(2023, 4, 15);
 const NUMBER_OF_MONTHS_IN_YEAR = 12;
 const NUMBER_OF_MONTHS_IN_HALF_YEAR = 6;
@@ -42,16 +43,18 @@ async function buildSite(distDir, previewUrl, { reusePdf }) {
   await fs.mkdir(distDir, { recursive: true });
   await fs.mkdir(TEMPORARY_DIR, { recursive: true });
   const lastModified = await getLastModified();
-  const publicFilenames = await copyPublicFiles(distDir);
+  const distFilenames = await copyPublicFiles(distDir);
   const sitemapFilenames = await syncTextFile(distDir, 'sitemap.xml', renderSitemapXml(lastModified));
-  const css = await inlineFonts(cssTemplate);
-  const indexFilenames = await syncTextFile(distDir, 'index.html', renderIndexHtml(lastModified, css));
+  const indexFilenames = await syncTextFile(distDir, 'index.html', renderIndexHtml(lastModified, distFilenames));
 
   if (!reusePdf || !(await isPdfCurrent(distDir))) {
     await syncFile(path.join(distDir, PDF_FILENAME), await createPdf(previewUrl));
   }
 
-  await removeStaleFiles(distDir, new Set([...publicFilenames, ...sitemapFilenames, ...indexFilenames, PDF_FILENAME]));
+  await removeStaleFiles(
+    distDir,
+    new Set([...distFilenames.values(), ...sitemapFilenames, ...indexFilenames, PDF_FILENAME]),
+  );
 }
 
 async function getLastModified() {
@@ -84,12 +87,24 @@ function getLastDurationChange() {
 
 async function copyPublicFiles(distDir) {
   const filenames = (await fs.readdir(PUBLIC_DIR)).filter((filename) => !filename.startsWith('.'));
-  await Promise.all(filenames.map((filename) => copyPublicFile(distDir, filename)));
-  return filenames;
+  return new Map(
+    await Promise.all(
+      filenames.map(async (filename) => {
+        const content = await fs.readFile(path.join(PUBLIC_DIR, filename));
+        const distFilename = HASHED_FILE_EXTENSIONS.has(path.extname(filename))
+          ? hashFilename(filename, content)
+          : filename;
+        await syncFile(path.join(distDir, distFilename), content);
+        return [filename, distFilename];
+      }),
+    ),
+  );
 }
 
-async function copyPublicFile(distDir, filename) {
-  await syncFile(path.join(distDir, filename), await fs.readFile(path.join(PUBLIC_DIR, filename)));
+function hashFilename(filename, content) {
+  const hash = crypto.createHash('sha256').update(content).digest('hex').slice(0, HASH_LENGTH);
+  const extension = path.extname(filename);
+  return `${path.basename(filename, extension)}.${hash}${extension}`;
 }
 
 function renderSitemapXml(lastModified) {
@@ -101,30 +116,15 @@ function renderSitemapXml(lastModified) {
   ].join('');
 }
 
-async function inlineFonts(css) {
-  const filenames = await fs.readdir(FONTS_DIR);
-  let result = css;
-
-  for (const filename of filenames) {
-    const content = await fs.readFile(path.join(FONTS_DIR, filename));
-    result = replaceAll(result, `url(/${filename})`, `url(data:font/woff2;base64,${content.toString('base64')})`);
-  }
-
-  assertNoFileUrls(result);
-  return result;
-}
-
-function assertNoFileUrls(css) {
-  const fileUrl = css.match(FILE_URL_PATTERN);
-
-  if (fileUrl !== null) {
-    throw new Error(`${fileUrl[0]} refers to a file that is not in ${FONTS_DIR}`);
-  }
-}
-
-function renderIndexHtml(lastModified, css) {
-  const withCss = replaceAll(htmlTemplate, '<style></style>', `<style>${css}</style>`);
-  const withDateModified = replaceAll(withCss, '{{ dateModified }}', lastModified);
+function renderIndexHtml(lastModified, distFilenames) {
+  const withCss = replaceAll(htmlTemplate, '<style></style>', `<style>${cssTemplate}</style>`);
+  const renamedFiles = [...distFilenames].filter(([filename, distFilename]) => filename !== distFilename);
+  const withHashedUrls = renamedFiles.reduce(
+    (text, [filename, distFilename]) => replaceAll(text, `/${filename}`, `/${distFilename}`),
+    withCss,
+  );
+  assertFontsExist(withHashedUrls, distFilenames);
+  const withDateModified = replaceAll(withHashedUrls, '{{ dateModified }}', lastModified);
   const withDuration = replaceAll(withDateModified, '{{ currentPositionDuration }}', getCurrentPositionDuration());
   const minified = minify(withDuration);
   return replaceAll(
@@ -194,6 +194,16 @@ function assertIncludes(text, search) {
   }
 }
 
+function assertFontsExist(text, distFilenames) {
+  const available = new Set(distFilenames.values());
+
+  for (const [, filename] of text.matchAll(FONT_URL_PATTERN)) {
+    if (!available.has(filename)) {
+      throw new Error(`"${filename}" not found in ${PUBLIC_DIR}`);
+    }
+  }
+}
+
 function minify(html) {
   return String(minifyHtml.minify(Buffer.from(html), { keep_html_and_head_opening_tags: true, minify_css: true }));
 }
@@ -203,7 +213,7 @@ function createContentSecurityPolicy(html) {
     "default-src 'none'",
     `script-src ${hashInlineElements(html, /<script\b[^>]*>([^]*?)<\/script>/g)}`,
     `style-src ${hashInlineElements(html, /<style\b[^>]*>([^]*?)<\/style>/g)}`,
-    'font-src data:',
+    "font-src 'self'",
     "img-src 'self'",
     "connect-src 'self'",
     "base-uri 'none'",
