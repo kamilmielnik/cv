@@ -82,7 +82,7 @@ function getLastDurationChange() {
 }
 
 async function copyPublicFiles(distDir) {
-  const filenames = await fs.readdir(PUBLIC_DIR);
+  const filenames = (await fs.readdir(PUBLIC_DIR)).filter((filename) => !filename.startsWith('.'));
   return new Map(
     await Promise.all(
       filenames.map(async (filename) => {
