@@ -260,7 +260,7 @@ async function createPdf(url) {
     const page = await browser.newPage();
     await page.setJavaScriptEnabled(false);
     await page.goto(url, { waitUntil: 'networkidle0' });
-    return await page.pdf({ format: 'a4' });
+    return await page.pdf({ preferCSSPageSize: true });
   } finally {
     await browser.close();
   }
