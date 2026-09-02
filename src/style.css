@@ -186,7 +186,7 @@ a {
   margin-bottom: var(--spacing--l);
   margin-inline: -4px;
   font-family: var(--font-family--heading);
-  font-size: var(--font-size--xxl);
+  font-size: min(var(--font-size--xxl), 14.5vw);
   font-weight: 300;
   line-height: 1;
 }
