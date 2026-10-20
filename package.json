@@ -25,13 +25,13 @@
     "start": "bun src/index.mjs"
   },
   "dependencies": {
-    "0http": "^5.1.1",
+    "0http": "^5.2.0",
     "@minify-html/node": "^0.18.1",
-    "puppeteer": "^25.13.0",
+    "puppeteer": "^25.15.0",
     "serve-static": "^2.2.1"
   },
   "devDependencies": {
-    "oxfmt": "^0.72.0"
+    "oxfmt": "^0.74.0"
   },
   "engines": {
     "bun": ">=1.4"
